@@ -351,13 +351,23 @@ you should place your code here."
 
   )
 
-(defun desperately-compile()
-  "Traveling up the path, find a Makefile and 'compile'."
+(defun desperately-compile ()
+  "Traveling up the path, find a Makefile and `compile'."
   (interactive)
-  (with-temp-file
-      (while ( and (not (file-exists-p "Makefile"))
-                   (not (equal "/" default-directory)))
- '(linum-format "%4d")
+  (when (locate-dominating-file default-directory "Makefile")
+    (with-temp-buffer
+      (cd (locate-dominating-file default-directory "Makefile"))
+      (compile "make -k"))))
+
+;; Do not write anything past this comment. This is where Emacs will
+;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(global-linum-mode t)
+ '(linum-format "%4d") '(linum-format "%4d")
  '(linum-relative-current-symbol "")
  '(package-selected-packages
    (quote
