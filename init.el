@@ -411,7 +411,6 @@ behavior added."
   :bind (
          ("C-x t"      . 'crux-swap-windows)
          ("C-c b"      . 'crux-create-scratch-buffer)
-         ("C-x o"      . 'crux-open-with)
          ("C-x f"      . 'crux-recentf-find-file)
          ("C-x 4 t"    . 'crux-transpose-windows)
          ("C-x C-k"    . 'crux-delete-buffer-and-file)
@@ -606,34 +605,34 @@ is already narrowed."
 ;;   (setq expand-region-fast-keys-enabled nil
 ;;         er--show-expansion-message t))
 
-;; (use-package wrap-region
-;;   ;; Wrap selected region
-;;   :hook ((prog-mode text-mode) . wrap-region-mode)
-;;   :config
-;;   (wrap-region-add-wrappers
-;;    '(
-;;      ("$" "$")
-;;      ("*" "*")
-;;      ("=" "=")
-;;      ("`" "`")
-;;      ("/" "/")
-;;      ("_" "_")
-;;      ("~" "~")
-;;      ("+" "+")
-;;      ("“" "”")
-;;      ("/* " " */" "#" (java-mode javascript-mode css-mode))))
-;;   (add-to-list 'wrap-region-except-modes 'ibuffer-mode)
-;;   (add-to-list 'wrap-region-except-modes 'magit-mode)
-;;   (add-to-list 'wrap-region-except-modes 'magit-todo-mode)
-;;   (add-to-list 'wrap-region-except-modes 'magit-popup-mode)
-;;   )
+(use-package wrap-region
+  ;; Wrap selected region
+  :hook ((prog-mode text-mode) . wrap-region-mode)
+  :config
+  (wrap-region-add-wrappers
+   '(
+     ("$" "$")
+     ("*" "*")
+     ("=" "=")
+     ("`" "`")
+     ("/" "/")
+     ("_" "_")
+     ("~" "~")
+     ("+" "+")
+     ("“" "”")
+     ("/* " " */" "#" (java-mode javascript-mode css-mode))))
+  (add-to-list 'wrap-region-except-modes 'ibuffer-mode)
+  (add-to-list 'wrap-region-except-modes 'magit-mode)
+  (add-to-list 'wrap-region-except-modes 'magit-todo-mode)
+  (add-to-list 'wrap-region-except-modes 'magit-popup-mode)
+  )
 
-;; (use-package change-inner
-;;   :bind (("M-I" . copy-inner)
-;;          ("M-O" . copy-outer)
-;;          ("s-i" . change-inner)
-;;          ("s-o" . change-outer))
-;;   )
+(use-package change-inner
+  :bind (("M-I" . copy-inner)
+         ("M-O" . copy-outer)
+         ("s-i" . change-inner)
+         ("s-o" . change-outer))
+  )
 
 ;; ;;; Text Editing / Substitution / Copy-Pasting
 
@@ -819,7 +818,7 @@ Useful when hard line wraps are unwanted (email/sharing article)."
   (counsel-mode 1)
   (minibuffer-depth-indicate-mode 1)
   (counsel-projectile-mode 1)
-  (setq smex-save-file (expand-file-name "smex-items" my-private-conf-directory))
+  ;; (setq smex-save-file (expand-file-name "smex-items" my-private-conf-directory)) 
   (setq ivy-height 10
         ivy-fixed-height-minibuffer t
         ivy-use-virtual-buffers nil ;; don't show recent files/bookmarks as buffers in C-x b
@@ -845,6 +844,25 @@ Useful when hard line wraps are unwanted (email/sharing article)."
   :bind (("<f7>" . follow-delete-other-windows-and-split)
          ("<f8>" . follow-mode))
   )
+
+;; code search
+(use-package helm-codesearch
+  :demand t
+  :init
+  :config
+  (setq helm-codesearch-global-csearchindex "~/.csearchindex")
+  (setq helm-codesearch-overwrite-search-result t)
+  )
+
+(use-package jdee
+  :demand t
+  :init
+  )
+(use-package android-mode
+  :demand t
+  :init
+  )
+;;; 
 
 ;; (use-package dired
 ;;   :defer 3
@@ -915,16 +933,35 @@ Useful when hard line wraps are unwanted (email/sharing article)."
 ;;         )
 ;;   )
 
-;; ;;; Window and Buffer management
+;;; Window and Buffer management
 
-;; (use-package windmove
-;;   :straight nil
-;;   :bind (("s-j" . windmove-down)
-;;          ("s-k" . windmove-up)
-;;          ("s-h" . windmove-left)
-;;          ("s-l" . windmove-right))
-;;   )
+(use-package windmove
+  :straight nil
+  :bind (("s-j" . windmove-down)
+         ("s-k" . windmove-up)
+         ("s-h" . windmove-left)
+         ("s-l" . windmove-right))
+  )
+(use-package helm-cscope
+  :demand t
+  :bind (("C-<f5>" . helm-cscope-find-this-symbol-no-prompt)
+         ("C-<f6>" . helm-cscope-find-global-definition-no-prompt)
+         ("C-<f7>" . helm-cscope-find-calling-this-function-no-prompt)
+         ("C-<f8>" . helm-cscope-find-assignments-to-this-symbol-no-prompt)
+         )
+  )
+(use-package android-mode
+  :demand t
+  )
 
+(use-package eclim
+  :demand t
+  )
+
+(use-package android-env
+  :demand t
+
+  )
 ;; (use-package window
 ;;   ;; Handier movement over default window.el
 ;;   :straight nil
@@ -981,16 +1018,17 @@ Useful when hard line wraps are unwanted (email/sharing article)."
 ;;             (if this-win-2nd (other-window 1))))))
 ;;   )
 
-;; (use-package ace-window
-;;   :defer 3
-;;   :bind (("<C-return>" . ace-window))
-;;   :custom-face (aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 1.0))))
-;;   :config
-;;   (setq
-;;    ;; Home row is more convenient. Use home row keys that prioritize fingers that don't move.
-;;    aw-keys '(?j ?k ?l ?f ?d ?s ?g ?h ?\; ?a)
-;;    aw-scope 'visible)
-;;   )
+;;창 전환 
+(use-package ace-window
+  :defer 3
+  :bind (("<C-return>" . ace-window))
+  :custom-face (aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 1.0))))
+  :config
+  (setq
+   ;; Home row is more convenient. Use home row keys that prioritize fingers that don't move.
+   aw-keys '(?j ?k ?l ?f ?d ?s ?g ?h ?\; ?a)
+   aw-scope 'visible)
+  )
 
 ;; (use-package winner
 ;;   ;; Enable window restoration
@@ -1057,6 +1095,8 @@ Useful when hard line wraps are unwanted (email/sharing article)."
 ;;   (setq nswbuff-display-intermediate-buffers t)
 ;;   )
 
+(global-set-key (kbd "<f5>") 'highlight-symbol-at-point)
+(global-set-key (kbd "<f6>") 'lazy-highlight-cleanup)
 ;; ;;; Cursor Navigation: avy
 
 ;; (global-set-key (kbd "M-p") 'backward-paragraph)
@@ -3403,30 +3443,29 @@ In that case, insert the number."
 ;;   :bind (:map prog-mode-map
 ;;               ("C-c h" . toggle-fold)))
 
-;; (use-package origami
-;;   ;; Code folding
-;;   :defer 3
-;;   :after hydra
-;;   :bind(
-;;         ;; ("C-c f" . 'origami-toggle-node)
-;;         ("C-z o" . hydra-origami/body)
-;;         )
-;;   :config
-;;   (global-origami-mode)
-;;   (defhydra hydra-origami (:color red)
-;;     "
-;;         _o_pen node    _n_ext fold       toggle _f_orward
-;;         _c_lose node   _p_revious fold   toggle _a_ll
-;;         "
-;;     ("o" origami-open-node)
-;;     ("c" origami-close-node)
-;;     ("n" origami-next-fold)
-;;     ("p" origami-previous-fold)
-;;     ("f" origami-forward-toggle-node)
-;;     ("a" origami-toggle-all-nodes))
-;;   )
+(use-package origami
+  ;; Code folding
+  :defer 3
+  :after hydra
+  :bind(
+        ;; ("C-c f" . 'origami-toggle-node)
+        ("C-z o" . hydra-origami/body)
+        )
+  :config
+  (global-origami-mode)
+  (defhydra hydra-origami (:color red)
+    "
+        _o_pen node    _n_ext fold       toggle _f_orward
+        _c_lose node   _p_revious fold   toggle _a_ll
+        "
+    ("o" origami-open-node)
+    ("c" origami-close-node)
+    ("n" origami-next-fold)
+    ("p" origami-previous-fold)
+    ("f" origami-forward-toggle-node)
+    ("a" origami-toggle-all-nodes))
+  )
 
-;; ;;;; Documentation
 
 ;; (use-package eldoc
 ;;   ;; Show argument list of function call at echo area
@@ -3447,30 +3486,30 @@ In that case, insert the number."
 ;;   :config (setq dumb-jump-selector 'ivy)
 ;;   )
 
-;; (use-package ggtags
-;;   :bind (("H-g" . ggtags-mode))
-;;   :config
-;;   ;; Support languages: See https://www.gnu.org/software/global/
-;;   ;; R is not supported (use dumb-jump)
-;;   ;;
-;;   ;; Prerequisites:
-;;   ;; ggtags(global), ctags, pygments(for python support)
-;;   ;; pygment is *not* enabled by default. We must provide ~/.globalrc to enable it.
-;;   ;; Use /usr/share/gtags/gtags.conf should suffice.
+(use-package ggtags
+  :bind (("H-g" . ggtags-mode))
+  :config
+  ;; Support languages: See https://www.gnu.org/software/global/
+  ;; R is not supported (use dumb-jump)
+  ;;
+  ;; Prerequisites:
+  ;; ggtags(global), ctags, pygments(for python support)
+  ;; pygment is *not* enabled by default. We must provide ~/.globalrc to enable it.
+  ;; Use /usr/share/gtags/gtags.conf should suffice.
 
-;;   ;; Usage:
-;;   ;; M-x ggtags-mode on any file in the project.
-;;   ;; Use M-. to find definition, M-, to pop back.
-;;   ;; Once found, will enter ggtags-navigation-mode. Use M-n, M-p to
-;;   ;; navigate through errors. RET to exit ggtags-navigation-mode. With
-;;   ;; projectile, use projectile-regenerate-tags to refresh tags.
-;;   (add-hook 'python-mode-hook
-;;             (lambda ()
-;;               (when (derived-mode-p 'c-mode 'web-mode 'python-mode 'jsx-mode)
-;;                 (ggtags-mode 1))))
-;;   )
+  ;; Usage:
+  ;; M-x ggtags-mode on any file in the project.
+  ;; Use M-. to find definition, M-, to pop back.
+  ;; Once found, will enter ggtags-navigation-mode. Use M-n, M-p to
+  ;; navigate through errors. RET to exit ggtags-navigation-mode. With
+  ;; projectile, use projectile-regenerate-tags to refresh tags.
+  (add-hook 'python-mode-hook
+            (lambda ()
+              (when (derived-mode-p 'c-mode 'web-mode 'python-mode 'jsx-mode)
+                (ggtags-mode 1))))
+  )
 
-;; ;;;; LaTeX
+;; ;;;; latex
 
 ;; (use-package tex
 ;;   ;; We're using AUCTeX, but the library that needs to be loaded is called tex
@@ -3493,24 +3532,24 @@ In that case, insert the number."
 ;;   ;; C-c C-a to compile and preview slides
 ;;   )
 
-;; ;;;; Templating: Yasnippet
+;;;; Templating: Yasnippet
 
-;; (use-package yasnippet
-;;   :straight yasnippet-snippets
-;;   :defer 3
-;;   :bind (("C-c y" . 'yas-insert-snippet))
-;;   :config
-;;   (add-to-list 'yas-snippet-dirs
-;;                (expand-file-name "yasnippets" my-private-conf-directory))
-;;   (yas-global-mode 1)
+(use-package yasnippet
+  :straight yasnippet-snippets
+  :defer 3
+  :bind (("C-c y" . 'yas-insert-snippet))
+  :config
+  (add-to-list 'yas-snippet-dirs
+               (expand-file-name "yasnippets" my-private-conf-directory))
+  (yas-global-mode 1)
 
-;;   ;; Enable yasnippet expansion in minibuffer
-;;   ;; https://emacs.stackexchange.com/questions/36677/how-to-use-yasnippets-tab-expansion-in-minibuffer
-;;   (add-hook 'minibuffer-setup-hook 'yas-minor-mode)
-;;   (define-key minibuffer-local-map [tab] yas-maybe-expand)
+  ;; Enable yasnippet expansion in minibuffer
+  ;; https://emacs.stackexchange.com/questions/36677/how-to-use-yasnippets-tab-expansion-in-minibuffer
+  (add-hook 'minibuffer-setup-hook 'yas-minor-mode)
+  (define-key minibuffer-local-map [tab] yas-maybe-expand)
 
-;;   (yasnippet-snippets-initialize)
-;;   )
+  (yasnippet-snippets-initialize)
+  )
 
 ;; ;;;; Syntax Checking: Flycheck
 
@@ -3603,23 +3642,23 @@ In that case, insert the number."
 ;;   (require 'dap-python))
 
 ;; ;;;; C/C++
-;; ;; [[https://www.reddit.com/r/emacs/comments/audffp/tip_how_to_use_a_stable_and_fast_environment_to/][Reddit post on creating C++ IDE in Emacs]].
-;; (use-package ccls
-;;   ;; C lsp backend
-;;   ;; Requires binary ccls
-;;   :after projectile
-;;   :custom
-;;   (ccls-args nil)
-;;   (ccls-executable (executable-find "ccls"))
-;;   (projectile-project-root-files-top-down-recurring
-;;    (append '("compile_commands.json" ".ccls")
-;;            projectile-project-root-files-top-down-recurring))
-;;   :config (push ".ccls-cache" projectile-globally-ignored-directories))
+;; [[https://www.reddit.com/r/emacs/comments/audffp/tip_how_to_use_a_stable_and_fast_environment_to/][Reddit post on creating C++ IDE in Emacs]].
+(use-package ccls
+  ;; C lsp backend
+  ;; Requires binary ccls
+  :after projectile
+  :custom
+  (ccls-args nil)
+  (ccls-executable (executable-find "ccls"))
+  (projectile-project-root-files-top-down-recurring
+   (append '("compile_commands.json" ".ccls")
+           projectile-project-root-files-top-down-recurring))
+  :config (push ".ccls-cache" projectile-globally-ignored-directories))
 
-;; (use-package company-c-headers
-;;   :config
-;;   (add-to-list 'company-backends 'company-c-headers)
-;;   )
+(use-package company-c-headers
+  :config
+  (add-to-list 'company-backends 'company-c-headers)
+  )
 
 ;; ;; TODO: Try with rtags, people say good
 ;; ;; things about it. https://github.com/Andersbakken/rtags
@@ -4128,87 +4167,88 @@ In that case, insert the number."
 ;; (advice-add #'load-theme :before #'my-load-theme-before)
 ;; (advice-add #'load-theme :after #'my-load-theme-after)
 
-;; ;;;; Themes
+;;;; Themes
 
-;; (use-package color-theme-sanityinc-tomorrow)
-;; (use-package kaolin-themes)
-;; (use-package base16-theme)
-;; (use-package parchment-theme)
-;; (use-package gruvbox-theme)
-;; (use-package one-themes)
-;; (use-package naysayer-theme)
-;; (use-package modus-operandi-theme)
-;; (use-package modus-vivendi-theme)
-;; (use-package doom-themes)
+(use-package color-theme-sanityinc-tomorrow)
+(use-package kaolin-themes)
+(use-package base16-theme)
+(use-package parchment-theme)
+(use-package gruvbox-theme)
+(use-package one-themes)
+(use-package naysayer-theme)
+(use-package modus-operandi-theme)
+(use-package modus-vivendi-theme)
+(use-package doom-themes)
 
-;; ;; (load-theme 'modus-operandi t)
-;; ;; (load-theme 'modus-vivendi t)
+;; (load-theme 'modus-operandi t)
+;; (load-theme 'modus-vivendi t)
 
-;; ;; (load-theme 'kaolin-light)
-;; ;; (load-theme 'doom-opera-light t)
+;; (load-theme 'kaolin-light)
+;; (load-theme 'doom-opera-light t)
 
-;; (message "my-solaire-themes")
-;; (use-package solaire-mode
-;;   ;; visually distinguish file-visiting windows from other types of windows (like popups or sidebars) by giving them a
-;;   ;; slightly different -- often brighter -- background
-;;   :defer 3
-;;   :hook
-;;   ((change-major-mode after-revert ediff-prepare-buffer) . turn-on-solaire-mode)
-;;   (minibuffer-setup . solaire-mode-in-minibuffer)
-;;   :config
-;;   (solaire-mode-swap-bg)
-;;   (solaire-global-mode 1))
+(message "my-solaire-themes")
+(use-package solaire-mode
+  ;; visually distinguish file-visiting windows from other types of windows (like popups or sidebars) by giving them a
+  ;; slightly different -- often brighter -- background
+  :defer 3
+  :hook
+  ((change-major-mode after-revert ediff-prepare-buffer) . turn-on-solaire-mode)
+  (minibuffer-setup . solaire-mode-in-minibuffer)
+  :config
+  (solaire-mode-swap-bg)
+  (solaire-global-mode 1))
 
-;; ;;;; Fonts
-;; (use-package my-fonts
-;;   :no-require t
-;;   :straight nil
-;;   :demand t
-;;   :config
-;;   (defun cyf/set-fonts ()
-;;     "Personal font settings."
-;;     (interactive)
-;;     ;; Default
-;;     (set-face-attribute
-;;      'default nil
-;;      :font (font-spec :name "D2Coding"
-;;                       :weight 'normal
-;;                       :slant 'normal
-;;                       :size 11.5))
-;;     ;; Fixed-width for programming
-;;     (set-face-attribute
-;;      'fixed-pitch nil
-;;      :font (font-spec :name "D2Coding"
-;;                       :weight 'normal
-;;                       :slant 'normal
-;;                       :size 11.5))
-;;     ;; Variable-width for reading
-;;     (set-face-attribute
-;;      'variable-pitch nil
-;;      :font (font-spec :name "D2Coding"
-;;                       :weight 'normal
-;;                       :slant 'normal
-;;                       :size 12.0))
-;;     ;; For all CJK fonts
-;;     (dolist (charset '(kana han symbol cjk-misc bopomofo))
-;;       (set-fontset-font
-;;        (frame-parameter nil 'font)
-;;        charset
-;;        (font-spec :name "D2Coding"
-;;                   :weight 'normal
-;;                   :slant 'normal
-;;                   :size 11.5)))
-;;     )
-;;   ;; Set fonts every time a new Window frame is created.
-;;   (add-to-list 'after-make-frame-functions
-;;                (lambda (new-frame)
-;;                  (select-frame new-frame)
-;;                  (if window-system
-;;                      (cyf/set-fonts))))
-;;   ;; Immediately run if we start emacs directly without daemon
-;;   (if window-system
-;;       (cyf/set-fonts))
-;;   )
+
+;;;; Fonts
+(use-package my-fonts
+  :no-require t
+  :straight nil
+  :demand t
+  :config
+  (defun cyf/set-fonts ()
+    "Personal font settings."
+    (interactive)
+    ;; Default
+    (set-face-attribute
+     'default nil
+     :font (font-spec :name "D2Coding"
+                      :weight 'normal
+                      :slant 'normal
+                      :size 11.5))
+    ;; Fixed-width for programming
+    (set-face-attribute
+     'fixed-pitch nil
+     :font (font-spec :name "D2Coding"
+                      :weight 'normal
+                      :slant 'normal
+                      :size 11.5))
+    ;; Variable-width for reading
+    (set-face-attribute
+     'variable-pitch nil
+     :font (font-spec :name "D2Coding"
+                      :weight 'normal
+                      :slant 'normal
+                      :size 12.0))
+    ;; For all CJK fonts
+    (dolist (charset '(kana han symbol cjk-misc bopomofo))
+      (set-fontset-font
+       (frame-parameter nil 'font)
+       charset
+       (font-spec :name "D2Coding"
+                  :weight 'normal
+                  :slant 'normal
+                  :size 11.5)))
+    )
+  ;; Set fonts every time a new Window frame is created.
+  (add-to-list 'after-make-frame-functions
+               (lambda (new-frame)
+                 (select-frame new-frame)
+                 (if window-system
+                     (cyf/set-fonts))))
+  ;; Immediately run if we start emacs directly without daemon
+  (if window-system
+      (cyf/set-fonts))
+  )
 
 ;; (use-package mixed-pitch
 ;;   :disabled
@@ -4638,7 +4678,7 @@ In that case, insert the number."
 ;;   )
 
 ;; ;;; Start Emacs Server
-;; (load-theme 'doom-Iosvkem t)
+(load-theme 'doom-Iosvkem t)
 
 ;; (require 'server)
 ;; (unless (server-running-p)
