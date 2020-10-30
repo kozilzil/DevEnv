@@ -1,0 +1,1 @@
+/home/auto-06/.emacs.d/straight/repos/company-mode/company-template.el

@@ -1,0 +1,1 @@
+/home/auto-06/.emacs.d/straight/repos/hungry-delete/hungry-delete.el

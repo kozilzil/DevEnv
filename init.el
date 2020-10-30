@@ -849,6 +849,10 @@ Useful when hard line wraps are unwanted (email/sharing article)."
 (use-package helm-codesearch
   :demand t
   :init
+  :bind (("C-<f5>" . helm-codesearch-find-patton)
+         ("C-<f6>" . helm-codesearch-find-file)
+         ("<f5>" . helm-imenu)
+         )
   :config
   (setq helm-codesearch-global-csearchindex "~/.csearchindex")
   (setq helm-codesearch-overwrite-search-result t)
@@ -944,8 +948,7 @@ Useful when hard line wraps are unwanted (email/sharing article)."
   )
 (use-package helm-cscope
   :demand t
-  :bind (("C-<f5>" . helm-cscope-find-this-symbol-no-prompt)
-         ("C-<f6>" . helm-cscope-find-global-definition-no-prompt)
+  :bind (
          ("C-<f7>" . helm-cscope-find-calling-this-function-no-prompt)
          ("C-<f8>" . helm-cscope-find-assignments-to-this-symbol-no-prompt)
          )

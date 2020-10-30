@@ -1,0 +1,1 @@
+/home/auto-06/.emacs.d/straight/repos/ivy-posframe/ivy-posframe.el

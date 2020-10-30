@@ -1,0 +1,1 @@
+/home/auto-06/.emacs.d/straight/repos/xcscope.el/xcscope.el

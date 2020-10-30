@@ -1,0 +1,23 @@
+;;; modus-vivendi-theme-autoloads.el --- automatically extracted autoloads
+;;
+;;; Code:
+
+
+;;;### (autoloads nil "modus-vivendi-theme" "modus-vivendi-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from modus-vivendi-theme.el
+
+(when load-file-name (add-to-list 'custom-theme-load-path (file-name-as-directory (file-name-directory load-file-name))))
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "modus-vivendi-theme" '("modus-vivendi")))
+
+;;;***
+
+(provide 'modus-vivendi-theme-autoloads)
+;; Local Variables:
+;; version-control: never
+;; no-byte-compile: t
+;; no-update-autoloads: t
+;; coding: utf-8
+;; End:
+;;; modus-vivendi-theme-autoloads.el ends here

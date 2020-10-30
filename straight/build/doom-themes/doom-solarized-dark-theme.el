@@ -1,0 +1,1 @@
+/home/auto-06/.emacs.d/straight/repos/emacs-doom-themes/themes/doom-solarized-dark-theme.el

@@ -1,0 +1,1 @@
+/home/auto-06/.emacs.d/straight/repos/visual-regexp.el/visual-regexp.el

@@ -1,0 +1,1 @@
+/home/auto-06/.emacs.d/straight/repos/emacs-one-themes/one-dark-theme.el

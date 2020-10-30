@@ -1,0 +1,1 @@
+/home/auto-06/.emacs.d/straight/repos/android-mode/android-mode.el
