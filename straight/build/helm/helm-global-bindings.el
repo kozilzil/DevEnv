@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/helm/helm-global-bindings.el
+/home/hdkim/.emacs.d/straight/repos/helm/helm-global-bindings.el

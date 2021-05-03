@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/lsp-mode/lsp-completion.el
+/home/hdkim/.emacs.d/straight/repos/lsp-mode/lsp-completion.el

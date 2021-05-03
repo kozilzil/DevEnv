@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/lsp-mode/lsp-lens.el
+/home/hdkim/.emacs.d/straight/repos/lsp-mode/lsp-lens.el

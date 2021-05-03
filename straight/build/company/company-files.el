@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/company-mode/company-files.el
+/home/hdkim/.emacs.d/straight/repos/company-mode/company-files.el

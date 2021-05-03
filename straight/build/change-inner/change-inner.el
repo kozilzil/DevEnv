@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/change-inner.el/change-inner.el
+/home/hdkim/.emacs.d/straight/repos/change-inner.el/change-inner.el

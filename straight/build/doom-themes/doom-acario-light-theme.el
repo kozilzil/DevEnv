@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/emacs-doom-themes/themes/doom-acario-light-theme.el
+/home/hdkim/.emacs.d/straight/repos/emacs-doom-themes/themes/doom-acario-light-theme.el

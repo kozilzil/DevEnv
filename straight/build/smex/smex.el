@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/smex/smex.el
+/home/hdkim/.emacs.d/straight/repos/smex/smex.el

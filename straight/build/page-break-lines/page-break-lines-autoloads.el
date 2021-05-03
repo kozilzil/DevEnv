@@ -10,24 +10,17 @@
 (autoload 'page-break-lines-mode "page-break-lines" "\
 Toggle Page Break Lines mode.
 
-If called interactively, enable Page-Break-Lines mode if ARG is
-positive, and disable it if ARG is zero or negative.  If called
-from Lisp, also enable the mode if ARG is omitted or nil, and
-toggle it if ARG is `toggle'; disable the mode otherwise.
-
 In Page Break mode, page breaks (^L characters) are displayed as a
 horizontal line of `page-break-lines-char' characters.
 
 \(fn &optional ARG)" t nil)
 
-(define-obsolete-function-alias 'turn-on-page-break-lines-mode 'page-break-lines-mode)
-
 (autoload 'page-break-lines-mode-maybe "page-break-lines" "\
 Enable `page-break-lines-mode' in the current buffer if desired.
 When `major-mode' is listed in `page-break-lines-modes', then
-`page-break-lines-mode' will be enabled." nil nil)
+`page-break-lines-mode' will be enabled.
 
-(put 'global-page-break-lines-mode 'globalized-minor-mode t)
+\(fn)" nil nil)
 
 (defvar global-page-break-lines-mode nil "\
 Non-nil if Global Page-Break-Lines mode is enabled.

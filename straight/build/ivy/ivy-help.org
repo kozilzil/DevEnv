@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/swiper/doc/ivy-help.org
+/home/hdkim/.emacs.d/straight/repos/swiper/doc/ivy-help.org

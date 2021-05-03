@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/org/lisp/org-lint.el
+/home/hdkim/.emacs.d/straight/repos/org/lisp/org-lint.el

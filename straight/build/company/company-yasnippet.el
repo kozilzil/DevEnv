@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/company-mode/company-yasnippet.el
+/home/hdkim/.emacs.d/straight/repos/company-mode/company-yasnippet.el

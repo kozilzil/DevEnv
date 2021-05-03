@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/naysayer-theme.el/naysayer-theme.el
+/home/hdkim/.emacs.d/straight/repos/naysayer-theme.el/naysayer-theme.el

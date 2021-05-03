@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/jdee/jdee-ejb.el
+/home/hdkim/.emacs.d/straight/repos/jdee/jdee-ejb.el

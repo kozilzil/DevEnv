@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/base16-emacs/build/base16-black-metal-gorgoroth-theme.el
+/home/hdkim/.emacs.d/straight/repos/base16-emacs/build/base16-black-metal-gorgoroth-theme.el

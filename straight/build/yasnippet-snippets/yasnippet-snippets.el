@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/yasnippet-snippets/yasnippet-snippets.el
+/home/hdkim/.emacs.d/straight/repos/yasnippet-snippets/yasnippet-snippets.el

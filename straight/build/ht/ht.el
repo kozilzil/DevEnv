@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/ht.el/ht.el
+/home/hdkim/.emacs.d/straight/repos/ht.el/ht.el

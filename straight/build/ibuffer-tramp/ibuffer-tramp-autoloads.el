@@ -7,12 +7,16 @@
 ;;; Generated autoloads from ibuffer-tramp.el
 
 (autoload 'ibuffer-tramp-generate-filter-groups-by-tramp-connection "ibuffer-tramp" "\
-Create a set of ibuffer filter groups based on the TRAMP connection of buffers" nil nil)
+Create a set of ibuffer filter groups based on the TRAMP connection of buffers
+
+\(fn)" nil nil)
 
 (autoload 'ibuffer-tramp-set-filter-groups-by-tramp-connection "ibuffer-tramp" "\
-Set the current filter groups to filter by TRAMP connection." t nil)
+Set the current filter groups to filter by TRAMP connection.
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ibuffer-tramp" '("ibuffer-tramp-connection" "tramp-connection")))
+\(fn)" t nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ibuffer-tramp" '("tramp-connection" "ibuffer-tramp-connection")))
 
 ;;;***
 

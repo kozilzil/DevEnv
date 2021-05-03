@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/helm/helm-shell.el
+/home/hdkim/.emacs.d/straight/repos/helm/helm-shell.el

@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/org/contrib/lisp/org-learn.el
+/home/hdkim/.emacs.d/straight/repos/org/contrib/lisp/org-learn.el

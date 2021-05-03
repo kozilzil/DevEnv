@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/helm/helm-external.el
+/home/hdkim/.emacs.d/straight/repos/helm/helm-external.el

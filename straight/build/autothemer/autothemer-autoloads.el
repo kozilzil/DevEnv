@@ -20,7 +20,9 @@ have been left uncustomized by the most recent call to
 `autothemer-deftheme' and generate customizations that best
 approximate the faces' current definitions using the color
 palette used in the most recent invocation of
-`autothemer-deftheme'." t nil)
+`autothemer-deftheme'.
+
+\(fn)" t nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "autothemer" '("autothemer--")))
 

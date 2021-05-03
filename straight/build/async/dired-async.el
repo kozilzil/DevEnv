@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/emacs-async/dired-async.el
+/home/hdkim/.emacs.d/straight/repos/emacs-async/dired-async.el

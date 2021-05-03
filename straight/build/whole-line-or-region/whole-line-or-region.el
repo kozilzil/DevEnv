@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/whole-line-or-region/whole-line-or-region.el
+/home/hdkim/.emacs.d/straight/repos/whole-line-or-region/whole-line-or-region.el

@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/org/lisp/ob-C.el
+/home/hdkim/.emacs.d/straight/repos/org/lisp/ob-C.el

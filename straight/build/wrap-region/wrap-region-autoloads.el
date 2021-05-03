@@ -9,20 +9,17 @@
 (autoload 'wrap-region-mode "wrap-region" "\
 Wrap region with stuff.
 
-If called interactively, enable Wrap-Region mode if ARG is
-positive, and disable it if ARG is zero or negative.  If called
-from Lisp, also enable the mode if ARG is omitted or nil, and
-toggle it if ARG is `toggle'; disable the mode otherwise.
-
 \(fn &optional ARG)" t nil)
 
 (autoload 'turn-on-wrap-region-mode "wrap-region" "\
-Turn on `wrap-region-mode'." t nil)
+Turn on `wrap-region-mode'.
+
+\(fn)" t nil)
 
 (autoload 'turn-off-wrap-region-mode "wrap-region" "\
-Turn off `wrap-region-mode'." t nil)
+Turn off `wrap-region-mode'.
 
-(put 'wrap-region-global-mode 'globalized-minor-mode t)
+\(fn)" t nil)
 
 (defvar wrap-region-global-mode nil "\
 Non-nil if Wrap-Region-Global mode is enabled.

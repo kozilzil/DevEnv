@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/emacs-theme-gruvbox/gruvbox-light-medium-theme.el
+/home/hdkim/.emacs.d/straight/repos/emacs-theme-gruvbox/gruvbox-light-medium-theme.el

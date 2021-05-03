@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/lsp-mode/lsp-modeline.el
+/home/hdkim/.emacs.d/straight/repos/lsp-mode/lsp-modeline.el

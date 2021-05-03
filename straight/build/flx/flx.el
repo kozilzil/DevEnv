@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/flx/flx.el
+/home/hdkim/.emacs.d/straight/repos/flx/flx.el

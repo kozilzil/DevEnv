@@ -27,6 +27,22 @@
 
 ;;;***
 
+;;;### (autoloads nil "doom-ayu-light-theme" "doom-ayu-light-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from doom-ayu-light-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "doom-ayu-light-theme" '("doom-ayu-light")))
+
+;;;***
+
+;;;### (autoloads nil "doom-ayu-mirage-theme" "doom-ayu-mirage-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from doom-ayu-mirage-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "doom-ayu-mirage-theme" '("doom-ayu-mirage")))
+
+;;;***
+
 ;;;### (autoloads nil "doom-challenger-deep-theme" "doom-challenger-deep-theme.el"
 ;;;;;;  (0 0 0 0))
 ;;; Generated autoloads from doom-challenger-deep-theme.el
@@ -104,6 +120,22 @@
 ;;; Generated autoloads from doom-henna-theme.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "doom-henna-theme" '("doom-henna")))
+
+;;;***
+
+;;;### (autoloads nil "doom-homage-black-theme" "doom-homage-black-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from doom-homage-black-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "doom-homage-black-theme" '("doom-homage-black")))
+
+;;;***
+
+;;;### (autoloads nil "doom-homage-white-theme" "doom-homage-white-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from doom-homage-white-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "doom-homage-white-theme" '("doom-homage-white")))
 
 ;;;***
 
@@ -283,6 +315,14 @@
 
 ;;;***
 
+;;;### (autoloads nil "doom-plain-dark-theme" "doom-plain-dark-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from doom-plain-dark-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "doom-plain-dark-theme" '("doom-plain-")))
+
+;;;***
+
 ;;;### (autoloads nil "doom-plain-theme" "doom-plain-theme.el" (0
 ;;;;;;  0 0 0))
 ;;; Generated autoloads from doom-plain-theme.el
@@ -395,7 +435,7 @@ theme face specs. These is a simplified spec. For example:
 
 (when (and (boundp 'custom-theme-load-path) load-file-name) (let* ((base (file-name-directory load-file-name)) (dir (expand-file-name "themes/" base))) (add-to-list 'custom-theme-load-path (or (and (file-directory-p dir) dir) base))))
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "doom-themes" '("def-doom-theme" "doom-")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "doom-themes" '("doom-" "def-doom-theme")))
 
 ;;;***
 
@@ -414,7 +454,9 @@ theme face specs. These is a simplified spec. For example:
 (autoload 'doom-themes-neotree-config "doom-themes-ext-neotree" "\
 Install doom-themes' neotree configuration.
 
-Includes an Atom-esque icon theme and highlighting based on filetype." nil nil)
+Includes an Atom-esque icon theme and highlighting based on filetype.
+
+\(fn)" nil nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "doom-themes-ext-neotree" '("doom-")))
 
@@ -425,9 +467,11 @@ Includes an Atom-esque icon theme and highlighting based on filetype." nil nil)
 ;;; Generated autoloads from doom-themes-ext-org.el
 
 (autoload 'doom-themes-org-config "doom-themes-ext-org" "\
-Enable custom fontification & improves theme integration with org-mode." nil nil)
+Load `doom-themes-ext-org'.
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "doom-themes-ext-org" '("doom-")))
+\(fn)" nil nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "doom-themes-ext-org" '("doom-themes-")))
 
 ;;;***
 
@@ -438,7 +482,9 @@ Enable custom fontification & improves theme integration with org-mode." nil nil
 (autoload 'doom-themes-treemacs-config "doom-themes-ext-treemacs" "\
 Install doom-themes' treemacs configuration.
 
-Includes an Atom-esque icon theme and highlighting based on filetype." nil nil)
+Includes an Atom-esque icon theme and highlighting based on filetype.
+
+\(fn)" nil nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "doom-themes-ext-treemacs" '("doom-themes-")))
 
@@ -449,10 +495,14 @@ Includes an Atom-esque icon theme and highlighting based on filetype." nil nil)
 ;;; Generated autoloads from doom-themes-ext-visual-bell.el
 
 (autoload 'doom-themes-visual-bell-fn "doom-themes-ext-visual-bell" "\
-Blink the mode-line red briefly. Set `ring-bell-function' to this to use it." nil nil)
+Blink the mode-line red briefly. Set `ring-bell-function' to this to use it.
+
+\(fn)" nil nil)
 
 (autoload 'doom-themes-visual-bell-config "doom-themes-ext-visual-bell" "\
-Enable flashing the mode-line on error." nil nil)
+Enable flashing the mode-line on error.
+
+\(fn)" nil nil)
 
 ;;;***
 

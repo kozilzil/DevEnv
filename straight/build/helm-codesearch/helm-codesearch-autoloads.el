@@ -8,10 +8,14 @@
 ;;; Generated autoloads from helm-codesearch.el
 
 (autoload 'helm-codesearch-find-pattern "helm-codesearch" "\
-Find pattern." t nil)
+Find pattern.
+
+\(fn)" t nil)
 
 (autoload 'helm-codesearch-find-file "helm-codesearch" "\
-Find file." t nil)
+Find file.
+
+\(fn)" t nil)
 
 (autoload 'helm-codesearch-create-csearchindex "helm-codesearch" "\
 Create index file at DIR.

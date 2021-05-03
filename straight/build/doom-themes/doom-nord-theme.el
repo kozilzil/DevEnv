@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/emacs-doom-themes/themes/doom-nord-theme.el
+/home/hdkim/.emacs.d/straight/repos/emacs-doom-themes/themes/doom-nord-theme.el

@@ -8,7 +8,9 @@
 
 (autoload 'unfill-paragraph "unfill" "\
 Replace newline chars in current paragraph by single spaces.
-This command does the inverse of `fill-paragraph'." t nil)
+This command does the inverse of `fill-paragraph'.
+
+\(fn)" t nil)
 
 (autoload 'unfill-region "unfill" "\
 Replace newline chars in region from START to END by single spaces.
@@ -17,9 +19,11 @@ This command does the inverse of `fill-region'.
 \(fn START END)" t nil)
 
 (autoload 'unfill-toggle "unfill" "\
-Toggle filling/unfilling of the current region, or current paragraph if no region active." t nil)
+Toggle filling/unfilling of the current region, or current paragraph if no region active.
 
-(define-obsolete-function-alias 'toggle-fill-unfill 'unfill-toggle)
+\(fn)" t nil)
+
+(define-obsolete-function-alias 'toggle-fill-unfill 'unfill-toggle "0.2")
 
 ;;;***
 

@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/lsp-mode/clients/lsp-eslint.el
+/home/hdkim/.emacs.d/straight/repos/lsp-mode/clients/lsp-eslint.el

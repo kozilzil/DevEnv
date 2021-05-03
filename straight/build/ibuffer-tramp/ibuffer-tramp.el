@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/ibuffer-tramp/ibuffer-tramp.el
+/home/hdkim/.emacs.d/straight/repos/ibuffer-tramp/ibuffer-tramp.el

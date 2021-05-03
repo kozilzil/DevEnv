@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/lsp-mode/clients/lsp-html.el
+/home/hdkim/.emacs.d/straight/repos/lsp-mode/clients/lsp-html.el

@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/let-alist/let-alist.el
+/home/hdkim/.emacs.d/straight/repos/let-alist/let-alist.el

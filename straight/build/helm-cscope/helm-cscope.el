@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/helm-cscope.el/helm-cscope.el
+/home/hdkim/.emacs.d/straight/repos/helm-cscope.el/helm-cscope.el

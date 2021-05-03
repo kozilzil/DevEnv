@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/aggressive-indent-mode/aggressive-indent.el
+/home/hdkim/.emacs.d/straight/repos/aggressive-indent-mode/aggressive-indent.el

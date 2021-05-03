@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/helm-codesearch.el/helm-codesearch.el
+/home/hdkim/.emacs.d/straight/repos/helm-codesearch.el/helm-codesearch.el

@@ -11,16 +11,22 @@
 
 \(fn ARG)" t nil)
 
-(autoload 'copy-inner "change-inner" nil t nil)
+(autoload 'copy-inner "change-inner" "\
+
+
+\(fn)" t nil)
 
 (autoload 'change-outer "change-inner" "\
 
 
 \(fn ARG)" t nil)
 
-(autoload 'copy-outer "change-inner" nil t nil)
+(autoload 'copy-outer "change-inner" "\
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "change-inner" '("change-" "ci--flash-region")))
+
+\(fn)" t nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "change-inner" '("ci--flash-region" "change-")))
 
 ;;;***
 

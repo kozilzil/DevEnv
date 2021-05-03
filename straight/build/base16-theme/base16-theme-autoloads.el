@@ -19,6 +19,14 @@
 
 ;;;***
 
+;;;### (autoloads nil "base16-apprentice-theme" "base16-apprentice-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-apprentice-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-apprentice-theme" '("base16-apprentice-colors")))
+
+;;;***
+
 ;;;### (autoloads nil "base16-ashes-theme" "base16-ashes-theme.el"
 ;;;;;;  (0 0 0 0))
 ;;; Generated autoloads from base16-ashes-theme.el
@@ -387,11 +395,43 @@
 
 ;;;***
 
+;;;### (autoloads nil "base16-danqing-theme" "base16-danqing-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-danqing-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-danqing-theme" '("base16-danqing-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-darcula-theme" "base16-darcula-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-darcula-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-darcula-theme" '("base16-darcula-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-darkmoss-theme" "base16-darkmoss-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-darkmoss-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-darkmoss-theme" '("base16-darkmoss-colors")))
+
+;;;***
+
 ;;;### (autoloads nil "base16-darktooth-theme" "base16-darktooth-theme.el"
 ;;;;;;  (0 0 0 0))
 ;;; Generated autoloads from base16-darktooth-theme.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-darktooth-theme" '("base16-darktooth-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-darkviolet-theme" "base16-darkviolet-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-darkviolet-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-darkviolet-theme" '("base16-darkviolet-colors")))
 
 ;;;***
 
@@ -419,11 +459,35 @@
 
 ;;;***
 
+;;;### (autoloads nil "base16-dirtysea-theme" "base16-dirtysea-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-dirtysea-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-dirtysea-theme" '("base16-dirtysea-colors")))
+
+;;;***
+
 ;;;### (autoloads nil "base16-dracula-theme" "base16-dracula-theme.el"
 ;;;;;;  (0 0 0 0))
 ;;; Generated autoloads from base16-dracula-theme.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-dracula-theme" '("base16-dracula-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-edge-dark-theme" "base16-edge-dark-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-edge-dark-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-edge-dark-theme" '("base16-edge-dark-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-edge-light-theme" "base16-edge-light-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-edge-light-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-edge-light-theme" '("base16-edge-light-colors")))
 
 ;;;***
 
@@ -443,11 +507,59 @@
 
 ;;;***
 
+;;;### (autoloads nil "base16-equilibrium-dark-theme" "base16-equilibrium-dark-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-equilibrium-dark-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-equilibrium-dark-theme" '("base16-equilibrium-dark-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-equilibrium-gray-dark-theme" "base16-equilibrium-gray-dark-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-equilibrium-gray-dark-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-equilibrium-gray-dark-theme" '("base16-equilibrium-gray-dark-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-equilibrium-gray-light-theme" "base16-equilibrium-gray-light-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-equilibrium-gray-light-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-equilibrium-gray-light-theme" '("base16-equilibrium-gray-light-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-equilibrium-light-theme" "base16-equilibrium-light-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-equilibrium-light-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-equilibrium-light-theme" '("base16-equilibrium-light-colors")))
+
+;;;***
+
 ;;;### (autoloads nil "base16-espresso-theme" "base16-espresso-theme.el"
 ;;;;;;  (0 0 0 0))
 ;;; Generated autoloads from base16-espresso-theme.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-espresso-theme" '("base16-espresso-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-eva-dim-theme" "base16-eva-dim-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-eva-dim-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-eva-dim-theme" '("base16-eva-dim-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-eva-theme" "base16-eva-theme.el" (0
+;;;;;;  0 0 0))
+;;; Generated autoloads from base16-eva-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-eva-theme" '("base16-eva-colors")))
 
 ;;;***
 
@@ -472,6 +584,14 @@
 ;;; Generated autoloads from base16-fruit-soda-theme.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-fruit-soda-theme" '("base16-fruit-soda-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-gigavolt-theme" "base16-gigavolt-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-gigavolt-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-gigavolt-theme" '("base16-gigavolt-colors")))
 
 ;;;***
 
@@ -579,6 +699,14 @@
 
 ;;;***
 
+;;;### (autoloads nil "base16-hardcore-theme" "base16-hardcore-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-hardcore-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-hardcore-theme" '("base16-hardcore-colors")))
+
+;;;***
+
 ;;;### (autoloads nil "base16-harmonic-dark-theme" "base16-harmonic-dark-theme.el"
 ;;;;;;  (0 0 0 0))
 ;;; Generated autoloads from base16-harmonic-dark-theme.el
@@ -659,6 +787,22 @@
 
 ;;;***
 
+;;;### (autoloads nil "base16-humanoid-dark-theme" "base16-humanoid-dark-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-humanoid-dark-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-humanoid-dark-theme" '("base16-humanoid-dark-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-humanoid-light-theme" "base16-humanoid-light-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-humanoid-light-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-humanoid-light-theme" '("base16-humanoid-light-colors")))
+
+;;;***
+
 ;;;### (autoloads nil "base16-ia-dark-theme" "base16-ia-dark-theme.el"
 ;;;;;;  (0 0 0 0))
 ;;; Generated autoloads from base16-ia-dark-theme.el
@@ -696,6 +840,14 @@
 ;;; Generated autoloads from base16-isotope-theme.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-isotope-theme" '("base16-isotope-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-kimber-theme" "base16-kimber-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-kimber-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-kimber-theme" '("base16-kimber-colors")))
 
 ;;;***
 
@@ -795,6 +947,14 @@
 
 ;;;***
 
+;;;### (autoloads nil "base16-nebula-theme" "base16-nebula-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-nebula-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-nebula-theme" '("base16-nebula-colors")))
+
+;;;***
+
 ;;;### (autoloads nil "base16-nord-theme" "base16-nord-theme.el"
 ;;;;;;  (0 0 0 0))
 ;;; Generated autoloads from base16-nord-theme.el
@@ -875,6 +1035,14 @@
 
 ;;;***
 
+;;;### (autoloads nil "base16-pasque-theme" "base16-pasque-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-pasque-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-pasque-theme" '("base16-pasque-colors")))
+
+;;;***
+
 ;;;### (autoloads nil "base16-phd-theme" "base16-phd-theme.el" (0
 ;;;;;;  0 0 0))
 ;;; Generated autoloads from base16-phd-theme.el
@@ -923,6 +1091,38 @@
 
 ;;;***
 
+;;;### (autoloads nil "base16-rose-pine-dawn-theme" "base16-rose-pine-dawn-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-rose-pine-dawn-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-rose-pine-dawn-theme" '("base16-rose-pine-dawn-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-rose-pine-moon-theme" "base16-rose-pine-moon-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-rose-pine-moon-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-rose-pine-moon-theme" '("base16-rose-pine-moon-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-rose-pine-theme" "base16-rose-pine-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-rose-pine-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-rose-pine-theme" '("base16-rose-pine-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-sagelight-theme" "base16-sagelight-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-sagelight-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-sagelight-theme" '("base16-sagelight-colors")))
+
+;;;***
+
 ;;;### (autoloads nil "base16-sandcastle-theme" "base16-sandcastle-theme.el"
 ;;;;;;  (0 0 0 0))
 ;;; Generated autoloads from base16-sandcastle-theme.el
@@ -947,11 +1147,35 @@
 
 ;;;***
 
+;;;### (autoloads nil "base16-silk-dark-theme" "base16-silk-dark-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-silk-dark-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-silk-dark-theme" '("base16-silk-dark-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-silk-light-theme" "base16-silk-light-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-silk-light-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-silk-light-theme" '("base16-silk-light-colors")))
+
+;;;***
+
 ;;;### (autoloads nil "base16-snazzy-theme" "base16-snazzy-theme.el"
 ;;;;;;  (0 0 0 0))
 ;;; Generated autoloads from base16-snazzy-theme.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-snazzy-theme" '("base16-snazzy-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-solarflare-light-theme" "base16-solarflare-light-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-solarflare-light-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-solarflare-light-theme" '("base16-solarflare-light-colors")))
 
 ;;;***
 
@@ -987,6 +1211,14 @@
 
 ;;;***
 
+;;;### (autoloads nil "base16-summercamp-theme" "base16-summercamp-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-summercamp-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-summercamp-theme" '("base16-summercamp-colors")))
+
+;;;***
+
 ;;;### (autoloads nil "base16-summerfruit-dark-theme" "base16-summerfruit-dark-theme.el"
 ;;;;;;  (0 0 0 0))
 ;;; Generated autoloads from base16-summerfruit-dark-theme.el
@@ -1008,6 +1240,30 @@
 ;;; Generated autoloads from base16-synth-midnight-dark-theme.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-synth-midnight-dark-theme" '("base16-synth-midnight-dark-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-synth-midnight-light-theme" "base16-synth-midnight-light-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-synth-midnight-light-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-synth-midnight-light-theme" '("base16-synth-midnight-light-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-tango-theme" "base16-tango-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-tango-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-tango-theme" '("base16-tango-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-tender-theme" "base16-tender-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-tender-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-tender-theme" '("base16-tender-colors")))
 
 ;;;***
 
@@ -1073,6 +1329,78 @@
 ;;; Generated autoloads from base16-unikitty-light-theme.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-unikitty-light-theme" '("base16-unikitty-light-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-vulcan-theme" "base16-vulcan-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-vulcan-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-vulcan-theme" '("base16-vulcan-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-windows-10-light-theme" "base16-windows-10-light-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-windows-10-light-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-windows-10-light-theme" '("base16-windows-10-light-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-windows-10-theme" "base16-windows-10-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-windows-10-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-windows-10-theme" '("base16-windows-10-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-windows-95-light-theme" "base16-windows-95-light-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-windows-95-light-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-windows-95-light-theme" '("base16-windows-95-light-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-windows-95-theme" "base16-windows-95-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-windows-95-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-windows-95-theme" '("base16-windows-95-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-windows-highcontrast-light-theme" "base16-windows-highcontrast-light-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-windows-highcontrast-light-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-windows-highcontrast-light-theme" '("base16-windows-highcontrast-light-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-windows-highcontrast-theme" "base16-windows-highcontrast-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-windows-highcontrast-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-windows-highcontrast-theme" '("base16-windows-highcontrast-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-windows-nt-light-theme" "base16-windows-nt-light-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-windows-nt-light-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-windows-nt-light-theme" '("base16-windows-nt-light-colors")))
+
+;;;***
+
+;;;### (autoloads nil "base16-windows-nt-theme" "base16-windows-nt-theme.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from base16-windows-nt-theme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "base16-windows-nt-theme" '("base16-windows-nt-colors")))
 
 ;;;***
 

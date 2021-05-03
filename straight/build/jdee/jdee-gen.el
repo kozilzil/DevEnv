@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/jdee/jdee-gen.el
+/home/hdkim/.emacs.d/straight/repos/jdee/jdee-gen.el

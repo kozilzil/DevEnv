@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/jdee/jdee-bug.el
+/home/hdkim/.emacs.d/straight/repos/jdee/jdee-bug.el

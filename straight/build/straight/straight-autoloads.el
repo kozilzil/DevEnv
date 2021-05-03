@@ -27,7 +27,9 @@ action, just return it).
 \(fn &optional SOURCES ACTION)" t nil)
 
 (autoload 'straight-visit-package-website "straight" "\
-Interactively select a recipe, and visit the package's website." t nil)
+Interactively select a recipe, and visit the package's website.
+
+\(fn)" t nil)
 
 (autoload 'straight-use-package "straight" "\
 Register, clone, build, and activate a package and its dependencies.
@@ -52,7 +54,7 @@ package name as a string. In that case, the return value of the
 function is used as the value of NO-BUILD instead. In any case,
 if NO-BUILD is non-nil, then processing halts here. Otherwise,
 the package is built and activated. Note that if the package
-recipe has a non-nil `:no-build' entry, then NO-BUILD is ignored
+recipe has a nil `:build' entry, then NO-BUILD is ignored
 and processing always stops before building and activation
 occurs.
 
@@ -98,7 +100,7 @@ MELPA-STYLE-RECIPE is as for `straight-use-package'.
 Register a recipe repository using MELPA-STYLE-RECIPE.
 This registers the recipe and builds it if it is already cloned.
 Note that you probably want the recipe for a recipe repository to
-include a non-nil `:no-build' property, to unconditionally
+include a nil `:build' property, to unconditionally
 inhibit the build phase.
 
 This function also adds the recipe repository to
@@ -125,7 +127,9 @@ using `completing-read'. See also `straight-rebuild-package' and
 (autoload 'straight-check-all "straight" "\
 Rebuild any packages that have been modified.
 See also `straight-rebuild-all' and `straight-check-package'.
-This function should not be called during init." t nil)
+This function should not be called during init.
+
+\(fn)" t nil)
 
 (autoload 'straight-rebuild-package "straight" "\
 Rebuild a PACKAGE.
@@ -139,27 +143,35 @@ all dependencies as well. See also `straight-check-package' and
 
 (autoload 'straight-rebuild-all "straight" "\
 Rebuild all packages.
-See also `straight-check-all' and `straight-rebuild-package'." t nil)
+See also `straight-check-all' and `straight-rebuild-package'.
+
+\(fn)" t nil)
 
 (autoload 'straight-prune-build-cache "straight" "\
 Prune the build cache.
 This means that only packages that were built in the last init
 run and subsequent interactive session will remain; other
 packages will have their build mtime information and any cached
-autoloads discarded." nil nil)
+autoloads discarded.
+
+\(fn)" nil nil)
 
 (autoload 'straight-prune-build-directory "straight" "\
 Prune the build directory.
 This means that only packages that were built in the last init
 run and subsequent interactive session will remain; other
-packages will have their build directories deleted." nil nil)
+packages will have their build directories deleted.
+
+\(fn)" nil nil)
 
 (autoload 'straight-prune-build "straight" "\
 Prune the build cache and build directory.
 This means that only packages that were built in the last init
 run and subsequent interactive session will remain; other
 packages will have their build mtime information discarded and
-their build directories deleted." t nil)
+their build directories deleted.
+
+\(fn)" t nil)
 
 (autoload 'straight-normalize-package "straight" "\
 Normalize a PACKAGE's local repository to its recipe's configuration.
@@ -335,7 +347,53 @@ according to the value of `straight-profiles'.
 \(fn &optional FORCE)" t nil)
 
 (autoload 'straight-thaw-versions "straight" "\
-Read version lockfiles and restore package versions to those listed." t nil)
+Read version lockfiles and restore package versions to those listed.
+
+\(fn)" t nil)
+
+(autoload 'straight-bug-report "straight" "\
+Test straight.el in a clean environment.
+ARGS may be any of the following keywords and their respective values:
+  - :pre-bootstrap (Form)...
+      Forms evaluated before bootstrapping straight.el
+      e.g. (setq straight-repository-branch \"develop\")
+      Note this example is already in the default bootstrapping code.
+
+  - :post-bootstrap (Form)...
+      Forms evaluated in the testing environment after boostrapping.
+      e.g. (straight-use-package '(example :type git :host github))
+
+  - :interactive Boolean
+      If nil, the subprocess will immediately exit after the test.
+      Output will be printed to `straight-bug-report--process-buffer'
+      Otherwise, the subprocess will be interactive.
+
+  - :preserve Boolean
+      If non-nil, the test directory is left in the directory stored in the
+      variable `temporary-file-directory'. Otherwise, it is
+      immediately removed after the test is run.
+
+  - :executable String
+      Indicate the Emacs executable to launch.
+      Defaults to the path of the current Emacs executable.
+
+  - :raw Boolean
+      If non-nil, the raw process output is sent to
+      `straight-bug-report--process-buffer'. Otherwise, it is
+      formatted as markdown for submitting as an issue.
+
+  - :user-dir String
+      If non-nil, the test is run with `user-emacs-directory' set to STRING.
+      Otherwise, a temporary directory is created and used.
+      Unless absolute, paths are expanded relative to the variable
+      `temporary-file-directory'.
+
+ARGS are accessible within the :pre/:post-bootsrap phases via the
+locally bound plist, straight-bug-report-args.
+
+\(fn &rest ARGS)" nil t)
+
+(function-put 'straight-bug-report 'lisp-indent-function '0)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "straight" '("straight-")))
 

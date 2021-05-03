@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/company-mode/company-bbdb.el
+/home/hdkim/.emacs.d/straight/repos/company-mode/company-bbdb.el

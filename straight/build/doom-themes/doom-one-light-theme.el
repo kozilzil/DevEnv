@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/emacs-doom-themes/themes/doom-one-light-theme.el
+/home/hdkim/.emacs.d/straight/repos/emacs-doom-themes/themes/doom-one-light-theme.el

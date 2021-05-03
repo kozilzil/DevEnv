@@ -12,15 +12,7 @@ Make chosen commands operate on the current line if no region is active.
 Modify `whole-line-or-region-local-mode-map' to change which
 commands are affected.
 
-If called interactively, enable Whole-Line-Or-Region-Local mode
-if ARG is positive, and disable it if ARG is zero or negative.
-If called from Lisp, also enable the mode if ARG is omitted or
-nil, and toggle it if ARG is `toggle'; disable the mode
-otherwise.
-
 \(fn &optional ARG)" t nil)
-
-(put 'whole-line-or-region-global-mode 'globalized-minor-mode t)
 
 (defvar whole-line-or-region-global-mode nil "\
 Non-nil if Whole-Line-Or-Region-Global mode is enabled.
@@ -39,7 +31,7 @@ otherwise, disable it.  If called from Lisp, enable the mode if
 ARG is omitted or nil.
 
 Whole-Line-Or-Region-Local mode is enabled in all buffers where
-`(lambda nil (unless (apply 'derived-mode-p whole-line-or-region-inhibit-modes) (whole-line-or-region-local-mode 1)))' would do it.
+`(lambda nil (unless (apply (quote derived-mode-p) whole-line-or-region-inhibit-modes) (whole-line-or-region-local-mode 1)))' would do it.
 See `whole-line-or-region-local-mode' for more information on Whole-Line-Or-Region-Local mode.
 
 \(fn &optional ARG)" t nil)

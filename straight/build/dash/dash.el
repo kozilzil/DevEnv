@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/dash.el/dash.el
+/home/hdkim/.emacs.d/straight/repos/dash.el/dash.el

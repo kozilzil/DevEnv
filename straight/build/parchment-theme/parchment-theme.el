@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/parchment/parchment-theme.el
+/home/hdkim/.emacs.d/straight/repos/parchment/parchment-theme.el

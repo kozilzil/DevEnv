@@ -20,8 +20,6 @@ Key bindings:
 
 \(fn &optional ARG)" t nil)
 
-(put 'global-origami-mode 'globalized-minor-mode t)
-
 (defvar global-origami-mode nil "\
 Non-nil if Global Origami mode is enabled.
 See the `global-origami-mode' command

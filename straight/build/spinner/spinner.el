@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/spinner/spinner.el
+/home/hdkim/.emacs.d/straight/repos/spinner/spinner.el

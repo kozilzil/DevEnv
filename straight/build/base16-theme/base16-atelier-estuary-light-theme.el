@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/base16-emacs/build/base16-atelier-estuary-light-theme.el
+/home/hdkim/.emacs.d/straight/repos/base16-emacs/build/base16-atelier-estuary-light-theme.el

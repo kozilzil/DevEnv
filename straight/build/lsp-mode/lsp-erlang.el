@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/lsp-mode/clients/lsp-erlang.el
+/home/hdkim/.emacs.d/straight/repos/lsp-mode/clients/lsp-erlang.el

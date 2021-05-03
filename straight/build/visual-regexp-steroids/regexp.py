@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/visual-regexp-steroids.el/regexp.py
+/home/hdkim/.emacs.d/straight/repos/visual-regexp-steroids.el/regexp.py

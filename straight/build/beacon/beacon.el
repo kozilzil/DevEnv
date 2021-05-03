@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/beacon/beacon.el
+/home/hdkim/.emacs.d/straight/repos/beacon/beacon.el

@@ -10,11 +10,6 @@
 This cscope minor mode maps cscope keybindings to make cscope
 functions more accessible.
 
-If called interactively, enable Cscope minor mode if ARG is
-positive, and disable it if ARG is zero or negative.  If called
-from Lisp, also enable the mode if ARG is omitted or nil, and
-toggle it if ARG is `toggle'; disable the mode otherwise.
-
 Key bindings:
 \\{cscope-minor-mode-keymap}
 
@@ -22,7 +17,9 @@ Key bindings:
 
 (autoload 'cscope-setup "xcscope" "\
 Automatically turns on cscope-minor-mode when editing C and
-C++ sources" t nil)
+C++ sources
+
+\(fn)" t nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "xcscope" '("cscope-")))
 

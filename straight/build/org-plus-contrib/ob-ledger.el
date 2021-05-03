@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/org/lisp/ob-ledger.el
+/home/hdkim/.emacs.d/straight/repos/org/lisp/ob-ledger.el

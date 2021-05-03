@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/emacs-kaolin-themes/themes/kaolin-valley-dark-theme.el
+/home/hdkim/.emacs.d/straight/repos/emacs-kaolin-themes/themes/kaolin-valley-dark-theme.el

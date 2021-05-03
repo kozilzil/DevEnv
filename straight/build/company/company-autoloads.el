@@ -11,11 +11,6 @@
 Completion starts automatically, depending on the values
 `company-idle-delay' and `company-minimum-prefix-length'.
 
-If called interactively, enable Company mode if ARG is positive,
-and disable it if ARG is zero or negative.  If called from Lisp,
-also enable the mode if ARG is omitted or nil, and toggle it if
-ARG is `toggle'; disable the mode otherwise.
-
 Completion can be controlled with the commands:
 `company-complete-common', `company-complete-selection', `company-complete',
 `company-select-next', `company-select-previous'.  If these commands are
@@ -41,8 +36,6 @@ keymap during active completions (`company-active-map'):
 
 \(fn &optional ARG)" t nil)
 
-(put 'global-company-mode 'globalized-minor-mode t)
-
 (defvar global-company-mode nil "\
 Non-nil if Global Company mode is enabled.
 See the `global-company-mode' command
@@ -65,13 +58,18 @@ See `company-mode' for more information on Company mode.
 
 \(fn &optional ARG)" t nil)
 
-(autoload 'company-manual-begin "company" nil t nil)
+(autoload 'company-manual-begin "company" "\
+
+
+\(fn)" t nil)
 
 (autoload 'company-complete "company" "\
 Insert the common part of all candidates or the current selection.
 The first time this is called, the common part is inserted, the second
 time, or when the selection has been changed, the selected candidate is
-inserted." t nil)
+inserted.
+
+\(fn)" t nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company" '("company-")))
 
@@ -324,11 +322,6 @@ or call the function `company-tng-mode'.")
 (autoload 'company-tng-mode "company-tng" "\
 This minor mode enables `company-tng-frontend'.
 
-If called interactively, enable Company-Tng mode if ARG is
-positive, and disable it if ARG is zero or negative.  If called
-from Lisp, also enable the mode if ARG is omitted or nil, and
-toggle it if ARG is `toggle'; disable the mode otherwise.
-
 \(fn &optional ARG)" t nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-tng" '("company-tng-")))
@@ -349,18 +342,18 @@ shadow backends that come after it.  Recommended usages:
 * In a buffer-local value of `company-backends', grouped with a backend or
   several that provide actual text completions.
 
-  (add-hook 'js-mode-hook
+  (add-hook \\='js-mode-hook
             (lambda ()
-              (set (make-local-variable 'company-backends)
-                   '((company-dabbrev-code company-yasnippet)))))
+              (set (make-local-variable \\='company-backends)
+                   \\='((company-dabbrev-code company-yasnippet)))))
 
 * After keyword `:with', grouped with other backends.
 
-  (push '(company-semantic :with company-yasnippet) company-backends)
+  (push \\='(company-semantic :with company-yasnippet) company-backends)
 
 * Not in `company-backends', just bound to a key.
 
-  (global-set-key (kbd \"C-c y\") 'company-yasnippet)
+  (global-set-key (kbd \"C-c y\") \\='company-yasnippet)
 
 \(fn COMMAND &optional ARG &rest IGNORE)" t nil)
 

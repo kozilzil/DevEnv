@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/org/contrib/lisp/org-checklist.el
+/home/hdkim/.emacs.d/straight/repos/org/contrib/lisp/org-checklist.el

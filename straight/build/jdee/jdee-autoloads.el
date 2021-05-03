@@ -7,7 +7,9 @@
 ;;; Generated autoloads from beanshell.el
 
 (autoload 'bsh-script-help "beanshell" "\
-Display BeanShell User's Guide." t nil)
+Display BeanShell User's Guide.
+
+\(fn)" t nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "beanshell" '("bsh" "initialize-instance")))
 
@@ -16,7 +18,7 @@ Display BeanShell User's Guide." t nil)
 ;;;### (autoloads nil "efc" "efc.el" (0 0 0 0))
 ;;; Generated autoloads from efc.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "efc" '("create-buffer" "efc-" "exec" "get-args" "initialize-instance")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "efc" '("exec" "efc-" "initialize-instance" "get-args" "create-buffer")))
 
 ;;;***
 
@@ -34,15 +36,21 @@ Display BeanShell User's Guide." t nil)
 JDEE version number.")
 
 (autoload 'jdee-version "jdee" "\
-Get the version of JDEE." t nil)
+Get the version of JDEE.
+
+\(fn)" t nil)
 
 (autoload 'jdee-build "jdee" "\
 Rebuild the entire project.
-This command invokes the function defined by `jdee-build-function'." t nil)
+This command invokes the function defined by `jdee-build-function'.
+
+\(fn)" t nil)
 
 (autoload 'jdee-mode "jdee" "\
 Major mode for developing Java applications.
-\\{jdee-mode-map}" t nil)
+\\{jdee-mode-map}
+
+\(fn)" t nil)
 
 (add-to-list 'auto-mode-alist '("\\.java\\'" . jdee-mode))
 
@@ -91,7 +99,9 @@ function uses the same rules as `jdee-ant-build' for finding the buildfile.
 \(fn BUILDFILE)" t nil)
 
 (autoload 'jdee-ant-show-options "jdee-ant" "\
-Show the JDE Ant Options panel." t nil)
+Show the JDE Ant Options panel.
+
+\(fn)" t nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-ant" '("jdee-")))
 
@@ -118,7 +128,7 @@ Return:
 ;;;### (autoloads nil "jdee-avl-tree" "jdee-avl-tree.el" (0 0 0 0))
 ;;; Generated autoloads from jdee-avl-tree.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-avl-tree" '("initialize-instance" "jdee-avl-tree")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-avl-tree" '("jdee-avl-tree" "initialize-instance")))
 
 ;;;***
 
@@ -143,7 +153,9 @@ Add the current visited class as a bookmark.
 \(fn KEY &optional FQ-CLASS)" t nil)
 
 (autoload 'jdee-bookmark-list "jdee-bookmark" "\
-List bookmarks." t nil)
+List bookmarks.
+
+\(fn)" t nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-bookmark" '("jdee-bookmark-")))
 
@@ -169,7 +181,9 @@ prints out, Emacs has nothing to evaluate or report.
 \(fn JAVA-STATEMENT &optional EVAL-RETURN NO-PRINT-P)" t nil)
 
 (autoload 'jdee-bsh-run "jdee-bsh" "\
-Starts the JDEE version of the BeanShell." nil nil)
+Starts the JDEE version of the BeanShell.
+
+\(fn)" nil nil)
 
 (autoload 'jdee-bsh-quote-expr "jdee-bsh" "\
 Add necessary syntax for a beanshell string (parameter) in the current
@@ -185,7 +199,7 @@ NO-QUOTE-WRAP-P, if non-nil, don't add double quotes around the whole statement.
 
 \(fn &optional START END NO-PARAM-P NO-QUOTE-WRAP-P)" t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-bsh" '("bsh-" "initialize-instance" "java-bsh-read-java-expression-history" "jdee-")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-bsh" '("java-bsh-read-java-expression-history" "jdee-" "bsh-" "initialize-instance")))
 
 ;;;***
 
@@ -194,27 +208,26 @@ NO-QUOTE-WRAP-P, if non-nil, don't add double quotes around the whole statement.
 
 (autoload 'jdee-bug-minor-mode "jdee-bug" "\
 Toggle Jdee-Bug minor mode on or off.
-
-If called interactively, enable Jdee-Bug minor mode if ARG is
-positive, and disable it if ARG is zero or negative.  If called
-from Lisp, also enable the mode if ARG is omitted or nil, and
-toggle it if ARG is `toggle'; disable the mode otherwise.
-
+With a prefix argument ARG, enable Jdee-Bug minor mode if ARG is
+positive, and disable it otherwise.  If called from Lisp, enable
+the mode if ARG is omitted or nil, and toggle it if ARG is `toggle'.
 \\{jdee-bug-mode-map}
 
 \(fn &optional ARG)" t nil)
 
 (autoload 'jdee-bug-debug-app "jdee-bug" "\
-Runs the debugger on the application in the current source buffer." t nil)
+Runs the debugger on the application in the current source buffer.
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-bug" '("efc-dialog-" "initialize-instance" "jdee-")))
+\(fn)" t nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-bug" '("jdee-" "efc-dialog-" "initialize-instance")))
 
 ;;;***
 
 ;;;### (autoloads nil "jdee-bytecode" "jdee-bytecode.el" (0 0 0 0))
 ;;; Generated autoloads from jdee-bytecode.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-bytecode" '("do-and-advance-chars" "get-bit-flags-for-byte" "jdee-bytecode")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-bytecode" '("jdee-bytecode" "get-bit-flags-for-byte" "do-and-advance-chars")))
 
 ;;;***
 
@@ -223,7 +236,9 @@ Runs the debugger on the application in the current source buffer." t nil)
 ;;; Generated autoloads from jdee-checkstyle.el
 
 (autoload 'jdee-checkstyle-customize "jdee-checkstyle" "\
-Set Java style checking options." t nil)
+Set Java style checking options.
+
+\(fn)" t nil)
 
 (autoload 'jdee-checkstyle "jdee-checkstyle" "\
 Checks the Java program in the current buffer.
@@ -232,7 +247,9 @@ with the options specified by the JDEE customization variables
 that begin with `jdee-checkstyle'.  If the variable
 `jdee-checkstyle-read-args' is non-nil, this command reads
 additional compilation options from the minibuffer, with
-history enabled." t nil)
+history enabled.
+
+\(fn)" t nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-checkstyle" '("jdee-checkstyle-")))
 
@@ -241,7 +258,7 @@ history enabled." t nil)
 ;;;### (autoloads nil "jdee-class" "jdee-class.el" (0 0 0 0))
 ;;; Generated autoloads from jdee-class.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-class" '("append-to-list" "jdee-" "with-all-c")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-class" '("jdee-" "append-to-list" "with-all-c")))
 
 ;;;***
 
@@ -278,9 +295,11 @@ that begin with `jdee-compile'.  If the variable
 additional compilation options from the minibuffer, with
 history enabled.  If `jdee-compiler' specifies the JDEE compile
 server, this command uses the compile server.  Otherwise, it
-uses the compiler executable specified by `jdee-compiler' to compile." t nil)
+uses the compiler executable specified by `jdee-compiler' to compile.
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-compile" '("bsh-compilation-buffer-create-native-buffer" "initialize-instance" "jdee-")))
+\(fn)" t nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-compile" '("jdee-" "initialize-instance" "bsh-compilation-buffer-create-native-buffer")))
 
 ;;;***
 
@@ -332,7 +351,9 @@ the main class of the application either from the variable
 `jdee-run-application-class' or from the source in the current
 buffer. If `jdee-run-application-class' does not specify a class, the
 main class is assumed to be the class defined by the current source
-buffer. This command creates a command buffer for the debug session." t nil)
+buffer. This command creates a command buffer for the debug session.
+
+\(fn)" t nil)
 
 (autoload 'jdee-debug-applet "jdee-db" "\
 Runs an applet in the jdb debugger. This function prompts you to enter
@@ -349,7 +370,7 @@ file in the current buffer.
 
 \(fn &optional DOC)" t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-db" '("class-from-file-name" "initialize-instance" "jdee-")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-db" '("jdee-" "class-from-file-name" "initialize-instance")))
 
 ;;;***
 
@@ -363,7 +384,7 @@ file in the current buffer.
 ;;;### (autoloads nil "jdee-dbs" "jdee-dbs.el" (0 0 0 0))
 ;;; Generated autoloads from jdee-dbs.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-dbs" '("initialize-instance" "jdee-")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-dbs" '("jdee-" "initialize-instance")))
 
 ;;;***
 
@@ -378,7 +399,7 @@ file in the current buffer.
 ;;;;;;  0 0 0))
 ;;; Generated autoloads from jdee-ecj-flymake.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-ecj-flymake" '("bsh-create-buffer" "flymake-" "initialize-instance" "jdee-ecj-")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-ecj-flymake" '("jdee-ecj-" "bsh-create-buffer" "initialize-instance" "flymake-")))
 
 ;;;***
 
@@ -439,9 +460,11 @@ Displays a dialog buffer that allows you to set all search options
 interactively. Pressing the dialog's OK button initiates the
 search. Use `jdee-find' if you need to set only the expression to be
 found and the directories to be searched and prefer using the
-minibuffer." t nil)
+minibuffer.
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-find" '("efc-dialog-" "initialize-instance" "jdee-find-")))
+\(fn)" t nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-find" '("jdee-find-" "efc-dialog-" "initialize-instance")))
 
 ;;;***
 
@@ -449,9 +472,11 @@ minibuffer." t nil)
 ;;; Generated autoloads from jdee-flycheck.el
 
 (autoload 'jdee-flycheck-mode "jdee-flycheck" "\
-Setup JDEE flycheck checker." nil nil)
+Setup JDEE flycheck checker.
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-flycheck" '("initialize-instance" "jdee-")))
+\(fn)" nil nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-flycheck" '("jdee-" "initialize-instance")))
 
 ;;;***
 
@@ -631,7 +656,9 @@ of the current class from semantic via `semantic-current-tag'.
 \(fn &optional CLASS)" t nil)
 
 (autoload 'jdee-gen-object-methods "jdee-gen" "\
-Generates an equals(), a hashCode() and a toString method." t nil)
+Generates an equals(), a hashCode() and a toString method.
+
+\(fn)" t nil)
 
 (defvar jdee-gen-exception-buffer-template (list "(open-line 1) (funcall jdee-gen-boilerplate-function)" "(jdee-gen-get-package-statement)" "(progn (require 'jdee-javadoc) (jdee-javadoc-insert-start-block))" "\" * Exception <code>\" (jdee-parse-get-buffer-unqualified-class) \"</code>.\" '> 'n" "\" \" (jdee-javadoc-insert-empty-line)" "\" * Created: \" (current-time-string) '> 'n" "\" \" (jdee-javadoc-insert-empty-line)" "\" \" (jdee-gen-save-excursion (jdee-javadoc-insert 'tempo-template-jdee-javadoc-author-tag))" "\" \" (jdee-gen-save-excursion (jdee-javadoc-insert 'tempo-template-jdee-javadoc-version-tag))" "\" \" (jdee-javadoc-insert-end-block)" "\"public class \"" "(jdee-parse-get-buffer-unqualified-class)" "\" \" (jdee-gen-get-extend-class)" "(jdee-gen-electric-brace)" "'p'n" "'> (jdee-javadoc-insert-start-block)" "\"* Constructs a new <code>\" (jdee-parse-get-buffer-unqualified-class) \"</code> with\" '>'n" "\"* <code>null</code> as its detail message.\" '>'n" "'> (jdee-javadoc-insert-end-block)" "(jdee-gen-method-signature \"public\" nil (jdee-parse-get-buffer-unqualified-class) nil)" "(jdee-gen-electric-brace)" "\"}\"'>'n" "'n" "'> (jdee-javadoc-insert-start-block)" "\"* Constructs a new <code>\" (jdee-parse-get-buffer-unqualified-class) \"</code> with\" '>'n" "\"* the specified detail message.\" '>'n" "'> (jdee-javadoc-insert-empty-line)" "\"* @param message the detail message string.\" '> 'n" "'> (jdee-javadoc-insert-end-block)" "(jdee-gen-method-signature \"public\" nil (jdee-parse-get-buffer-unqualified-class) \"String message\")" "(jdee-gen-electric-brace)" "\"super(message);\" '> 'n" "\"}\" '> 'n" "'n" "'> (jdee-javadoc-insert-start-block)" "\"* Constructs a new <code>\" (jdee-parse-get-buffer-unqualified-class) \"</code> with\" '>'n" "\"* the specified cause and a detail message of\" '> 'n" "\"* <code>(cause == null ? null : cause.toString())</code>\" '> 'n" "\"* (which typically contains the class and detail message of cause).\" '> 'n" "'> (jdee-javadoc-insert-empty-line)" "\"* @param cause the causing throwable. A null value is permitted\" '> 'n" "\"*     and indicates that the cause is nonexistent or unknown.\" '> 'n" "'> (jdee-javadoc-insert-end-block)" "(jdee-gen-method-signature \"public\" nil (jdee-parse-get-buffer-unqualified-class) \"Throwable cause\")" "(jdee-gen-electric-brace)" "\"super(cause == null ? (String) null : cause.toString());\" '> 'n" "\"initCause(cause);\" '> 'n" "\"}\" '> 'n" "'n" "'> (jdee-javadoc-insert-start-block)" "\"* Constructs a new <code>\" (jdee-parse-get-buffer-unqualified-class) \"</code> with\" '>'n" "\"* the specified cause and message.\" '> 'n" "'> (jdee-javadoc-insert-empty-line)" "\"* @param message the detail message string.\" '> 'n" "\"* @param cause the causing throwable. A null value is permitted\" '> 'n" "\"*     and indicates that the cause is nonexistent or unknown.\" '> 'n" "'> (jdee-javadoc-insert-end-block)" "(jdee-gen-method-signature \"public\" nil (jdee-parse-get-buffer-unqualified-class) \"String message,Throwable cause\")" "(jdee-gen-electric-brace)" "\"super(message);\" '> 'n" "\"initCause(cause);\" '> 'n" "\"}\" '> 'n" "\"}\" '>" "(if jdee-gen-comments (concat \" // \" (jdee-parse-get-buffer-unqualified-class)))" "'>'n") "\
 *Template for a new exception class.
@@ -655,12 +682,16 @@ It then moves the point to the location of the first method.
 ;;; Generated autoloads from jdee-help.el
 
 (autoload 'jdee-help-browse-jdk-doc "jdee-help" "\
-Displays the JDK doc in a web browser." t nil)
+Displays the JDK doc in a web browser.
+
+\(fn)" t nil)
 
 (autoload 'jdee-help-show-jdee-doc "jdee-help" "\
-Opens the JDEE User's Guide info pages." t nil)
+Opens the JDEE User's Guide info pages.
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-help" '("initialize-instance" "jdee-" "object-print")))
+\(fn)" t nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-help" '("jdee-" "initialize-instance" "object-print")))
 
 ;;;***
 
@@ -701,7 +732,7 @@ The fully qualified class is received from user input.
 
 \(fn CLASS)" t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-import" '("efc-multi-option-dialog-sort" "initialize-instance" "jdee-import-")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-import" '("jdee-import-" "efc-multi-option-dialog-sort" "initialize-instance")))
 
 ;;;***
 
@@ -725,7 +756,9 @@ The fully qualified class is received from user input.
 ;;; Generated autoloads from jdee-java-properties.el
 
 (autoload 'jdee-java-properties-mode "jdee-java-properties" "\
-Major mode for Java properties files buffer." t nil)
+Major mode for Java properties files buffer.
+
+\(fn)" t nil)
 
 (autoload 'jdee-java-properties-validate "jdee-java-properties" "\
 Determine whether or not the properties file conforms to the Sun
@@ -744,21 +777,31 @@ found.
 ;;; Generated autoloads from jdee-javadoc.el
 
 (autoload 'jdee-javadoc-checker-previous "jdee-javadoc" "\
-Go to the previous tag with doc errors." t nil)
+Go to the previous tag with doc errors.
+
+\(fn)" t nil)
 
 (autoload 'jdee-javadoc-checker-next "jdee-javadoc" "\
-Goto the next tag with doc errors." t nil)
+Goto the next tag with doc errors.
+
+\(fn)" t nil)
 
 (autoload 'jdee-javadoc-checker-fix "jdee-javadoc" "\
 Fix documentation of checked tag.
-Used in `jdee-javadoc-checker-report-mode'." t nil)
+Used in `jdee-javadoc-checker-report-mode'.
+
+\(fn)" t nil)
 
 (autoload 'jdee-javadoc-checker-quit "jdee-javadoc" "\
 Quit the `jdee-javadoc-checker' report buffer.
-Used in `jdee-javadoc-checker-report-mode'." t nil)
+Used in `jdee-javadoc-checker-report-mode'.
+
+\(fn)" t nil)
 
 (autoload 'jdee-javadoc-customize "jdee-javadoc" "\
-Show the jdee-javadoc options panel." t nil)
+Show the jdee-javadoc options panel.
+
+\(fn)" t nil)
 
 (autoload 'jdee-javadoc-autodoc-at-line "jdee-javadoc" "\
 Update javadoc comment block for declaration at current line.
@@ -858,7 +901,9 @@ with the following value:
 
 you will be asked to enter the class description in the minibuffer.
 See also the `jdee-javadoc-field-type', `jdee-javadoc-a' and
-`jdee-javadoc-code' helper functions." t nil)
+`jdee-javadoc-code' helper functions.
+
+\(fn)" t nil)
 
 (autoload 'jdee-javadoc-remdoc-at-line "jdee-javadoc" "\
 Remove javadoc comment block for declaration at current line.
@@ -875,11 +920,15 @@ Uses the semantic bovinator parser table to find declarations (see
 `jdee-javadoc-nonterminal-at-line').
 
 BEFORE EXECUTING THE COMMAND, THE POINT MUST BE LOCATED AT THE FIRST
-LINE OF THE CLASS OR METHOD DECLARATION.  IF NOT RESULT IS UNCERTAIN." t nil)
+LINE OF THE CLASS OR METHOD DECLARATION.  IF NOT RESULT IS UNCERTAIN.
+
+\(fn)" t nil)
 
 (autoload 'jdee-javadoc-checkdoc "jdee-javadoc" "\
 Check doc comments of tags in the current buffer.
-Report the next tag with documentation errors." t nil)
+Report the next tag with documentation errors.
+
+\(fn)" t nil)
 
 (autoload 'jdee-javadoc-remove "jdee-javadoc" "\
 Remove all Javadoc from the region (if one is active) or the buffer.
@@ -891,7 +940,9 @@ END, the end position in the buffer.
 (autoload 'jdee-javadoc-enable-menu-p "jdee-javadoc" "\
 Return non-nil if corresponding doc menu item is enabled.
 That is point is on the first line of a class, method, or field
-definition." nil nil)
+definition.
+
+\(fn)" nil nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-javadoc" '("jdee-javadoc-")))
 
@@ -933,7 +984,9 @@ options, select Project->Options->Javadoc from the JDE menu. Use
 files for which you want to generate javadoc. If this variable is nil,
 this command generates javadoc for the Java source file in the current
 buffer. If `jdee-javadoc-display-doc' is nonnil, this command displays
-the generated documentation in a browser." t nil)
+the generated documentation in a browser.
+
+\(fn)" t nil)
 
 (autoload 'jdee-javadoc-make-buffer "jdee-javadoc-gen" "\
 Generates javadoc for the current buffer. This command runs the
@@ -947,16 +1000,18 @@ select Project->Options->Javadoc from the JDE menu. Use
 `jdee-javadoc-make' to generate doc for the files and packages
 specified by `jdee-javadoc-gen-packages'. If `jdee-javadoc-display-doc'
 is nonnil, this command displays the generated documentation in a
-browser." t nil)
+browser.
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-javadoc-gen" '("get-args" "initialize-instance" "jdee-javadoc-")))
+\(fn)" t nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-javadoc-gen" '("jdee-javadoc-" "get-args" "initialize-instance")))
 
 ;;;***
 
 ;;;### (autoloads nil "jdee-jdb" "jdee-jdb.el" (0 0 0 0))
 ;;; Generated autoloads from jdee-jdb.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-jdb" '("initialize-instance" "jdee-")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-jdb" '("jdee-" "initialize-instance")))
 
 ;;;***
 
@@ -979,10 +1034,14 @@ browser." t nil)
 ;;; Generated autoloads from jdee-junit.el
 
 (autoload 'jdee-junit-test-class "jdee-junit" "\
-Instantiate a test class template." t nil)
+Instantiate a test class template.
+
+\(fn)" t nil)
 
 (autoload 'jdee-junit4-test-class "jdee-junit" "\
-Instantiate a test class template." t nil)
+Instantiate a test class template.
+
+\(fn)" t nil)
 
 (autoload 'jdee-junit-test-class-buffer "jdee-junit" "\
 Create a buffer containing a skeleton unit test class.
@@ -991,19 +1050,29 @@ This command prompts you to enter the file name of the test class.  It assumes
 that the file name has the form CLASSTest.java where CLASS is the name of the
 class to be tested, e.g., MyAppTest.java.
 Use `jdee-gen-junit-add-test-to-suite' to add tests to the test suite.  Use of
-tests generated with this template requires the JUnit test framework." t nil)
+tests generated with this template requires the JUnit test framework.
+
+\(fn)" t nil)
 
 (autoload 'jdee-junit4-test-class-buffer "jdee-junit" "\
-Create a buffer containing a JUnit4 test skeleton." t nil)
+Create a buffer containing a JUnit4 test skeleton.
+
+\(fn)" t nil)
 
 (autoload 'jdee-junit-add-test-to-suite "jdee-junit" "\
-Instantiate an addTest method." t nil)
+Instantiate an addTest method.
+
+\(fn)" t nil)
 
 (autoload 'jdee-junit-run "jdee-junit" "\
-Start JUnit testrunner with buffer corresponding class name." t nil)
+Start JUnit testrunner with buffer corresponding class name.
+
+\(fn)" t nil)
 
 (autoload 'jdee-junit-show-options "jdee-junit" "\
-Show the JDEE JUnit Options panel." t nil)
+Show the JDEE JUnit Options panel.
+
+\(fn)" t nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-junit" '("jdee-junit")))
 
@@ -1032,10 +1101,14 @@ command-line arguments specified by `jdee-make-args'. If
 `jdee-read-make-args' is nonnil, this command also prompts you to enter
 make arguments in the minibuffer and passes any arguments that you
 enter to the make program along with the arguments specified by
-`jdee-make-args'." t nil)
+`jdee-make-args'.
+
+\(fn)" t nil)
 
 (autoload 'jdee-make-show-options "jdee-make" "\
-Show the JDEE Make Options panel." t nil)
+Show the JDEE Make Options panel.
+
+\(fn)" t nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-make" '("jdee-")))
 
@@ -1054,7 +1127,9 @@ Initialize the maven integration if available.  Runs all the
 functions in `jdee-maven-init-hook' until one returns non-nil.
 If all return nil, maven mode is not initialized.  If one of the
 functions returns non-nil, set `jdee-maven-project-dir' buffer
-local and then run the functions in `jdee-maven-mode-hook'." nil nil)
+local and then run the functions in `jdee-maven-mode-hook'.
+
+\(fn)" nil nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-maven" '("jdee-maven-")))
 
@@ -1127,7 +1202,8 @@ The buffer is not modified if the package statement that would be
 inserted exactly matches the existing package statement.  This
 means that this can be called from `jdee-mode-hook` without
 spuriously marking the buffer as modified.
-" t nil)
+
+\(fn)" t nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-package" '("jdee-package-")))
 
@@ -1146,7 +1222,7 @@ If called interactively, add the name in the mini-buffer.
 
 \(fn &optional NO-PACKAGE-P)" t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-parse" '("initialize-instance" "jdee-")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-parse" '("jdee-" "initialize-instance")))
 
 ;;;***
 
@@ -1208,7 +1284,9 @@ setter, otherwise, make a getter.
 ;;; Generated autoloads from jdee-project.el
 
 (autoload 'jdee-project-create-project "jdee-project" "\
-Create a JDEE project." t nil)
+Create a JDEE project.
+
+\(fn)" t nil)
 
 (autoload 'jdee-describe-path "jdee-project" "\
 Print and give file existance for each path.
@@ -1217,7 +1295,7 @@ PATH-TYPE is either `global classpath' for `jdee-global-classpath' or
 
 \(fn PATH-TYPE &optional BUF)" t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-project" '("efc-dialog-" "jdee-project")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-project" '("jdee-project" "efc-dialog-")))
 
 ;;;***
 
@@ -1226,7 +1304,9 @@ PATH-TYPE is either `global classpath' for `jdee-global-classpath' or
 ;;; Generated autoloads from jdee-project-file.el
 
 (autoload 'jdee-open-project-file "jdee-project-file" "\
-Open the project file for the Java source file in the current buffer." t nil)
+Open the project file for the Java source file in the current buffer.
+
+\(fn)" t nil)
 
 (autoload 'jdee-save-project "jdee-project-file" "\
 Save source file buffer options in one or more project files.
@@ -1235,7 +1315,9 @@ for a Java project.  Simply open a source file, set the desired
 options, using the JDEE Options menu, then save the settings in the
 project file, using this command.  Now, whenever you open a source
 file from the same directory tree, the saved settings will be restored
-for that file." t nil)
+for that file.
+
+\(fn)" t nil)
 
 (autoload 'jdee-create-new-project "jdee-project-file" "\
 Create a new JDEE project file in directory NEW-DIR, saving any
@@ -1341,7 +1423,7 @@ file.
 
 \(fn &optional DOC)" t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-run" '("initialize-instance" "jdee-" "save-w32-show-window")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-run" '("jdee-" "initialize-instance" "save-w32-show-window")))
 
 ;;;***
 
@@ -1388,7 +1470,9 @@ contained in dir.
 ;;; Generated autoloads from jdee-test.el
 
 (autoload 'jdee-test-unittest "jdee-test" "\
-Perform unit test.  Delegates to the function specified by `jdee-test-function'." t nil)
+Perform unit test.  Delegates to the function specified by `jdee-test-function'.
+
+\(fn)" t nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-test" '("jdee-test-function")))
 
@@ -1406,7 +1490,9 @@ Signal an error if FEATURE can't be found.
 \(fn FEATURE)" nil nil)
 
 (autoload 'jdee-exception-goto "jdee-util" "\
-Go to the Java source file and line indicated by an exception stack trace." t nil)
+Go to the Java source file and line indicated by an exception stack trace.
+
+\(fn)" t nil)
 
 (defalias 'jdee-goto-exception 'jdee-exception-goto)
 
@@ -1442,7 +1528,7 @@ displayed in the mode line.")
 ;;;### (autoloads nil "jdee-widgets" "jdee-widgets.el" (0 0 0 0))
 ;;; Generated autoloads from jdee-widgets.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-widgets" '("jdee-" "test-")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-widgets" '("test-" "jdee-")))
 
 ;;;***
 
@@ -1459,7 +1545,9 @@ displayed in the mode line.")
 (autoload 'jdee-xref-make-xref-db "jdee-xref" "\
 Create a database of caller to callee (and the reverse) from the
 classes in `jdee-built-class-path' and store the data in the location
-specified by `jdee-xref-db-base-directory'" t nil)
+specified by `jdee-xref-db-base-directory'
+
+\(fn)" t nil)
 
 (autoload 'jdee-xref-first-caller "jdee-xref" "\
 Put the list of who calls the current function on the stack and
@@ -1474,7 +1562,9 @@ the requested function are considered.
 
 (autoload 'jdee-xref-next-caller "jdee-xref" "\
 If there are items still on the caller stack, pop the first one off
-and show it" t nil)
+and show it
+
+\(fn)" t nil)
 
 (autoload 'jdee-xref-display-call-tree "jdee-xref" "\
 Display an interactive call tree of which function call the current
@@ -1509,7 +1599,9 @@ call list of all files modified in emacs
 \(fn &rest IGNORED)" t nil)
 
 (autoload 'jdee-xref-customize "jdee-xref" "\
-Display the customization buffer for the xref package." t nil)
+Display the customization buffer for the xref package.
+
+\(fn)" t nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "jdee-xref" '("jdee-xref-")))
 

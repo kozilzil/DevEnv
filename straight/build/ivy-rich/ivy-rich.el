@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/ivy-rich/ivy-rich.el
+/home/hdkim/.emacs.d/straight/repos/ivy-rich/ivy-rich.el

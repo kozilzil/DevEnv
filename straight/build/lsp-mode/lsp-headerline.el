@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/lsp-mode/lsp-headerline.el
+/home/hdkim/.emacs.d/straight/repos/lsp-mode/lsp-headerline.el

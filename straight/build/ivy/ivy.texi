@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/swiper/doc/ivy.texi
+/home/hdkim/.emacs.d/straight/repos/swiper/doc/ivy.texi

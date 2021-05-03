@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/modus-themes/modus-vivendi-theme.el
+/home/hdkim/.emacs.d/straight/repos/modus-vivendi-theme/modus-vivendi-theme.el

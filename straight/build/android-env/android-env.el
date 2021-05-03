@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/android-env.el/android-env.el
+/home/hdkim/.emacs.d/straight/repos/android-env.el/android-env.el

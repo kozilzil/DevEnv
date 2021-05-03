@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/yasnippet-snippets/snippets/julia-mode/.yas-setup.el
+/home/hdkim/.emacs.d/straight/repos/yasnippet-snippets/snippets/julia-mode/.yas-setup.el

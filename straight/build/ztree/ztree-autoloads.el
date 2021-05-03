@@ -9,11 +9,6 @@
 (autoload 'ztreediff-mode "ztree-diff" "\
 A minor mode for displaying the difference of the directory trees in text mode.
 
-If called interactively, enable ZtreeDiff mode if ARG is
-positive, and disable it if ARG is zero or negative.  If called
-from Lisp, also enable the mode if ARG is omitted or nil, and
-toggle it if ARG is `toggle'; disable the mode otherwise.
-
 \(fn &optional ARG)" t nil)
 
 (autoload 'ztree-diff "ztree-diff" "\
@@ -50,7 +45,7 @@ Create an interactive buffer with the directory tree of the PATH given.
 ;;;### (autoloads nil "ztree-util" "ztree-util.el" (0 0 0 0))
 ;;; Generated autoloads from ztree-util.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ztree-util" '("ztree-")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ztree-util" '("ztree-" "def-ztree-local-fun")))
 
 ;;;***
 
@@ -63,13 +58,16 @@ A major mode for displaying the directory tree in text mode.
 \(fn)" t nil)
 
 (autoload 'ztree-view-on-window-configuration-changed "ztree-view" "\
-Hook called then window configuration changed to resize buffer's contents" nil nil)
+Hook called then window configuration changed to resize buffer's contents
+
+\(fn)" nil nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ztree-view" '("ztree")))
 
 ;;;***
 
-;;;### (autoloads nil nil ("ztree.el") (0 0 0 0))
+;;;### (autoloads nil nil ("ztree-protocol.el" "ztree.el") (0 0 0
+;;;;;;  0))
 
 ;;;***
 

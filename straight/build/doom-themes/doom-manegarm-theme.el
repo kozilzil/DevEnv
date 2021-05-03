@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/emacs-doom-themes/themes/doom-manegarm-theme.el
+/home/hdkim/.emacs.d/straight/repos/emacs-doom-themes/themes/doom-manegarm-theme.el

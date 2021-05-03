@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/ggtags/ggtags.el
+/home/hdkim/.emacs.d/straight/repos/ggtags/ggtags.el

@@ -65,7 +65,9 @@ Keymap used within overlays:
 \(fn &optional ARG)" t nil)
 
 (autoload 'iedit-mode-toggle-on-function "iedit" "\
-Toggle Iedit mode on current function." t nil)
+Toggle Iedit mode on current function.
+
+\(fn)" t nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "iedit" '("iedit-")))
 

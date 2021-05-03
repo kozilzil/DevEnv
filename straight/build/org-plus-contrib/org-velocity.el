@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/org/contrib/lisp/org-velocity.el
+/home/hdkim/.emacs.d/straight/repos/org/contrib/lisp/org-velocity.el

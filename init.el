@@ -69,62 +69,6 @@
 ;; ;; For packages not available through MELPA, save it locally and put under load-path
 (add-to-list 'load-path (expand-file-name "elisp" my-emacs-conf-directory))
 
-;; (use-package auth-source
-;;   :straight ivy-pass
-;;   ;; Setup Credentials
-;;   :bind (("s-P" . ivy-pass))
-;;   :config
-;;   ;; Redefine some functions in auth-source-pass.el, because they don't respect
-;;   ;; environment variable PASSWORD_STORE_DIR
-;;   (defvar auth-source-pass--cache (make-hash-table :test #'equal))
-
-;;   (defun auth-source-pass--reset-cache ()
-;;     (setq auth-source-pass--cache (make-hash-table :test #'equal)))
-
-;;   (defun lookup-password (host user port)
-;;     (require 'auth-source)
-;;     (require 'auth-source-pass)
-;;     (let ((auth (auth-source-search :host host :user user :port port)))
-;;       (if auth
-;;           (let ((secretf (plist-get (car auth) :secret)))
-;;             (if secretf
-;;                 (funcall secretf)
-;;               (error "Auth entry for %s@%s:%s has no secret!"
-;;                      user host port)))
-;;         (error "No auth entry found for %s@%s:%s" user host port))))
-
-;;   (defun auth-source-pass--read-entry (entry)
-;;     "Return a string with the file content of ENTRY."
-;;     (run-at-time 45 nil #'auth-source-pass--reset-cache)
-;;     (let ((cached (gethash entry auth-source-pass--cache)))
-;;       (or cached
-;;           (puthash
-;;            entry
-;;            (with-temp-buffer
-;;              (insert-file-contents (expand-file-name
-;;                                     (format "%s.gpg" entry)
-;;                                     (getenv "PASSWORD_STORE_DIR")))
-;;              (buffer-substring-no-properties (point-min) (point-max)))
-;;            auth-source-pass--cache))))
-
-;;   (defun auth-source-pass-entries ()
-;;     "Return a list of all password store entries."
-;;     (let ((store-dir (getenv "PASSWORD_STORE_DIR")))
-;;       (mapcar
-;;        (lambda (file) (file-name-sans-extension (file-relative-name file store-dir)))
-;;        (directory-files-recursively store-dir "\.gpg$"))))
-
-;;   ;; Enable password-store with auth-source
-;;   ;; auth-source-pass-get is the main entrance.
-;;   (auth-source-pass-enable)
-
-;;   ;; Need to set allow allow-emacs-pinentry & allow-loopback-pinentry in ~/.gnupg/gpg-agent.conf
-;;   (setq epa-pinentry-mode 'loopback)
-;;   ;; Top debug, set auth-source-debug to t.
-;;   (setq auth-source-debug t)
-;;   ;; also use auth-source-forget-all-cached
-;;   )
-
 
 ;;;; General settings
 (setq-default ;; Use setq-default to define global default
@@ -199,7 +143,7 @@
  )
 
 ;; Misc
-(set-frame-name "emacs")
+(set-frame-name "2macs")
 (fringe-mode '(1 . 3))
 (delete-selection-mode 1)
 ;; enable y/n answers
@@ -278,22 +222,15 @@ behavior added."
     (dotimes (i 10)
       (when (= p (point)) ad-do-it))))
 
-;; ;; Confirm when trying to kill frame in emacsclient
-;; ;; TODO: Disable for now. It seems to clash with sdcv
-;; ;; (define-advice delete-frame (:around (oldfun &rest args) confirm-frame-deletion)
-;; ;;   "Confirm deleting the frame."
-;; ;;   (interactive)
-;; ;;   (when (y-or-n-p "Delete frame? ")
-;; ;;     (apply oldfun args)))
 
-;; Early unbind keys for customization
+;; Early unbind keys for customization   
 (unbind-key "C-s") ; Reserve for search related commands
 (unbind-key "C-z") ;; Reserve for hydra related commands
 
 ;; Quick access to commonly used files
 (global-set-key (kbd "s-SPC") (lambda () (interactive) (find-file (expand-file-name ".emacs.d/init.el"
                                                                                     my-emacs-conf-directory))))
-(global-set-key (kbd "s-<print>") (lambda () (interactive) (find-file "~/screenshots")))
+
 (global-set-key (kbd "s-f") (lambda () (interactive) (find-file-other-window org-my-beancount-file)))
 
 (use-package beacon

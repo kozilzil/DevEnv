@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/super-save/super-save.el
+/home/hdkim/.emacs.d/straight/repos/super-save/super-save.el

@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/multiple-cursors.el/multiple-cursors.el
+/home/hdkim/.emacs.d/straight/repos/multiple-cursors.el/multiple-cursors.el

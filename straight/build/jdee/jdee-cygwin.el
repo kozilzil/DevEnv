@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/jdee/jdee-cygwin.el
+/home/hdkim/.emacs.d/straight/repos/jdee/jdee-cygwin.el

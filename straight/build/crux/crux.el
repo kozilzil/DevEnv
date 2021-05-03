@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/crux/crux.el
+/home/hdkim/.emacs.d/straight/repos/crux/crux.el

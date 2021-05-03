@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/emacs-ccls/ccls-inheritance-hierarchy.el
+/home/hdkim/.emacs.d/straight/repos/emacs-ccls/ccls-inheritance-hierarchy.el

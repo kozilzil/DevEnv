@@ -64,7 +64,7 @@ result of `defhydra'.
 
 (function-put 'defhydra 'doc-string-elt '3)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "hydra" '("defhydra" "hydra-")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "hydra" '("hydra-" "defhydra")))
 
 ;;;***
 

@@ -8,7 +8,9 @@
 ;;; Generated autoloads from yasnippet-snippets.el
 
 (autoload 'yasnippet-snippets-initialize "yasnippet-snippets" "\
-Load the `yasnippet-snippets' snippets directory." nil nil)
+Load the `yasnippet-snippets' snippets directory.
+
+\(fn)" nil nil)
 
 (eval-after-load 'yasnippet '(yasnippet-snippets-initialize))
 

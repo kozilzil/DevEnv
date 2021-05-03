@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/visual-fill-column/visual-fill-column.el
+/home/hdkim/.emacs.d/straight/repos/visual-fill-column/visual-fill-column.el

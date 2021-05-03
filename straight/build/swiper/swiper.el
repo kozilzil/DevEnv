@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/swiper/swiper.el
+/home/hdkim/.emacs.d/straight/repos/swiper/swiper.el

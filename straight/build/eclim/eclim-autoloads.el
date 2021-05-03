@@ -7,19 +7,14 @@
 ;;; Generated autoloads from eclim.el
 
 (autoload 'eclim/workspace-dir "eclim" "\
-Return the path of the current eclim workspace directory." nil nil)
+Return the path of the current eclim workspace directory.
+
+\(fn)" nil nil)
 
 (autoload 'eclim-mode "eclim" "\
 An interface to the Eclipse IDE.
 
-If called interactively, enable Eclim mode if ARG is positive,
-and disable it if ARG is zero or negative.  If called from Lisp,
-also enable the mode if ARG is omitted or nil, and toggle it if
-ARG is `toggle'; disable the mode otherwise.
-
 \(fn &optional ARG)" t nil)
-
-(put 'global-eclim-mode 'globalized-minor-mode t)
 
 (defvar global-eclim-mode nil "\
 Non-nil if Global Eclim mode is enabled.
@@ -122,7 +117,9 @@ The keymap used in command `eclim-mode'.")
 (autoload 'eclim-project-mode "eclim-project" "\
 Manage all your eclim projects in one buffer.
 
-\\{eclim-project-mode-map}" t nil)
+\\{eclim-project-mode-map}
+
+\(fn)" t nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "eclim-project" '("eclim")))
 

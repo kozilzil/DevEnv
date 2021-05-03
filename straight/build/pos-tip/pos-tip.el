@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/pos-tip/pos-tip.el
+/home/hdkim/.emacs.d/straight/repos/pos-tip/pos-tip.el

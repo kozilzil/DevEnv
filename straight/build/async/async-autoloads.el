@@ -56,7 +56,7 @@ will leave *emacs* process buffers hanging around):
     (async-start
      (lambda ()
        (delete-file \"a remote file on a slow link\" nil))
-     'ignore)
+     \\='ignore)
 
 Note: Even when FINISH-FUNC is present, a future is still
 returned except that it yields no value (since the value is
@@ -95,11 +95,6 @@ Byte compile asynchronously packages installed with package.el.
 Async compilation of packages can be controlled by
 `async-bytecomp-allowed-packages'.
 
-If called interactively, enable Async-Bytecomp-Package mode if
-ARG is positive, and disable it if ARG is zero or negative.  If
-called from Lisp, also enable the mode if ARG is omitted or nil,
-and toggle it if ARG is `toggle'; disable the mode otherwise.
-
 \(fn &optional ARG)" t nil)
 
 (autoload 'async-byte-compile-file "async-bytecomp" "\
@@ -109,7 +104,7 @@ Same as `byte-compile-file' but asynchronous.
 
 \(fn FILE)" t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "async-bytecomp" '("async-byte")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "async-bytecomp" '("async-")))
 
 ;;;***
 
@@ -128,11 +123,6 @@ or call the function `dired-async-mode'.")
 
 (autoload 'dired-async-mode "dired-async" "\
 Do dired actions asynchronously.
-
-If called interactively, enable Dired-Async mode if ARG is
-positive, and disable it if ARG is zero or negative.  If called
-from Lisp, also enable the mode if ARG is omitted or nil, and
-toggle it if ARG is `toggle'; disable the mode otherwise.
 
 \(fn &optional ARG)" t nil)
 
@@ -165,10 +155,6 @@ Run ‘dired-do-rename’ asynchronously.
 ;;; Generated autoloads from smtpmail-async.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "smtpmail-async" '("async-smtpmail-")))
-
-;;;***
-
-;;;### (autoloads nil nil ("async-pkg.el") (0 0 0 0))
 
 ;;;***
 

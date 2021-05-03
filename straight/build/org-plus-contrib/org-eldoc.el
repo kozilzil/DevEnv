@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/org/contrib/lisp/org-eldoc.el
+/home/hdkim/.emacs.d/straight/repos/org/contrib/lisp/org-eldoc.el

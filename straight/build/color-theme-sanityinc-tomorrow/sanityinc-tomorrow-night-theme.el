@@ -1,1 +1,1 @@
-/home/auto-06/.emacs.d/straight/repos/color-theme-sanityinc-tomorrow/sanityinc-tomorrow-night-theme.el
+/home/hdkim/.emacs.d/straight/repos/color-theme-sanityinc-tomorrow/sanityinc-tomorrow-night-theme.el

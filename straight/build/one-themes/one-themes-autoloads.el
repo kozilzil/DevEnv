@@ -24,7 +24,7 @@
 
 (when (and (boundp 'custom-theme-load-path) load-file-name) (add-to-list 'custom-theme-load-path (file-name-as-directory (file-name-directory load-file-name))))
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "one-themes" '("emacs-one-" "one-themes-")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "one-themes" '("one-themes-" "emacs-one-")))
 
 ;;;***
 

@@ -1,1 +1,0 @@
-/home/auto-06/.emacs.d/straight/repos/dash.el/dash-functional.el
