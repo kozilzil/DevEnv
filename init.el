@@ -11,6 +11,7 @@
                          ("marmalade" . "https://marmalade-repo.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")))
 
+(setq debug-on-error t)
 ;;; Bootstrap
 ;; Speed up bootstrapping
 (setq gc-cons-threshold 402653184
@@ -20,6 +21,26 @@
                                     gc-cons-percentage 0.1)
                               (garbage-collect)) t)
 
+(when (eq system-type 'darwin)
+
+  ;; default Latin font (e.g. Consolas)
+  ;; but I use Monaco 
+  (set-face-attribute 'default nil :family "Monaco")
+
+  ;; default font size (point * 10)
+  ;;
+  ;; WARNING!  Depending on the default font,
+  ;; if the size is not supported very well, the frame will be clipped
+  ;; so that the beginning of the buffer may not be visible correctly. 
+  (set-face-attribute 'default nil :height 130)
+
+  ;; use specific font for Korean charset.
+  ;; if you want to use different font size for specific charset,
+  ;; add :size POINT-SIZE in the font-spec.
+  (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
+
+  ;; you may want to add different for other charset in this way.
+  )
 ;; Always follow symlinks. init files are normally stowed/symlinked.
 (setq vc-follow-symlinks t
       find-file-visit-truename t
@@ -835,15 +856,15 @@ Useful when hard line wraps are unwanted (email/sharing article)."
 ;;   (setq bookmark-default-file (expand-file-name "bookmarks" my-private-conf-directory))
 ;;   )
 
-;; (use-package deft
-;;   ;; :bind ("<f7>" . deft)
-;;   :commands (deft)
-;;   :config
-;;   (setq deft-directory "~/Dropbox/journals/"
-;;         deft-extensions '("md" "org")
-;;         deft-recursive t
-;;         )
-;;   )
+(use-package deft
+  ;; :bind ("<f7>" . deft)
+  :commands (deft)
+  :config
+  (setq deft-directory "~/Dropbox/journals/"
+        deft-extensions '("md" "org")
+        deft-recursive t
+        )
+  )
 
 ;;; Window and Buffer management
 
@@ -873,7 +894,6 @@ Useful when hard line wraps are unwanted (email/sharing article)."
 
 (use-package android-env
   :demand t
-
   )
 
 ;;창 전환 
@@ -886,78 +906,25 @@ Useful when hard line wraps are unwanted (email/sharing article)."
    ;; Home row is more convenient. Use home row keys that prioritize fingers that don't move.
    aw-keys '(?j ?k ?l ?f ?d ?s ?g ?h ?\; ?a)
    aw-scope 'visible)
+
   )
 
-;; (use-package winner
-;;   ;; Enable window restoration
-;;   :defer 1
-;;   :config
-;;   (winner-mode 1))
 
-;; (setq
-;;  ;; Kill a frame when quitting its only window
-;;  frame-auto-hide-function 'delete-frame
-;;  ;; Maximum number of side-windows to create on (left top right bottom)
-;;  window-sides-slots '(0 1 2 2)
-;;  ;; Default rules
-;;  display-buffer-alist
-;;  `(;; Right side for most Help, Agenda, Trace, etc buffers
-;;    ("*\\(Help\\|help\\|Man.*\\|trace-\\|Backtrace\\|RefTeX.*\\|ess-describe\\|SDCV.*\\| Merriam.*\\)"
-;;     (display-buffer-reuse-mode-window display-buffer-in-previous-window display-buffer-in-side-window)
-;;     (side . right)
-;;     (slot . 1)
-;;     (window-width . 80)
-;;     (window-height . 0.7)
-;;     (reusable-frames . visible))
-;;    ;; Same window
-;;    ("*\\(R.*\\|Python\\)"
-;;     (display-buffer-reuse-window display-buffer-same-window)
-;;     (reusable-frames . visible))
-;;    ;; Show on bottom
-;;    ("*\\(ielm\\)"
-;;     (display-buffer-reuse-window display-buffer-in-side-window)
-;;     (side . bottom)
-;;     (slot . 0)
-;;     (window-height . 10)
-;;     (reusable-frames . visible))
-;;    ("^\\vterm"
-;;     (display-buffer-reuse-window display-buffer-in-side-window)
-;;     (side . right)
-;;     (slot . 2)
-;;     (window-width . 80)
-;;     (reusable-frames . visible))
-;;    ;; Always show notmuch in new frame
-;;    ("^\\*info"
-;;     (display-buffer-reuse-window display-buffer-in-previous-window))
-;;    ;; Display *BBDB* buffer on the bottom frame
-;;    ("\\*BBDB"
-;;     (display-buffer-reuse-window display-buffer-in-previous-window display-buffer-in-side-window)
-;;     (side . bottom)
-;;     (slot . 0)
-;;     (window-height . 10)
-;;     (reusable-frames . visible))
-;;    ;; Split shells at the bottom
-;;    ("^\\*e?shell"
-;;     (display-buffer-reuse-window display-buffer-in-previous-window display-buffer-below-selected)
-;;     (window-min-height . 20)
-;;     (reusable-frames . visible)
-;;     )
-;;    )
-;;  )
 
-;; (use-package nswbuff
-;;   ;; Quickly switching buffers. Quite useful!
-;;   :bind (("<C-tab>"           . nswbuff-switch-to-next-buffer)
-;;          ("<C-S-iso-lefttab>" . nswbuff-switch-to-previous-buffer))
-;;   :config
-;;   (setq nswbuff-display-intermediate-buffers t)
-;;   )
+(use-package nswbuff
+  ;; Quickly switching buffers. Quite useful!
+  :bind (("<C-tab>"           . nswbuff-switch-to-next-buffer)
+         ("<C-S-iso-lefttab>" . nswbuff-switch-to-previous-buffer))
+  :config
+  (setq nswbuff-display-intermediate-buffers t)
+  )
 
 ;; ;;; Cursor Navigation: avy
 
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "M-n") 'forward-paragraph)
 
+;; ;;; Cursor Navigation: avy
 (use-package avy
   :bind  (("C-,"   . avy-goto-char-2)
           ("C-M-," . avy-goto-line))
@@ -968,9 +935,16 @@ Useful when hard line wraps are unwanted (email/sharing article)."
         avy-style 'at-full)
   )
 
-;; (use-package avy-zap
-;;   :bind (("M-z" . avy-zap-to-char-dwim)
-;;          ("M-Z" . avy-zap-up-to-char-dwim)))
+
+
+;; Evernote
+
+;; (use-package geeknote
+;;   :ensure t
+;;   :init (server-start)
+;;   :config
+;;   (setq geeknote-command "
+;;   )
 
 
 ;; ;;; Version-control: Magit
@@ -993,7 +967,7 @@ Useful when hard line wraps are unwanted (email/sharing article)."
          ("C-x G" . magit-dispatch))
   :config
   ;; Enable magit-file-mode, to enable operations that touches a file, such as log, blame
-  (global-magit-file-mode)
+  ;;  (global-magit-file-mode)
 
   ;; Prettier looks, and provides dired diffs
   (use-package diff-hl
@@ -1023,7 +997,7 @@ Useful when hard line wraps are unwanted (email/sharing article)."
   (setq magit-completing-read-function 'ivy-completing-read
         magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1
         magit-clone-set-remote.pushDefault nil
-        magit-clone-default-directory "~/projects/")
+        magit-clone-default-directory "/mnt/dev/Devs/projects/")
 
   (defun magit-status-with-prefix ()
     (interactive)
@@ -1043,9 +1017,6 @@ Useful when hard line wraps are unwanted (email/sharing article)."
       (delete-file (concat base "/.git/index.lock"))))
   )
 
-(use-package monky
-  ;; Mercurial support
-  )
 
 ;;; Workspace Mgmt: eyebrowse + projectile
 
@@ -1053,773 +1024,775 @@ Useful when hard line wraps are unwanted (email/sharing article)."
   :defer 5
   :straight ripgrep ;; required by projectile-ripgrep
   :bind-keymap
-  ("C-c P" . projectile-command-map)
+  ("C-c p" . projectile-command-map)
   :bind (("C-c o" . 'projectile-find-file))
   :config
   ;; Where my projects and clones are normally placed.
-  (setq projectile-project-search-path '("~/projects")
+  (setq projectile-project-search-path '("mnt/dev/Devs/projects")
         projectile-completion-system 'ivy)
   (projectile-mode +1)
   )
 
-;; (use-package eyebrowse
-;;   :defer 2
-;;   :init
-;;   (setq eyebrowse-keymap-prefix (kbd "C-c w")) ;; w for workspace
-;;   :bind
-;;   (
-;;    ("M-1" . 'eyebrowse-switch-to-window-config-1)
-;;    ("M-2" . 'eyebrowse-switch-to-window-config-2)
-;;    ("M-3" . 'eyebrowse-switch-to-window-config-3)
-;;    ("M-4" . 'eyebrowse-switch-to-window-config-4)
-;;    ("M-5" . 'eyebrowse-switch-to-window-config-5)
-;;    ("M-6" . 'eyebrowse-switch-to-window-config-6)
-;;    ("M-7" . 'eyebrowse-switch-to-window-config-7)
-;;    ("M-8" . 'eyebrowse-switch-to-window-config-8)
-;;    ("M-9" . 'eyebrowse-switch-to-window-config-9)
-;;    ("C-c w s"   . 'eyebrowse-switch-to-window-config)
-;;    ("C-c w k"   . 'eyebrowse-close-window-config)
-;;    ("C-c w w"   . 'eyebrowse-switch-to-window-config)
-;;    ("C-c w n"   . 'eyebrowse-next-window-config)
-;;    ("C-c w p"   . 'eyebrowse-prev-window-config)
-;;    ("C-c n"     . 'eyebrowse-next-window-config)
-;;    ("C-c p"     . 'eyebrowse-prev-window-config)
-;;    ("C-x '"   . 'eyebrowse-last-window-config)
-;;    )
+(use-package eyebrowse
+  :defer 2
+  :init
+  (setq eyebrowse-keymap-prefix (kbd "C-c w")) ;; w for workspace
+  :bind
+  (
+   ("M-1" . 'eyebrowse-switch-to-window-config-1)
+   ("M-2" . 'eyebrowse-switch-to-window-config-2)
+   ("M-3" . 'eyebrowse-switch-to-window-config-3)
+   ("M-4" . 'eyebrowse-switch-to-window-config-4)
+   ("M-5" . 'eyebrowse-switch-to-window-config-5)
+   ("M-6" . 'eyebrowse-switch-to-window-config-6)
+   ("M-7" . 'eyebrowse-switch-to-window-config-7)
+   ("M-8" . 'eyebrowse-switch-to-window-config-8)
+   ("M-9" . 'eyebrowse-switch-to-window-config-9)
+   ("C-c w s"   . 'eyebrowse-switch-to-window-config)
+   ("C-c w k"   . 'eyebrowse-close-window-config)
+   ("C-c w w"   . 'eyebrowse-switch-to-window-config)
+   ("C-c w n"   . 'eyebrowse-next-window-config)
+   ("C-c w p"   . 'eyebrowse-prev-window-config)
+   ("C-c n"     . 'eyebrowse-next-window-config)
+   ("C-c p"     . 'eyebrowse-prev-window-config)
+   ("C-x '"   . 'eyebrowse-last-window-config)
+   )
+  :config
+  (setq eyebrowse-wrap-around t
+        eyebrowse-close-window-config-prompt t
+        eyebrowse-mode-line-style 'smart
+        eyebrowse-tagged-slot-format "%s:%t"
+        eyebrowse-new-workspace nil)
+  (eyebrowse-mode)
+  )
+
+
+;;Org
+
+(use-package org
+  ;; Combining demand and org-plus-contrib to ensure the latest version of org is used
+  :demand t
+  :straight org-plus-contrib
+  :straight ob-ipython
+  :straight ob-async
+  :straight ob-mermaid
+  :straight ob-http
+  :straight org-bullets
+  :straight org-super-agenda
+  :straight org-pomodoro
+  :straight org-sidebar
+  :straight org-present
+  :straight org-msg
+  :straight org-chef
+  :straight ox-clip
+  :straight ox-twbs
+  :straight ox-tufte
+  :straight org-cliplink
+  :straight ox-gfm
+  :straight org-download
+  :straight ox-hugo
+  :straight easy-hugo
+  :straight gnuplot
+  :straight helm-org-rifle
+  :hook (org-mode . org-bullets-mode)
+  :hook (org-mode . org-indent-mode)
+  :hook (org-mode . turn-off-auto-fill)
+  :hook (org-mode . visual-line-mode)
+  :init
+  ;; customized export formats
+  
+  :bind (
+         ("C-c a" . org-agenda)
+         ("C-c c" . org-capture)
+         ("C-c l" . org-store-link)
+         ("C-c 0" . org-set-created-property)
+         ("s-`"   . org-clock-goto) ;; Jump to currently clocking headline
+         ;; Rifle through all my org files to identify an item.
+         ;; Use C-s to display results in occur-like style.
+         ("C-S-s" . helm-org-rifle)
+         ("s-e" . ivy-insert-org-entity)
+         ("H-p" . org-pomodoro)
+         :map org-mode-map
+         ("C-x n s" . nil)
+         ("C-x n b" . nil)
+         ("C-x n e" . nil)
+         ("C-x n"   . nil)
+         ("C-c C-j" . counsel-org-goto)
+         ("s-P"     . anki-editor-push-notes)
+         ("s-L"     . org-cliplink)
+         ("s-b"     . (lambda () (interactive) (org-emphasize ?*)))
+         ("s-/"     . (lambda () (interactive) (org-emphasize ?/)))
+         ("s-u"     . (lambda () (interactive) (org-emphasize ?_)))
+         ("s-="     . (lambda () (interactive) (org-emphasize ?=)))
+         ("s-+"     . (lambda () (interactive) (org-emphasize ?+)))
+         ("s-c"     . (lambda () (interactive) (org-emphasize ?~)))
+         ("s-s"     . org-subscript-region-or-point)
+         ("s-S"     . org-superscript-region-or-point)
+         )
+  :bind (:map org-mode-map
+              ;; Unbinding org-cycle-agenda-files
+              ("C-'"          . nil)
+              ("C-,"          . nil)
+              ("C-c C-v C-g"  . org-babel-goto-named-src-block)
+              ;; Unbinding org-force-cycle-archived
+              ("<C-tab>"      . nil)
+              ;; default option respects content, I don't use it
+              ("C-<return>"   . nil) ;; Reserved for ace-window
+              ("C-S-<return>" . org-insert-heading-respect-content)
+              ("s-n"          . org-next-block)
+              ("s-p"          . org-previous-block)
+              )
+  :config
+  ;;All org directory under Dropbox
+  (setq org-directory (expand-file-name "journals" my-sync-directory))
+  ;; Setup diary too
+  (setq diary-file (expand-file-name "diary" org-directory))
+  ;; See also org-caldav
+  (setq my-private-calendar-directory (expand-file-name "calendar" my-private-conf-directory))
+  ;; Personal files
+  (setq org-default-notes-file (expand-file-name "plan-office.org" org-directory))
+  (setq org-my-plan-free-file (expand-file-name "plan-free.org" org-directory))
+  (setq org-my-plan-church-file (expand-file-name "church/plan-church.org" org-directory))
+  (setq org-my-office-file (expand-file-name "office.org" org-directory))
+  (setq org-my-web-archive-file (expand-file-name "web-archive.org" org-directory))
+  (setq org-my-life-file (expand-file-name "life.org" org-directory))
+  (setq org-my-beancount-file (expand-file-name "finance/personal.bean" my-sync-directory))
+  (setq org-my-anki-file (expand-file-name "anki.org" org-directory))
+  (setq org-my-archive-file (expand-file-name "archive.org" org-directory))
+
+  ;; Default org-mode startup
+  (setq org-startup-folded t
+        org-startup-with-inline-images t
+        org-startup-with-latex-preview t
+        org-latex-preview-ltxpng-directory (expand-file-name "ltximg/" org-directory))
+  ;; Larger latex fragments
+  (plist-put org-format-latex-options :scale 1.5)
+
+  ;; ;; Where to archive files
+  ;; (setq org-archive-location (concat org-my-archive-file "::* From %s"))
+
+  ;; ;; set todo keywords. As of v9.2.3, any file-local keyword list will overwrite (instead of append) value set in here.
+  ;; ;; So actual tags used in Org files are specified using #+SEQ_TODO and #+TYP_TODO instead. Here I keep a complete
+  ;; ;; list of tags for font settings
+  ;; (setq org-todo-keywords
+  ;;       '((sequence "TODO(t!)" "NEXT(n)" "IN-PROGRESS(i!)" "WAIT(w@)" "BLOCKED(b@/!)" "SOMEDAY(s)" "CANCELLED(c@/!)" "DONE(d!)")))
+  ;; ;; Setup for ordered tasks. Initiate with C-c C-x o
+  ;; (setq org-enforce-todo-dependencies nil)
+  ;; ;; If it's cancel, set ARCHIVE to be true, so that org-agenda won't show it
+  ;; (setq org-todo-state-tags-triggers
+  ;;       '(("CANCELLED" ("ARCHIVE" . t))
+  ;;         ("TODO" ("ARCHIVE" . nil))
+  ;;         ("NEXT" ("ARCHIVE" . nil))
+  ;;         ("IN-PROGRESS" ("ARCHIVE" . nil))
+  ;;         ("WAIT" ("ARCHIVE" . nil))
+  ;;         ("BLOCKED" ("ARCHIVE" . nil))
+  ;;         ("SOMEDAY" ("ARCHIVE" . nil))
+  ;;         ("DONE" ("ARCHIVE" . nil)))
+  ;;       )
+
+  ;; ;; Org-agenda
+  ;; (setq
+  ;;  ;; All files for agenda
+  ;;  org-agenda-files (list
+  ;;                    org-directory my-private-calendar-directory
+  ;;                    (expand-file-name "notes" org-directory)
+  ;;                    (expand-file-name "projects" org-directory)
+  ;;                    (expand-file-name "church" org-directory)
+  ;;                    (expand-file-name "finance" my-sync-directory)))
+  ;; ;; Don't include archive files.
+  ;; (org-remove-file org-my-web-archive-file)
+  ;; (org-remove-file org-my-archive-file)
+
+
+  ;; (setq
+  ;;  ;; Refile candidates
+  ;;  org-refile-targets '((org-agenda-files :maxlevel . 2))
+  ;;  ;; Show candidates in one go
+  ;;  org-outline-path-complete-in-steps nil
+  ;;  ;; Cache refile targets
+  ;;  ;; Use ‘C-u C-u C-u C-c C-w’ to clear cache
+  ;;  org-refile-use-cache t
+  ;;  ;; Show full paths for refiling
+  ;;  org-refile-use-outline-path t
+  ;;  ;; Use current window
+  ;;  org-agenda-window-setup 'reorganize-frame
+  ;;  org-agenda-restore-windows-after-quit t
+  ;;  ;; It doesn't have to start on weekday
+  ;;  org-agenda-start-on-weekday nil
+  ;;  ;; Agenda view start on today
+  ;;  org-agenda-start-day nil
+  ;;  ;; Warn me in 2 weeks
+  ;;  org-deadline-warning-days 14
+  ;;  ;; Show state changes in org-agenda-view when log-mode is enabled. Press l.
+  ;;  org-agenda-log-mode-items '(closed clock state)
+  ;;  ;; Customized agenda-view
+  ;;  org-agenda-custom-commands
+  ;;  '(("x" agenda)
+  ;;    ("y" agenda*)
+  ;;    ("w" "Weekly Review"
+  ;;     ( ;; deadlines
+  ;;      (tags-todo "+DEADLINE<=\"<today>\""
+  ;;                 ((org-agenda-overriding-header "Late Deadlines")))
+  ;;      ;; scheduled  past due
+  ;;      (tags-todo "+SCHEDULED<=\"<today>\""
+  ;;                 ((org-agenda-overriding-header "Late Scheduled")))
+  ;;      ;; now the agenda
+  ;;      (agenda ""
+  ;;              ((org-agenda-overriding-header "weekly agenda")
+  ;;               (org-agenda-ndays 7)
+  ;;               (org-agenda-tags-todo-honor-ignore-options t)
+  ;;               (org-agenda-todo-ignore-scheduled nil)
+  ;;               (org-agenda-todo-ignore-deadlines nil)
+  ;;               (org-deadline-warning-days 0)))
+  ;;      ;; and last a global todo list
+  ;;      (todo "TODO")))
+  ;;    ("o" "Agenda and Office-related Tasks"
+  ;;     ((agenda "" ((org-agenda-tag-filter-preset '("+office"))
+  ;;                  ;; Show agenda for this whole week, and first 2 days of next week
+  ;;                  (org-agenda-start-on-weekday 1) ;; Always start on Monday
+  ;;                  (org-agenda-span 9))))
+  ;;     nil ("/tmp/office.html" "/tmp/office.txt" "/tmp/office.pdf" "/tmp/office.ps"))
+  ;;    ("h" "Home"
+  ;;     ((agenda "" ((org-agenda-tag-filter-preset '("+home"))
+  ;;                  ;; Show upcoming 3 days
+  ;;                  (org-agenda-span 3))))
+  ;;     nil ("/tmp/home.html" "/tmp/home.txt" "/tmp/home.pdf" "/tmp/home.ps"))
+  ;;    ("c" "Church"
+  ;;     ((agenda "" ((org-agenda-tag-filter-preset '("+church"))))))
+  ;;    ("to" "things TODO in Office"
+  ;;     ((tags-todo "office/TODO"))
+  ;;     nil ("/tmp/todo-office.pdf"))
+  ;;    ("th" "things TODO at Home"
+  ;;     ((tags-todo "home/TODO"))
+  ;;     nil ("/tmp/todo-home.pdf"))
+  ;;    ("tc" "things TODO in Church"
+  ;;     ((tags-todo "church/TODO"))
+  ;;     nil ("/tmp/todo-church.pdf"))
+  ;;    )
+  ;;  ;; Make it sticky, so it doesn't get killed upon hitting "q". Use "r" to
+  ;;  ;; refresh instead. Note that it can still be killed by kill-buffer. To
+  ;;  ;; avoid this, set the emacs-lock-mode
+  ;;  org-agenda-sticky t
+  ;;  ;; Don’t show scheduled/deadline/timestamp items in agenda when they are done
+  ;;  org-agenda-skip-scheduled-if-done t
+  ;;  org-agenda-skip-deadline-if-done t
+  ;;  org-agenda-skip-timestamp-if-done t
+  ;;  ;; Don't show scheduled/deadlines/timestamp items on todo list.
+  ;;  org-agenda-todo-ignore-scheduled t
+  ;;  org-agenda-todo-ignore-deadlines t
+  ;;  org-agenda-todo-ignore-timestamp t
+  ;;  org-agenda-todo-ignore-with-date t
+  ;;  ;; Define when my day really ends (well, normally earlier than that)
+  ;;  org-extend-today-until 4
+  ;;  ;; Show meetings in org agenda
+  ;;  org-agenda-include-diary t)
+
+  ;; (setq org-agenda-exporter-settings
+  ;;       '((ps-number-of-columns 1)
+  ;;         (ps-landscape-mode t)
+  ;;         (org-agenda-add-entry-text-maxlines 5)
+  ;;         (org-agenda-prefix-format " [ ] ")
+  ;;         (org-agenda-with-colors t)
+  ;;         (org-agenda-remove-tags t)
+  ;;         (htmlize-output-type 'css)))
+
+  ;; ;; Auto save org-files, so that we prevent the locking problem between computers
+  ;; (add-hook 'auto-save-hook 'org-save-all-org-buffers)
+  ;; ;; Suppress output "Saving all Org buffers... done"
+  ;; (advice-add 'org-save-all-org-buffers :around #'suppress-messages)
+
+  ;; ;; Capturing thoughts and Level 1 Headings.
+  ;; (setq org-capture-templates
+  ;;       '(
+  ;;         ("a" "Anki basic"
+  ;;          entry
+  ;;          (file+headline org-my-anki-file "Dispatch")
+  ;;          "* %<%H:%M>\n:PROPERTIES:\n:ANKI_NOTE_TYPE: Basic\n:ANKI_DECK: Mega\n:END:\n** Front\n%?\n** Back\n")
+
+  ;;         ("A" "Anki cloze"
+  ;;          entry
+  ;;          (file+headline org-my-anki-file "Dispatch")
+  ;;          "* %<%H:%M>\n:PROPERTIES:\n:ANKI_NOTE_TYPE: Cloze\n:ANKI_DECK: Mega\n:END:\n** Text\n** Extra\n")
+
+  ;;         ("c" "all todos" ;; Capture first, refile later
+  ;;          entry
+  ;;          (file+headline org-my-plan-free-file "Schedule")
+  ;;          "* TODO %?\n")
+
+  ;;         ("C" "church" ;; Church todos
+  ;;          entry
+  ;;          (file+headline org-my-plan-church-file "Schedule")
+  ;;          "* TODO %?\n")
+
+  ;;         ("o" "office tasks"
+  ;;          entry
+  ;;          (file+headline org-default-notes-file "Schedule")
+  ;;          "* TODO %?\n")
+
+  ;;         ("m" "meeting"
+  ;;          entry
+  ;;          (file+headline org-my-office-file
+  ;;                         "Meeting")
+  ;;          "* TODO %^{prompt}\nSCHEDULED: %^t\n:PEOPLE:\n- %?\n:END:\n** Agenda\n** Action Items\n- [ ] "
+  ;;          :prepend t)
+
+  ;;         ("j" "working journal"
+  ;;          plain
+  ;;          (file+olp+datetree org-my-office-file "Working Journal")
+  ;;          "%?\n"
+  ;;          :prepend t)
+
+  ;;         ("b" "finance book-keeping"
+  ;;          plain
+  ;;          (file+headline org-my-beancount-file "Expenses")
+  ;;          "bc%?"  ;; yasnippet template
+  ;;          :prepend t)
+
+  ;;         ("d" "diary"
+  ;;          plain
+  ;;          (file+olp+datetree org-my-life-file "Diary")
+  ;;          "%?\n")
+  ;;         ))
+
+  ;; (defun make-orgcapture-frame ()
+  ;;   "Create a new frame and run org-capture."
+  ;;   (interactive)
+  ;;   (switch-to-buffer "*scratch*")
+  ;;   (make-frame '((name . "org-capture") (window-system . x)))
+  ;;   (select-frame-by-name "org-capture")
+  ;;   (counsel-org-capture)
+  ;;   (delete-other-windows)
+  ;;   )
+
+  ;; ;; Automatically add "CREATED" timestamp to org-capture entries
+  ;; ;; See https://emacs.stackexchange.com/questions/21291/add-created-timestamp-to-logbook
+  ;; ;; Change: Don't add property when filing at beancount/anki files.
+  ;; (defvar org-created-property-name "CREATED"
+  ;;   "The name of the org-mode property that stores the creation date of the entry")
+  ;; (defun org-set-created-property (&optional active NAME)
+  ;;   "Set a property on the entry giving the creation time.
+
+  ;;   By default the property is called CREATED. If given the `NAME'
+  ;;   argument will be used instead. If the property already exists, it
+  ;;   will not be modified."
+  ;;   (interactive)
+  ;;   (let* ((created (or NAME org-created-property-name))
+  ;;          (fmt (if active "<%s>" "[%s]"))
+  ;;          (now  (format fmt (format-time-string "%Y-%m-%d %a %H:%M"))))
+  ;;     (unless (or (org-entry-get (point) created nil)
+  ;;                 ;; Don't match file-level capture. (e.g: org-roam)
+  ;;                 (string-match "\\#\\+TITLE\\:" (buffer-string))
+  ;;                 ;; Beancount format does not accept :PROPERTY: syntax
+  ;;                 (string-match "\\.beancount$" (buffer-name))
+  ;;                 (string-match "\\.bean$" (buffer-name))
+  ;;                 (string-match "anki.org" (buffer-name)))
+  ;;       (org-set-property created now))))
+  ;; (add-hook 'org-capture-before-finalize-hook #'org-set-created-property)
+
+  ;; ;; General org settings
+  ;; (setq-default
+  ;;  ;; Indentation setting
+  ;;  ;; Always indent to the left
+  ;;  org-indent-indentation-per-level 2
+  ;;  ;; Start up indented
+  ;;  org-startup-indented 't
+  ;;  ;; Narrowing behavior
+  ;;  org-indirect-buffer-display 'current-window
+  ;;  ;; Insert Org-mode mode-line automatically on an empty line when `org-mode' is called
+  ;;  org-insert-mode-line-in-empty-file t
+  ;;  ;; Never leave empty lines in collapsed view, which makes headings more compact
+  ;;  org-cycle-separator-lines 0
+  ;;  ;; List demote sequence
+  ;;  org-list-demote-modify-bullet '(("+" . "-") ("-" . "+") ("*" . "+"))
+  ;;  ;; List indent offsets, making it more apparent
+  ;;  org-list-indent-offset 1
+  ;;  ;; allow lists with letters in them.
+  ;;  org-list-allow-alphabetical t
+  ;;  ;; Increase imenu index depth
+  ;;  org-imenu-depth 5
+  ;;  ;; Interpret sub-superscripts only when they're quoted with braces
+  ;;  org-use-sub-superscripts '{}
+  ;;  org-export-with-sub-superscripts '{}
+  ;;  ;; Do not use babel to evaluate code when exporting.
+  ;;  org-export-use-babel 't
+  ;;  ;; Don't include the validation link & creation tag
+  ;;  org-html-postamble 'nil ;; Don't include validation link and created tags
+  ;;  ;; Logging settings: Better verbose than miss
+  ;;  org-log-into-drawer t
+  ;;  org-log-done 'time
+  ;;  org-log-reschedule 'note
+  ;;  org-log-redeadline 'note
+  ;;  org-log-delschedule 'note
+  ;;  org-log-deldeadline 'note
+  ;;  ;; Setup log note templates. Add "to [new date]" in reschedule and redeadline
+  ;;  org-log-note-headings '((done        . "CLOSING NOTE %t")
+  ;;                          (state       . "State %-12s from %-12S %t")
+  ;;                          (note        . "Note taken on %t")
+  ;;                          (reschedule  . "Schedule changed on %t: %S -> %s")
+  ;;                          (delschedule . "Not scheduled, was %S on %t")
+  ;;                          (redeadline  . "Deadline changed on %t: %S -> %s")
+  ;;                          (deldeadline . "Removed deadline, was %S on %t")
+  ;;                          (refile      . "Refiled on %t")
+  ;;                          (clock-out   . ""))
+  ;;  ;; All entries in the subtree are considered todo items
+  ;;  org-hierarchical-todo-statistics 'nil
+  ;;  ;; Remove the markup characters, i.e., "/text/" becomes (italized) "text"
+  ;;  org-hide-emphasis-markers t
+  ;;  ;; resepect heading.
+  ;;  org-insert-heading-respect-content nil
+  ;;  ;; Warn when editing invisible area
+  ;;  org-catch-invisible-edits 'show-and-error
+  ;;  ;; Use C-c C-o to open links, but this should be handier.
+  ;;  org-return-follows-link t
+  ;;  )
+
+  ;; ;; Enable org-id for globally unique IDs
+  ;; (add-to-list 'org-modules 'org-id)
+  ;; (setq org-id-locations-file (expand-file-name ".org-id-locations" my-private-conf-directory)
+  ;;       org-id-link-to-org-use-id 'create-if-interactive)
+
+  ;; ;; Enable org-habit
+  ;; (add-to-list 'org-modules 'org-habit)
+  ;; (require 'org-habit)
+  ;; (setq org-habit-show-all-today t
+  ;;       org-habit-show-habits-only-for-today t
+  ;;       org-habit-show-done-always-green t
+  ;;       org-habit-graph-column 40
+  ;;       org-habit-preceding-days 28
+  ;;       org-habit-following-days 7)
+
+  ;; ;; When clock in a task, don't show Org heading name in mode line
+  ;; (defun myorg-remove-clock-in-string ()
+  ;;   (delete 'org-mode-line-string global-mode-string))
+  ;; (add-hook 'org-clock-in-hook 'myorg-remove-clock-in-string)
+
+  ;; ;; Update cookie automatically
+  ;; (defun myorg-update-parent-cookie ()
+  ;;   (when (equal major-mode 'org-mode)
+  ;;     (save-excursion
+  ;;       (ignore-errors
+  ;;         (org-back-to-heading)
+  ;;         (org-update-parent-todo-statistics)))))
+  ;; (defadvice org-kill-line (after fix-cookies activate)
+  ;;   (myorg-update-parent-cookie))
+  ;; (defadvice kill-whole-line (after fix-cookies activate)
+  ;;   (myorg-update-parent-cookie))
+
+  ;; ;; Enable link abbreviation
+  ;; (setq org-link-abbrev-alist '(("bugzilla"  . "http://10.1.2.9/bugzilla/show_bug.cgi?id=")
+  ;;                               ("url-to-ja" . "http://translate.google.fr/translate?sl=en&tl=ja&u=%h")
+  ;;                               ("google"    . "http://www.google.com/search?q=")
+  ;;                               ("gmap"      . "http://maps.google.com/maps?q=%s")
+  ;;                               ("omap"      . "http://nominatim.openstreetmap.org/search?q=%s&polygon=1")
+  ;;                               ("ads"       . "http://adsabs.harvard.edu/cgi-bin/nph-abs_connect?author=%s&db_key=AST")
+  ;;                               ("openrice"  . "https://www.openrice.com/en/hongkong/restaurants?what=%h")
+  ;;                               ("jira"  . "https://asw-global-digital-transformation.atlassian.net/browse/%h")
+  ;;                               ("youtube" . "https://www.youtube.com/results?search_query=%s"))
+  )
+;; Enable link to manual pages
+;; Org-man.el is downloaded from https://orgmode.org/manual/Adding-hyperlink-types.html
+;; (use-package org-man
+;;   :straight nil)
+
+;; (use-package org-my-html-export-style
+;;   ;; My personal HTML export settings
+;;   :no-require
+;;   :straight ox-twbs
+;;   :demand t
+;;   :after org
+;;   :init (require 'ox)
 ;;   :config
-;;   (setq eyebrowse-wrap-around t
-;;         eyebrowse-close-window-config-prompt t
-;;         eyebrowse-mode-line-style 'smart
-;;         eyebrowse-tagged-slot-format "%s:%t"
-;;         eyebrowse-new-workspace nil)
-;;   (eyebrowse-mode)
+;;   ;; let Org/Htmlize assign classes only, and to use a style file to
+;;   ;; define the look of these classes. See docs for more info.
+;;   (setq-default org-html-htmlize-output-type 'css)
+
+;;   ;; put your css files here
+;;   ;; default css: http://sriramkswamy.github.io/dotemacs/org.css
+;;   (setq org-theme-css-dir (expand-file-name "static/" my-emacs-conf-directory))
+
+;;   ;; Use this function to allow exporting using css file. No need to define html_head
+;;   (defun toggle-org-custom-inline-style ()
+;;     (interactive)
+;;     (let ((hook 'org-export-before-parsing-hook)
+;;           (fun 'set-org-html-style))
+;;       (if (memq fun (eval hook))
+;;           (progn
+;;             (remove-hook hook fun 'buffer-local)
+;;             (message "Removed %s from %s" (symbol-name fun) (symbol-name hook)))
+;;         (add-hook hook fun nil 'buffer-local)
+;;         (message "Added %s to %s" (symbol-name fun) (symbol-name hook)))))
+;;   ;; By default toggle to true
+;;   (toggle-org-custom-inline-style)
+
+;;   (defun org-theme ()
+;;     (interactive)
+;;     (let* ((cssdir org-theme-css-dir)
+;;            (css-choices (directory-files cssdir nil ".css$"))
+;;            (css (completing-read "theme: " css-choices nil t)))
+;;       (concat cssdir css)))
+
+;;   (defun set-org-html-style (&optional backend)
+;;     (interactive)
+;;     (when (or (null backend) (eq backend 'html))
+;;       (let ((f (or (and (boundp 'org-theme-css) org-theme-css) (org-theme))))
+;;         (if (file-exists-p f)
+;;             (progn
+;;               (set (make-local-variable 'org-theme-css) f)
+;;               (set (make-local-variable 'org-html-head)
+;;                    (with-temp-buffer
+;;                      (insert "<style type=\"text/css\">\n<!--/*--><![CDATA[/*><!--*/\n")
+;;                      (insert-file-contents f)
+;;                      (goto-char (point-max))
+;;                      (insert "\n/*]]>*/-->\n</style>\n")
+;;                      (buffer-string)))
+;;               (set (make-local-variable 'org-html-head-include-default-style)
+;;                    nil)
+;;               (message "Set custom style from %s" f))
+;;           (message "Custom header file %s doesnt exist")))))
 ;;   )
 
-;; ;;; Org
+;; ;; org-babel
+;; (org-babel-do-load-languages
+;;  'org-babel-load-languages
+;;  '((ipython    . t)
+;;    (emacs-lisp . t)
+;;    (R          . t)
+;;    (haskell    . t)
+;;    (lilypond . t)
+;;    (python     .t)
+;;    (org        .t)
+;;    (dot        .t)
+;;    (sql        .t)
+;;    (http       . t)
+;;    (latex      . t)
+;;    (js         . t)
+;;    (shell      . t)
+;;    (plantuml   . t)
+;;    (ditaa      . t) ;; turn ascii art into bitmap graphics.
+;;    (asymptote .  t) ;; create vector graphics
+;;    ))
 
-;; (use-package org
-;;   ;; Combining demand and org-plus-contrib to ensure the latest version of org is used
-;;   :demand t
-;;   :straight org-plus-contrib
-;;   :straight ob-ipython
-;;   :straight ob-async
-;;   :straight ob-mermaid
-;;   :straight ob-http
-;;   :straight org-bullets
-;;   :straight org-super-agenda
-;;   :straight org-pomodoro
-;;   :straight org-sidebar
-;;   :straight org-present
-;;   :straight org-msg
-;;   :straight org-chef
-;;   :straight ox-clip
-;;   :straight ox-twbs
-;;   :straight ox-tufte
-;;   :straight org-cliplink
-;;   :straight ox-gfm
-;;   :straight org-download
-;;   :straight ox-hugo
-;;   :straight easy-hugo
-;;   :straight gnuplot
-;;   :straight helm-org-rifle
-;;   :hook (org-mode . org-bullets-mode)
-;;   :hook (org-mode . org-indent-mode)
-;;   :hook (org-mode . turn-off-auto-fill)
-;;   :hook (org-mode . visual-line-mode)
-;;   :init
-;;   ;; customized export formats
-;;   (straight-use-package '(ox-ipynb :host github :repo "jkitchin/ox-ipynb"))
-;;   :bind (
-;;          ("C-c a" . org-agenda)
-;;          ("C-c c" . org-capture)
-;;          ("C-c l" . org-store-link)
-;;          ("C-c 0" . org-set-created-property)
-;;          ("s-`"   . org-clock-goto) ;; Jump to currently clocking headline
-;;          ;; Rifle through all my org files to identify an item.
-;;          ;; Use C-s to display results in occur-like style.
-;;          ("C-S-s" . helm-org-rifle)
-;;          ("s-e" . ivy-insert-org-entity)
-;;          ("H-p" . org-pomodoro)
-;;          :map org-mode-map
-;;          ("C-x n s" . nil)
-;;          ("C-x n b" . nil)
-;;          ("C-x n e" . nil)
-;;          ("C-x n"   . nil)
-;;          ("C-c C-j" . counsel-org-goto)
-;;          ("s-P"     . anki-editor-push-notes)
-;;          ("s-L"     . org-cliplink)
-;;          ("s-b"     . (lambda () (interactive) (org-emphasize ?*)))
-;;          ("s-/"     . (lambda () (interactive) (org-emphasize ?/)))
-;;          ("s-u"     . (lambda () (interactive) (org-emphasize ?_)))
-;;          ("s-="     . (lambda () (interactive) (org-emphasize ?=)))
-;;          ("s-+"     . (lambda () (interactive) (org-emphasize ?+)))
-;;          ("s-c"     . (lambda () (interactive) (org-emphasize ?~)))
-;;          ("s-s"     . org-subscript-region-or-point)
-;;          ("s-S"     . org-superscript-region-or-point)
-;;          )
-;;   :bind (:map org-mode-map
-;;               ;; Unbinding org-cycle-agenda-files
-;;               ("C-'"          . nil)
-;;               ("C-,"          . nil)
-;;               ("C-c C-v C-g"  . org-babel-goto-named-src-block)
-;;               ;; Unbinding org-force-cycle-archived
-;;               ("<C-tab>"      . nil)
-;;               ;; default option respects content, I don't use it
-;;               ("C-<return>"   . nil) ;; Reserved for ace-window
-;;               ("C-S-<return>" . org-insert-heading-respect-content)
-;;               ("s-n"          . org-next-block)
-;;               ("s-p"          . org-previous-block)
-;;               )
-;;   :config
-;;   ;; All org directory under Dropbox
-;;   (setq org-directory (expand-file-name "journals" my-sync-directory))
-;;   ;; Setup diary too
-;;   (setq diary-file (expand-file-name "diary" org-directory))
-;;   ;; See also org-caldav
-;;   (setq my-private-calendar-directory (expand-file-name "calendar" my-private-conf-directory))
-;;   ;; Personal files
-;;   (setq org-default-notes-file (expand-file-name "plan-office.org" org-directory))
-;;   (setq org-my-plan-free-file (expand-file-name "plan-free.org" org-directory))
-;;   (setq org-my-plan-church-file (expand-file-name "church/plan-church.org" org-directory))
-;;   (setq org-my-office-file (expand-file-name "office.org" org-directory))
-;;   (setq org-my-web-archive-file (expand-file-name "web-archive.org" org-directory))
-;;   (setq org-my-life-file (expand-file-name "life.org" org-directory))
-;;   (setq org-my-beancount-file (expand-file-name "finance/personal.bean" my-sync-directory))
-;;   (setq org-my-anki-file (expand-file-name "anki.org" org-directory))
-;;   (setq org-my-archive-file (expand-file-name "archive.org" org-directory))
+;; ;; Setup code block templates.
+;; ;; For Org-mode < 9.2
+;; (setq old-structure-template-alist
+;;       '(("py" "#+BEGIN_SRC python :results output\n?\n#+END_SRC" "")
+;;         ("ipy" "#+BEGIN_SRC ipython :results output\n?\n#+END_SRC" "")
+;;         ("el" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC" "")
+;;         ("hs" "#+BEGIN_SRC haskell\n?\n#+END_SRC" "")
+;;         ("laeq" "#+BEGIN_LaTeX\n\\begin{equation} \\label{eq-sinh}\ny=\\sinh x\n\\end{equation}\n#+END_LaTeX" "")
+;;         ("sh" "#+BEGIN_SRC sh\n?\n#+END_SRC" "")
+;;         ("r" "#+BEGIN_SRC R\n?\n#+END_SRC" "")
+;;         ("js" "#+BEGIN_SRC js\n?\n#+END_SRC" "")
+;;         ("http" "#+BEGIN_SRC http\n?\n#+END_SRC" "")
+;;         ("ditaa" "#+BEGIN_SRC ditaa :file\n?\n#+END_SRC" "")
+;;         ("dot" "#+BEGIN_SRC dot :file\n?\n#+END_SRC" "")
+;;         ("rp" "#+BEGIN_SRC R :results output graphics :file \n?\n#+END_SRC" "")
+;;         ("plantuml" "#+BEGIN_SRC plantuml :file\n?\n#+END_SRC" "")
+;;         ("n" "#+NAME: ?")
+;;         ("cap" "#+CAPTION: ?")))
+;; ;; For Org-mode >= 9.2
+;; (setq new-structure-template-alist
+;;       '(("py"       . "src python :results output")
+;;         ("ipy"      . "src ipython :results output")
+;;         ("el"       . "src emacs-lisp")
+;;         ("hs"       . "src haskell")
+;;         ("laeq"     . "latex \n\\begin{equation} \\label{eq-sinh}\ny=\\sinh x\\end{equation}")
+;;         ("sh"       . "src sh")
+;;         ("r"        . "src R")
+;;         ("js"       . "src js")
+;;         ("http"     . "src http")
+;;         ("ditaa"    . "src ditaa :file")
+;;         ("dot"      . "src dot :file")
+;;         ("rp"       . "src R :results output graphics :file ")
+;;         ("plantuml" . "src plantuml :file")
+;;         ))
+;; ;; Keyword expansion also changed in 9.2
+;; (setq my-tempo-keywords-alist
+;;       '(("n" . "NAME")
+;;         ("cap" . "CAPTION")))
 
-;;   ;; Default org-mode startup
-;;   (setq org-startup-folded t
-;;         org-startup-with-inline-images t
-;;         org-startup-with-latex-preview t
-;;         org-latex-preview-ltxpng-directory (expand-file-name "ltximg/" org-directory))
-;;   ;; Larger latex fragments
-;;   (plist-put org-format-latex-options :scale 1.5)
+;; ;; In org-version >= 9.2, structure template is changed.
+;; ;; Below line allows me to keep using previous patterns.
+;; (when (not (version< (org-version) "9.2"))
+;;   (require 'org-tempo))
 
-;;   ;; Where to archive files
-;;   (setq org-archive-location (concat org-my-archive-file "::* From %s"))
-
-;;   ;; set todo keywords. As of v9.2.3, any file-local keyword list will overwrite (instead of append) value set in here.
-;;   ;; So actual tags used in Org files are specified using #+SEQ_TODO and #+TYP_TODO instead. Here I keep a complete
-;;   ;; list of tags for font settings
-;;   (setq org-todo-keywords
-;;         '((sequence "TODO(t!)" "NEXT(n)" "IN-PROGRESS(i!)" "WAIT(w@)" "BLOCKED(b@/!)" "SOMEDAY(s)" "CANCELLED(c@/!)" "DONE(d!)")))
-;;   ;; Setup for ordered tasks. Initiate with C-c C-x o
-;;   (setq org-enforce-todo-dependencies nil)
-;;   ;; If it's cancel, set ARCHIVE to be true, so that org-agenda won't show it
-;;   (setq org-todo-state-tags-triggers
-;;         '(("CANCELLED" ("ARCHIVE" . t))
-;;           ("TODO" ("ARCHIVE" . nil))
-;;           ("NEXT" ("ARCHIVE" . nil))
-;;           ("IN-PROGRESS" ("ARCHIVE" . nil))
-;;           ("WAIT" ("ARCHIVE" . nil))
-;;           ("BLOCKED" ("ARCHIVE" . nil))
-;;           ("SOMEDAY" ("ARCHIVE" . nil))
-;;           ("DONE" ("ARCHIVE" . nil)))
-;;         )
-
-;;   ;; Org-agenda
-;;   (setq
-;;    ;; All files for agenda
-;;    org-agenda-files (list
-;;                      org-directory my-private-calendar-directory
-;;                      (expand-file-name "notes" org-directory)
-;;                      (expand-file-name "projects" org-directory)
-;;                      (expand-file-name "church" org-directory)
-;;                      (expand-file-name "finance" my-sync-directory)))
-;;   ;; Don't include archive files.
-;;   (org-remove-file org-my-web-archive-file)
-;;   (org-remove-file org-my-archive-file)
-
-
-;;   (setq
-;;    ;; Refile candidates
-;;    org-refile-targets '((org-agenda-files :maxlevel . 2))
-;;    ;; Show candidates in one go
-;;    org-outline-path-complete-in-steps nil
-;;    ;; Cache refile targets
-;;    ;; Use ‘C-u C-u C-u C-c C-w’ to clear cache
-;;    org-refile-use-cache t
-;;    ;; Show full paths for refiling
-;;    org-refile-use-outline-path t
-;;    ;; Use current window
-;;    org-agenda-window-setup 'reorganize-frame
-;;    org-agenda-restore-windows-after-quit t
-;;    ;; It doesn't have to start on weekday
-;;    org-agenda-start-on-weekday nil
-;;    ;; Agenda view start on today
-;;    org-agenda-start-day nil
-;;    ;; Warn me in 2 weeks
-;;    org-deadline-warning-days 14
-;;    ;; Show state changes in org-agenda-view when log-mode is enabled. Press l.
-;;    org-agenda-log-mode-items '(closed clock state)
-;;    ;; Customized agenda-view
-;;    org-agenda-custom-commands
-;;    '(("x" agenda)
-;;      ("y" agenda*)
-;;      ("w" "Weekly Review"
-;;       ( ;; deadlines
-;;        (tags-todo "+DEADLINE<=\"<today>\""
-;;                   ((org-agenda-overriding-header "Late Deadlines")))
-;;        ;; scheduled  past due
-;;        (tags-todo "+SCHEDULED<=\"<today>\""
-;;                   ((org-agenda-overriding-header "Late Scheduled")))
-;;        ;; now the agenda
-;;        (agenda ""
-;;                ((org-agenda-overriding-header "weekly agenda")
-;;                 (org-agenda-ndays 7)
-;;                 (org-agenda-tags-todo-honor-ignore-options t)
-;;                 (org-agenda-todo-ignore-scheduled nil)
-;;                 (org-agenda-todo-ignore-deadlines nil)
-;;                 (org-deadline-warning-days 0)))
-;;        ;; and last a global todo list
-;;        (todo "TODO")))
-;;      ("o" "Agenda and Office-related Tasks"
-;;       ((agenda "" ((org-agenda-tag-filter-preset '("+office"))
-;;                    ;; Show agenda for this whole week, and first 2 days of next week
-;;                    (org-agenda-start-on-weekday 1) ;; Always start on Monday
-;;                    (org-agenda-span 9))))
-;;       nil ("/tmp/office.html" "/tmp/office.txt" "/tmp/office.pdf" "/tmp/office.ps"))
-;;      ("h" "Home"
-;;       ((agenda "" ((org-agenda-tag-filter-preset '("+home"))
-;;                    ;; Show upcoming 3 days
-;;                    (org-agenda-span 3))))
-;;       nil ("/tmp/home.html" "/tmp/home.txt" "/tmp/home.pdf" "/tmp/home.ps"))
-;;      ("c" "Church"
-;;       ((agenda "" ((org-agenda-tag-filter-preset '("+church"))))))
-;;      ("to" "things TODO in Office"
-;;       ((tags-todo "office/TODO"))
-;;       nil ("/tmp/todo-office.pdf"))
-;;      ("th" "things TODO at Home"
-;;       ((tags-todo "home/TODO"))
-;;       nil ("/tmp/todo-home.pdf"))
-;;      ("tc" "things TODO in Church"
-;;       ((tags-todo "church/TODO"))
-;;       nil ("/tmp/todo-church.pdf"))
-;;      )
-;;    ;; Make it sticky, so it doesn't get killed upon hitting "q". Use "r" to
-;;    ;; refresh instead. Note that it can still be killed by kill-buffer. To
-;;    ;; avoid this, set the emacs-lock-mode
-;;    org-agenda-sticky t
-;;    ;; Don’t show scheduled/deadline/timestamp items in agenda when they are done
-;;    org-agenda-skip-scheduled-if-done t
-;;    org-agenda-skip-deadline-if-done t
-;;    org-agenda-skip-timestamp-if-done t
-;;    ;; Don't show scheduled/deadlines/timestamp items on todo list.
-;;    org-agenda-todo-ignore-scheduled t
-;;    org-agenda-todo-ignore-deadlines t
-;;    org-agenda-todo-ignore-timestamp t
-;;    org-agenda-todo-ignore-with-date t
-;;    ;; Define when my day really ends (well, normally earlier than that)
-;;    org-extend-today-until 4
-;;    ;; Show meetings in org agenda
-;;    org-agenda-include-diary t)
-
-;;   (setq org-agenda-exporter-settings
-;;         '((ps-number-of-columns 1)
-;;           (ps-landscape-mode t)
-;;           (org-agenda-add-entry-text-maxlines 5)
-;;           (org-agenda-prefix-format " [ ] ")
-;;           (org-agenda-with-colors t)
-;;           (org-agenda-remove-tags t)
-;;           (htmlize-output-type 'css)))
-
-;;   ;; Auto save org-files, so that we prevent the locking problem between computers
-;;   (add-hook 'auto-save-hook 'org-save-all-org-buffers)
-;;   ;; Suppress output "Saving all Org buffers... done"
-;;   (advice-add 'org-save-all-org-buffers :around #'suppress-messages)
-
-;;   ;; Capturing thoughts and Level 1 Headings.
-;;   (setq org-capture-templates
-;;         '(
-;;           ("a" "Anki basic"
-;;            entry
-;;            (file+headline org-my-anki-file "Dispatch")
-;;            "* %<%H:%M>\n:PROPERTIES:\n:ANKI_NOTE_TYPE: Basic\n:ANKI_DECK: Mega\n:END:\n** Front\n%?\n** Back\n")
-
-;;           ("A" "Anki cloze"
-;;            entry
-;;            (file+headline org-my-anki-file "Dispatch")
-;;            "* %<%H:%M>\n:PROPERTIES:\n:ANKI_NOTE_TYPE: Cloze\n:ANKI_DECK: Mega\n:END:\n** Text\n** Extra\n")
-
-;;           ("c" "all todos" ;; Capture first, refile later
-;;            entry
-;;            (file+headline org-my-plan-free-file "Schedule")
-;;            "* TODO %?\n")
-
-;;           ("C" "church" ;; Church todos
-;;            entry
-;;            (file+headline org-my-plan-church-file "Schedule")
-;;            "* TODO %?\n")
-
-;;           ("o" "office tasks"
-;;            entry
-;;            (file+headline org-default-notes-file "Schedule")
-;;            "* TODO %?\n")
-
-;;           ("m" "meeting"
-;;            entry
-;;            (file+headline org-my-office-file
-;;                           "Meeting")
-;;            "* TODO %^{prompt}\nSCHEDULED: %^t\n:PEOPLE:\n- %?\n:END:\n** Agenda\n** Action Items\n- [ ] "
-;;            :prepend t)
-
-;;           ("j" "working journal"
-;;            plain
-;;            (file+olp+datetree org-my-office-file "Working Journal")
-;;            "%?\n"
-;;            :prepend t)
-
-;;           ("b" "finance book-keeping"
-;;            plain
-;;            (file+headline org-my-beancount-file "Expenses")
-;;            "bc%?"  ;; yasnippet template
-;;            :prepend t)
-
-;;           ("d" "diary"
-;;            plain
-;;            (file+olp+datetree org-my-life-file "Diary")
-;;            "%?\n")
-;;           ))
-
-;;   (defun make-orgcapture-frame ()
-;;     "Create a new frame and run org-capture."
-;;     (interactive)
-;;     (switch-to-buffer "*scratch*")
-;;     (make-frame '((name . "org-capture") (window-system . x)))
-;;     (select-frame-by-name "org-capture")
-;;     (counsel-org-capture)
-;;     (delete-other-windows)
-;;     )
-
-;;   ;; Automatically add "CREATED" timestamp to org-capture entries
-;;   ;; See https://emacs.stackexchange.com/questions/21291/add-created-timestamp-to-logbook
-;;   ;; Change: Don't add property when filing at beancount/anki files.
-;;   (defvar org-created-property-name "CREATED"
-;;     "The name of the org-mode property that stores the creation date of the entry")
-;;   (defun org-set-created-property (&optional active NAME)
-;;     "Set a property on the entry giving the creation time.
-
-;;     By default the property is called CREATED. If given the `NAME'
-;;     argument will be used instead. If the property already exists, it
-;;     will not be modified."
-;;     (interactive)
-;;     (let* ((created (or NAME org-created-property-name))
-;;            (fmt (if active "<%s>" "[%s]"))
-;;            (now  (format fmt (format-time-string "%Y-%m-%d %a %H:%M"))))
-;;       (unless (or (org-entry-get (point) created nil)
-;;                   ;; Don't match file-level capture. (e.g: org-roam)
-;;                   (string-match "\\#\\+TITLE\\:" (buffer-string))
-;;                   ;; Beancount format does not accept :PROPERTY: syntax
-;;                   (string-match "\\.beancount$" (buffer-name))
-;;                   (string-match "\\.bean$" (buffer-name))
-;;                   (string-match "anki.org" (buffer-name)))
-;;         (org-set-property created now))))
-;;   (add-hook 'org-capture-before-finalize-hook #'org-set-created-property)
-
-;;   ;; General org settings
-;;   (setq-default
-;;    ;; Indentation setting
-;;    ;; Always indent to the left
-;;    org-indent-indentation-per-level 2
-;;    ;; Start up indented
-;;    org-startup-indented 't
-;;    ;; Narrowing behavior
-;;    org-indirect-buffer-display 'current-window
-;;    ;; Insert Org-mode mode-line automatically on an empty line when `org-mode' is called
-;;    org-insert-mode-line-in-empty-file t
-;;    ;; Never leave empty lines in collapsed view, which makes headings more compact
-;;    org-cycle-separator-lines 0
-;;    ;; List demote sequence
-;;    org-list-demote-modify-bullet '(("+" . "-") ("-" . "+") ("*" . "+"))
-;;    ;; List indent offsets, making it more apparent
-;;    org-list-indent-offset 1
-;;    ;; allow lists with letters in them.
-;;    org-list-allow-alphabetical t
-;;    ;; Increase imenu index depth
-;;    org-imenu-depth 5
-;;    ;; Interpret sub-superscripts only when they're quoted with braces
-;;    org-use-sub-superscripts '{}
-;;    org-export-with-sub-superscripts '{}
-;;    ;; Do not use babel to evaluate code when exporting.
-;;    org-export-use-babel 't
-;;    ;; Don't include the validation link & creation tag
-;;    org-html-postamble 'nil ;; Don't include validation link and created tags
-;;    ;; Logging settings: Better verbose than miss
-;;    org-log-into-drawer t
-;;    org-log-done 'time
-;;    org-log-reschedule 'note
-;;    org-log-redeadline 'note
-;;    org-log-delschedule 'note
-;;    org-log-deldeadline 'note
-;;    ;; Setup log note templates. Add "to [new date]" in reschedule and redeadline
-;;    org-log-note-headings '((done        . "CLOSING NOTE %t")
-;;                            (state       . "State %-12s from %-12S %t")
-;;                            (note        . "Note taken on %t")
-;;                            (reschedule  . "Schedule changed on %t: %S -> %s")
-;;                            (delschedule . "Not scheduled, was %S on %t")
-;;                            (redeadline  . "Deadline changed on %t: %S -> %s")
-;;                            (deldeadline . "Removed deadline, was %S on %t")
-;;                            (refile      . "Refiled on %t")
-;;                            (clock-out   . ""))
-;;    ;; All entries in the subtree are considered todo items
-;;    org-hierarchical-todo-statistics 'nil
-;;    ;; Remove the markup characters, i.e., "/text/" becomes (italized) "text"
-;;    org-hide-emphasis-markers t
-;;    ;; resepect heading.
-;;    org-insert-heading-respect-content nil
-;;    ;; Warn when editing invisible area
-;;    org-catch-invisible-edits 'show-and-error
-;;    ;; Use C-c C-o to open links, but this should be handier.
-;;    org-return-follows-link t
-;;    )
-
-;;   ;; Enable org-id for globally unique IDs
-;;   (add-to-list 'org-modules 'org-id)
-;;   (setq org-id-locations-file (expand-file-name ".org-id-locations" my-private-conf-directory)
-;;         org-id-link-to-org-use-id 'create-if-interactive)
-
-;;   ;; Enable org-habit
-;;   (add-to-list 'org-modules 'org-habit)
-;;   (require 'org-habit)
-;;   (setq org-habit-show-all-today t
-;;         org-habit-show-habits-only-for-today t
-;;         org-habit-show-done-always-green t
-;;         org-habit-graph-column 40
-;;         org-habit-preceding-days 28
-;;         org-habit-following-days 7)
-
-;;   ;; When clock in a task, don't show Org heading name in mode line
-;;   (defun myorg-remove-clock-in-string ()
-;;     (delete 'org-mode-line-string global-mode-string))
-;;   (add-hook 'org-clock-in-hook 'myorg-remove-clock-in-string)
-
-;;   ;; Update cookie automatically
-;;   (defun myorg-update-parent-cookie ()
-;;     (when (equal major-mode 'org-mode)
-;;       (save-excursion
-;;         (ignore-errors
-;;           (org-back-to-heading)
-;;           (org-update-parent-todo-statistics)))))
-;;   (defadvice org-kill-line (after fix-cookies activate)
-;;     (myorg-update-parent-cookie))
-;;   (defadvice kill-whole-line (after fix-cookies activate)
-;;     (myorg-update-parent-cookie))
-
-;;   ;; Enable link abbreviation
-;;   (setq org-link-abbrev-alist '(("bugzilla"  . "http://10.1.2.9/bugzilla/show_bug.cgi?id=")
-;;                                 ("url-to-ja" . "http://translate.google.fr/translate?sl=en&tl=ja&u=%h")
-;;                                 ("google"    . "http://www.google.com/search?q=")
-;;                                 ("gmap"      . "http://maps.google.com/maps?q=%s")
-;;                                 ("omap"      . "http://nominatim.openstreetmap.org/search?q=%s&polygon=1")
-;;                                 ("ads"       . "http://adsabs.harvard.edu/cgi-bin/nph-abs_connect?author=%s&db_key=AST")
-;;                                 ("openrice"  . "https://www.openrice.com/en/hongkong/restaurants?what=%h")
-;;                                 ("jira"  . "https://asw-global-digital-transformation.atlassian.net/browse/%h")
-;;                                 ("youtube" . "https://www.youtube.com/results?search_query=%s")))
-;;   ;; Enable link to manual pages
-;;   ;; Org-man.el is downloaded from https://orgmode.org/manual/Adding-hyperlink-types.html
-;;   (use-package org-man
-;;     :straight nil)
-
-;;   (use-package org-my-html-export-style
-;;     ;; My personal HTML export settings
-;;     :no-require
-;;     :straight ox-twbs
-;;     :demand t
-;;     :after org
-;;     :init (require 'ox)
-;;     :config
-;;     ;; let Org/Htmlize assign classes only, and to use a style file to
-;;     ;; define the look of these classes. See docs for more info.
-;;     (setq-default org-html-htmlize-output-type 'css)
-
-;;     ;; put your css files here
-;;     ;; default css: http://sriramkswamy.github.io/dotemacs/org.css
-;;     (setq org-theme-css-dir (expand-file-name "static/" my-emacs-conf-directory))
-
-;;     ;; Use this function to allow exporting using css file. No need to define html_head
-;;     (defun toggle-org-custom-inline-style ()
-;;       (interactive)
-;;       (let ((hook 'org-export-before-parsing-hook)
-;;             (fun 'set-org-html-style))
-;;         (if (memq fun (eval hook))
-;;             (progn
-;;               (remove-hook hook fun 'buffer-local)
-;;               (message "Removed %s from %s" (symbol-name fun) (symbol-name hook)))
-;;           (add-hook hook fun nil 'buffer-local)
-;;           (message "Added %s to %s" (symbol-name fun) (symbol-name hook)))))
-;;     ;; By default toggle to true
-;;     (toggle-org-custom-inline-style)
-
-;;     (defun org-theme ()
-;;       (interactive)
-;;       (let* ((cssdir org-theme-css-dir)
-;;              (css-choices (directory-files cssdir nil ".css$"))
-;;              (css (completing-read "theme: " css-choices nil t)))
-;;         (concat cssdir css)))
-
-;;     (defun set-org-html-style (&optional backend)
-;;       (interactive)
-;;       (when (or (null backend) (eq backend 'html))
-;;         (let ((f (or (and (boundp 'org-theme-css) org-theme-css) (org-theme))))
-;;           (if (file-exists-p f)
-;;               (progn
-;;                 (set (make-local-variable 'org-theme-css) f)
-;;                 (set (make-local-variable 'org-html-head)
-;;                      (with-temp-buffer
-;;                        (insert "<style type=\"text/css\">\n<!--/*--><![CDATA[/*><!--*/\n")
-;;                        (insert-file-contents f)
-;;                        (goto-char (point-max))
-;;                        (insert "\n/*]]>*/-->\n</style>\n")
-;;                        (buffer-string)))
-;;                 (set (make-local-variable 'org-html-head-include-default-style)
-;;                      nil)
-;;                 (message "Set custom style from %s" f))
-;;             (message "Custom header file %s doesnt exist")))))
-;;     )
-
-;;   ;; org-babel
-;;   (org-babel-do-load-languages
-;;    'org-babel-load-languages
-;;    '((ipython    . t)
-;;      (emacs-lisp . t)
-;;      (R          . t)
-;;      (haskell    . t)
-;;      (lilypond . t)
-;;      (python     .t)
-;;      (org        .t)
-;;      (dot        .t)
-;;      (sql        .t)
-;;      (http       . t)
-;;      (latex      . t)
-;;      (js         . t)
-;;      (shell      . t)
-;;      (plantuml   . t)
-;;      (ditaa      . t) ;; turn ascii art into bitmap graphics.
-;;      (asymptote .  t) ;; create vector graphics
-;;      ))
-
-;;   ;; Setup code block templates.
-;;   ;; For Org-mode < 9.2
-;;   (setq old-structure-template-alist
-;;         '(("py" "#+BEGIN_SRC python :results output\n?\n#+END_SRC" "")
-;;           ("ipy" "#+BEGIN_SRC ipython :results output\n?\n#+END_SRC" "")
-;;           ("el" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC" "")
-;;           ("hs" "#+BEGIN_SRC haskell\n?\n#+END_SRC" "")
-;;           ("laeq" "#+BEGIN_LaTeX\n\\begin{equation} \\label{eq-sinh}\ny=\\sinh x\n\\end{equation}\n#+END_LaTeX" "")
-;;           ("sh" "#+BEGIN_SRC sh\n?\n#+END_SRC" "")
-;;           ("r" "#+BEGIN_SRC R\n?\n#+END_SRC" "")
-;;           ("js" "#+BEGIN_SRC js\n?\n#+END_SRC" "")
-;;           ("http" "#+BEGIN_SRC http\n?\n#+END_SRC" "")
-;;           ("ditaa" "#+BEGIN_SRC ditaa :file\n?\n#+END_SRC" "")
-;;           ("dot" "#+BEGIN_SRC dot :file\n?\n#+END_SRC" "")
-;;           ("rp" "#+BEGIN_SRC R :results output graphics :file \n?\n#+END_SRC" "")
-;;           ("plantuml" "#+BEGIN_SRC plantuml :file\n?\n#+END_SRC" "")
-;;           ("n" "#+NAME: ?")
-;;           ("cap" "#+CAPTION: ?")))
-;;   ;; For Org-mode >= 9.2
-;;   (setq new-structure-template-alist
-;;         '(("py"       . "src python :results output")
-;;           ("ipy"      . "src ipython :results output")
-;;           ("el"       . "src emacs-lisp")
-;;           ("hs"       . "src haskell")
-;;           ("laeq"     . "latex \n\\begin{equation} \\label{eq-sinh}\ny=\\sinh x\\end{equation}")
-;;           ("sh"       . "src sh")
-;;           ("r"        . "src R")
-;;           ("js"       . "src js")
-;;           ("http"     . "src http")
-;;           ("ditaa"    . "src ditaa :file")
-;;           ("dot"      . "src dot :file")
-;;           ("rp"       . "src R :results output graphics :file ")
-;;           ("plantuml" . "src plantuml :file")
-;;           ))
-;;   ;; Keyword expansion also changed in 9.2
-;;   (setq my-tempo-keywords-alist
-;;         '(("n" . "NAME")
-;;           ("cap" . "CAPTION")))
-
-;;   ;; In org-version >= 9.2, structure template is changed.
-;;   ;; Below line allows me to keep using previous patterns.
-;;   (when (not (version< (org-version) "9.2"))
-;;     (require 'org-tempo))
-
-;;   ;; Now set structures for both new and old.
-;;   (if (version<  (org-version) "9.2")
-;;       (dolist (ele old-structure-template-alist)
-;;         (add-to-list 'org-structure-template-alist ele))
-;;     (dolist (ele new-structure-template-alist)
+;; ;; Now set structures for both new and old.
+;; (if (version<  (org-version) "9.2")
+;;     (dolist (ele old-structure-template-alist)
 ;;       (add-to-list 'org-structure-template-alist ele))
-;;     (dolist (ele my-tempo-keywords-alist)
-;;       (add-to-list 'org-tempo-keywords-alist ele))
-;;     )
+;;   (dolist (ele new-structure-template-alist)
+;;     (add-to-list 'org-structure-template-alist ele))
+;;   (dolist (ele my-tempo-keywords-alist)
+;;     (add-to-list 'org-tempo-keywords-alist ele))
+;;   )
 
-;;   ;; Default code block settings
-;;   (setq org-babel-default-header-args:python
-;;         '((:results . "output replace")
-;;           (:session . "none")
-;;           (:exports . "both")
-;;           (:cache .   "no")
-;;           (:noweb . "no")
-;;           (:hlines . "no")
-;;           (:tangle . "no")
-;;           (:eval . "never-export")))
+;; ;; Default code block settings
+;; (setq org-babel-default-header-args:python
+;;       '((:results . "output replace")
+;;         (:session . "none")
+;;         (:exports . "both")
+;;         (:cache .   "no")
+;;         (:noweb . "no")
+;;         (:hlines . "no")
+;;         (:tangle . "no")
+;;         (:eval . "never-export")))
 
-;;   (setq org-babel-default-header-args:R
-;;         '((:results . "output replace")
-;;           (:session . "none")
-;;           (:exports . "both")
-;;           (:cache .   "no")
-;;           (:noweb . "no")
-;;           (:hlines . "no")
-;;           (:tangle . "no")
-;;           (:eval . "never-export")))
+;; (setq org-babel-default-header-args:R
+;;       '((:results . "output replace")
+;;         (:session . "none")
+;;         (:exports . "both")
+;;         (:cache .   "no")
+;;         (:noweb . "no")
+;;         (:hlines . "no")
+;;         (:tangle . "no")
+;;         (:eval . "never-export")))
 
-;;   ;; Plotting with ditaa and plantuml
-;;   (setq org-ditaa-jar-path (expand-file-name "bin/ditaa.jar" my-emacs-conf-directory))
-;;   (setq org-plantuml-jar-path (expand-file-name "bin/plantuml.jar" my-emacs-conf-directory))
-;;   ;; For R plotting.
-;;   ;; Default template uses :results output as header arguments.
-;;   ;; If we want to use ggplot2, which plots to org AND saves a file in
-;;   ;; directory, we need to use :results output graphics.
+;; ;; Plotting with ditaa and plantuml
+;; (setq org-ditaa-jar-path (expand-file-name "bin/ditaa.jar" my-emacs-conf-directory))
+;; (setq org-plantuml-jar-path (expand-file-name "bin/plantuml.jar" my-emacs-conf-directory))
+;; ;; For R plotting.
+;; ;; Default template uses :results output as header arguments.
+;; ;; If we want to use ggplot2, which plots to org AND saves a file in
+;; ;; directory, we need to use :results output graphics.
 
-;;   (setq org-src-fontify-natively t   ; Syntax highlight in #+BEGIN_SRC blocks
-;;         org-src-tab-acts-natively t ; Why isn't this default?
-;;         org-src-window-setup 'current-window ;; Edit source block location
-;;         org-edit-src-content-indentation 0
-;;         org-fontify-quote-and-verse-blocks t ;; fontify text within verse/quote
-;;         org-adapt-indentation nil)
+;; (setq org-src-fontify-natively t   ; Syntax highlight in #+BEGIN_SRC blocks
+;;       org-src-tab-acts-natively t ; Why isn't this default?
+;;       org-src-window-setup 'current-window ;; Edit source block location
+;;       org-edit-src-content-indentation 0
+;;       org-fontify-quote-and-verse-blocks t ;; fontify text within verse/quote
+;;       org-adapt-indentation nil)
 
-;;   ;; Don't prompt before running code in org
-;;   (setq org-confirm-babel-evaluate nil)
-;;   ;; Fix an incompatibility between the ob-async and ob-ipython packages
-;;   (setq ob-async-no-async-languages-alist '("ipython"))
-;;   ;; display/update images in the buffer after I evaluate
-;;   (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
+;; ;; Don't prompt before running code in org
+;; (setq org-confirm-babel-evaluate nil)
+;; ;; Fix an incompatibility between the ob-async and ob-ipython packages
+;; (setq ob-async-no-async-languages-alist '("ipython"))
+;; ;; display/update images in the buffer after I evaluate
+;; (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
 
-;;   ;; This automatically aligns tables, which is nice if you use code to generate
-;;   ;; tables.
-;;   (defun scimax-align-result-table ()
-;;     "Align tables in the subtree."
-;;     (save-restriction
-;;       (save-excursion
-;;         (unless (org-before-first-heading-p) (org-narrow-to-subtree))
-;;         (org-element-map (org-element-parse-buffer) 'table
-;;           (lambda (tbl)
-;;             (goto-char (org-element-property :post-affiliated tbl))
-;;             (org-table-align))))))
+;; ;; This automatically aligns tables, which is nice if you use code to generate
+;; ;; tables.
+;; (defun scimax-align-result-table ()
+;;   "Align tables in the subtree."
+;;   (save-restriction
+;;     (save-excursion
+;;       (unless (org-before-first-heading-p) (org-narrow-to-subtree))
+;;       (org-element-map (org-element-parse-buffer) 'table
+;;                        (lambda (tbl)
+;;                          (goto-char (org-element-property :post-affiliated tbl))
+;;                          (org-table-align))))))
 
-;;   (add-hook 'org-babel-after-execute-hook
-;;             'scimax-align-result-table)
+;; (add-hook 'org-babel-after-execute-hook
+;;           'scimax-align-result-table)
 
-;;   ;; emphasize commands copied from scimax
-;;   (defun org-markup-region-or-point (type beginning-marker end-marker)
-;;     "Apply the markup TYPE with BEGINNING-MARKER and END-MARKER to region, word or point.
+;; ;; emphasize commands copied from scimax
+;; (defun org-markup-region-or-point (type beginning-marker end-marker)
+;;   "Apply the markup TYPE with BEGINNING-MARKER and END-MARKER to region, word or point.
 ;; This is a generic function used to apply markups. It is mostly
 ;; the same for the markups, but there are some special cases for
 ;; subscripts and superscripts."
+;;   (cond
+;;    ;; We have an active region we want to apply
+;;    ((region-active-p)
+;;     (let* ((bounds (list (region-beginning) (region-end)))
+;;            (start (apply 'min bounds))
+;;            (end (apply 'max bounds))
+;;            (lines))
+;;       (unless (memq type '(subscript superscript))
+;;         (save-excursion
+;;           (goto-char start)
+;;           (unless (looking-at " \\|\\<")
+;;             (backward-word)
+;;             (setq start (point)))
+;;           (goto-char end)
+;;           (unless (or (looking-at " \\|\\>")
+;;                       (looking-back "\\>" 1))
+;;             (forward-word)
+;;             (setq end (point)))))
+;;       (setq lines
+;;             (s-join "\n" (mapcar
+;;                           (lambda (s)
+;;                             (if (not (string= (s-trim s) ""))
+;;                                 (concat beginning-marker
+;;                                         (s-trim s)
+;;                                         end-marker)
+;;                               s))
+;;                           (split-string
+;;                            (buffer-substring start end) "\n"))))
+;;       (setf (buffer-substring start end) lines)
+;;       (forward-char (length lines))))
+;;    ;; We are on a word with no region selected
+;;    ((thing-at-point 'word)
 ;;     (cond
-;;      ;; We have an active region we want to apply
-;;      ((region-active-p)
-;;       (let* ((bounds (list (region-beginning) (region-end)))
-;;              (start (apply 'min bounds))
-;;              (end (apply 'max bounds))
-;;              (lines))
-;;         (unless (memq type '(subscript superscript))
-;;           (save-excursion
-;;             (goto-char start)
-;;             (unless (looking-at " \\|\\<")
-;;               (backward-word)
-;;               (setq start (point)))
-;;             (goto-char end)
-;;             (unless (or (looking-at " \\|\\>")
-;;                         (looking-back "\\>" 1))
-;;               (forward-word)
-;;               (setq end (point)))))
-;;         (setq lines
-;;               (s-join "\n" (mapcar
-;;                             (lambda (s)
-;;                               (if (not (string= (s-trim s) ""))
-;;                                   (concat beginning-marker
-;;                                           (s-trim s)
-;;                                           end-marker)
-;;                                 s))
-;;                             (split-string
-;;                              (buffer-substring start end) "\n"))))
-;;         (setf (buffer-substring start end) lines)
-;;         (forward-char (length lines))))
-;;      ;; We are on a word with no region selected
-;;      ((thing-at-point 'word)
-;;       (cond
-;;        ;; beginning of a word
-;;        ((looking-back " " 1)
-;;         (insert beginning-marker)
-;;         (re-search-forward "\\>")
-;;         (insert end-marker))
-;;        ;; end of a word
-;;        ((looking-back "\\>" 1)
-;;         (insert (concat beginning-marker end-marker))
-;;         (backward-char (length end-marker)))
-;;        ;; not at start or end so we just sub/sup the character at point
-;;        ((memq type '(subscript superscript))
-;;         (insert beginning-marker)
-;;         (forward-char (- (length beginning-marker) 1))
-;;         (insert end-marker))
-;;        ;; somewhere else in a word and handled sub/sup. mark up the
-;;        ;; whole word.
-;;        (t
-;;         (re-search-backward "\\<")
-;;         (insert beginning-marker)
-;;         (re-search-forward "\\>")
-;;         (insert end-marker))))
-;;      ;; not at a word or region insert markers and put point between
-;;      ;; them.
-;;      (t
+;;      ;; beginning of a word
+;;      ((looking-back " " 1)
+;;       (insert beginning-marker)
+;;       (re-search-forward "\\>")
+;;       (insert end-marker))
+;;      ;; end of a word
+;;      ((looking-back "\\>" 1)
 ;;       (insert (concat beginning-marker end-marker))
-;;       (backward-char (length end-marker)))))
+;;       (backward-char (length end-marker)))
+;;      ;; not at start or end so we just sub/sup the character at point
+;;      ((memq type '(subscript superscript))
+;;       (insert beginning-marker)
+;;       (forward-char (- (length beginning-marker) 1))
+;;       (insert end-marker))
+;;      ;; somewhere else in a word and handled sub/sup. mark up the
+;;      ;; whole word.
+;;      (t
+;;       (re-search-backward "\\<")
+;;       (insert beginning-marker)
+;;       (re-search-forward "\\>")
+;;       (insert end-marker))))
+;;    ;; not at a word or region insert markers and put point between
+;;    ;; them.
+;;    (t
+;;     (insert (concat beginning-marker end-marker))
+;;     (backward-char (length end-marker)))))
 
-;;   (defun org-subscript-region-or-point ()
-;;     "Mark the region, word or character at point as a subscript.
+;; (defun org-subscript-region-or-point ()
+;;   "Mark the region, word or character at point as a subscript.
 ;; This function tries to do what you mean:
 ;; 1. If you select a region, markup the region.
 ;; 2. If in a word, markup the word.
 ;; 3. Otherwise wrap the character at point in the markup."
-;;     (interactive)
-;;     (org-markup-region-or-point 'subscript "_{" "}"))
+;;   (interactive)
+;;   (org-markup-region-or-point 'subscript "_{" "}"))
 
-;;   (defun org-superscript-region-or-point ()
-;;     "Mark the region, word or character at point as superscript.
+;; (defun org-superscript-region-or-point ()
+;;   "Mark the region, word or character at point as superscript.
 ;; This function tries to do what you mean:
 ;; 1. If you select a region, markup the region.
 ;; 2. If in a word, markup the word.
 ;; 3. Otherwise wrap the character at point in the markup."
-;;     (interactive)
-;;     (org-markup-region-or-point 'superscript "^{" "}"))
+;;   (interactive)
+;;   (org-markup-region-or-point 'superscript "^{" "}"))
 
-;;   ;; Org export to doc
-;;   (setq org-odt-preferred-output-format "docx"
-;;         org-odt-fontify-srcblocks t)
+;; ;; Org export to doc
+;; (setq org-odt-preferred-output-format "docx"
+;;       org-odt-fontify-srcblocks t)
 
-;;   ;; Org Speed commands
-;;   (setq org-use-speed-commands t)
-;;   (add-to-list 'org-speed-commands-user (cons "P" 'org-set-property))
-;;   (add-to-list 'org-speed-commands-user (cons "d" 'org-deadline))
-;;   (add-to-list 'org-speed-commands-user (cons "S" 'org-schedule))
-;;   ;; Use indirect buffer instead of narrowing, so that visibility of original
-;;   ;; buffer is not changed.
-;;   ;; Widen is replace as toggle too.
-;;   (add-to-list 'org-speed-commands-user (cons "s" 'org-tree-to-indirect-buffer))
-;;   ;; Mark a subtree
-;;   (add-to-list 'org-speed-commands-user (cons "m" 'org-mark-subtree))
-;;   ;; kill a subtree
-;;   (add-to-list 'org-speed-commands-user (cons "k" (lambda ()
-;;                                                     (org-mark-subtree)
-;;                                                     (kill-region
-;;                                                      (region-beginning)
-;;                                                      (region-end)))))
-;;   ;; Jump to headline
-;;   (add-to-list 'org-speed-commands-user (cons "j" (lambda ()
-;;                                                     (avy-with avy-goto-line
-;;                                                       (avy--generic-jump "^\\*+" nil)))))
+;; ;; Org Speed commands
+;; (setq org-use-speed-commands t)
+;; (add-to-list 'org-speed-commands-user (cons "P" 'org-set-property))
+;; (add-to-list 'org-speed-commands-user (cons "d" 'org-deadline))
+;; (add-to-list 'org-speed-commands-user (cons "S" 'org-schedule))
+;; ;; Use indirect buffer instead of narrowing, so that visibility of original
+;; ;; buffer is not changed.
+;; ;; Widen is replace as toggle too.
+;; (add-to-list 'org-speed-commands-user (cons "s" 'org-tree-to-indirect-buffer))
+;; ;; Mark a subtree
+;; (add-to-list 'org-speed-commands-user (cons "m" 'org-mark-subtree))
+;; ;; kill a subtree
+;; (add-to-list 'org-speed-commands-user (cons "k" (lambda ()
+;;                                                   (org-mark-subtree)
+;;                                                   (kill-region
+;;                                                    (region-beginning)
+;;                                                    (region-end)))))
+;; ;; Jump to headline
+;; (add-to-list 'org-speed-commands-user (cons "j" (lambda ()
+;;                                                   (avy-with avy-goto-line
+;;                                                     (avy--generic-jump "^\\*+" nil)))))
 
 ;;   ;; Capturing pages from web. Integrates org-protocol-capture-html,
 ;;   ;; org-capture-extensions and org-protocol
@@ -2080,40 +2053,40 @@ Useful when hard line wraps are unwanted (email/sharing article)."
 ;;   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Org-ref + Org-noter integration ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-;;   (use-package ox-latex
-;;     ;; Org-latex output global settings
-;;     ;;
-;;     ;; 1. Source code fontification
-;;     ;; 2. Chinese output
-;;     ;;
-;;     ;; Dependencies:
-;;     ;; pacman -S python-pygments pygmentize
-;;     :straight nil
-;;     :init
-;;     ;; Below settings are accompanied with my own LaTeX options which are defined in a yasnippet.
-;;     ;; Consult https://github.com/dfeich/org-babel-examples/blob/master/latex/latex-example.org for example.
-;;     (setq-default
-;;      ;; Use xelatex by default
-;;      org-latex-compiler "xelatex"
-;;      ;; Export in background
-;;      org-export-in-background 'nil) ;; TODO: Seems buggy when set to t
+;; (use-package ox-latex
+;;   ;;Org-latex output global settings
+;;   ;;
+;;   ;; 1. Source code fontification
+;;   ;; 2. Korean output
+;;   ;;
+;;   ;; Dependencies:
+;;   ;; pacman -S python-pygments pygmentize
+;;   :straight nil
+;;   :init
+;;   ;; Below settings are accompanied with my own LaTeX options which are defined in a yasnippet.
+;;   ;; Consult https://github.com/dfeich/org-babel-examples/blob/master/latex/latex-example.org for example.
+;;   (setq-default
+;;    ;; Use xelatex by default
+;;    org-latex-compiler "xelatex"
+;;    ;; Export in background
+;;    org-export-in-background 'nil) ;; TODO: Seems buggy when set to t
 
-;;     ;; Enable source code fontification
-;;     (setq-default org-latex-listings 'minted)  ;; Use python minted to fontify
-;;     (setq org-latex-minted-options '(("frame" "lines") ("fontsize" "\\footnotesize")))
+;;   ;; Enable source code fontification
+;;   (setq-default org-latex-listings 'minted)  ;; Use python minted to fontify
+;;   (setq org-latex-minted-options '(("frame" "lines") ("fontsize" "\\footnotesize")))
 
-;;     ;; PDF output process with comments
-;;     ;; 1. `--shell-escape' required for minted. See `org-latex-listings'
-;;     ;; 2. "bibtex %b" ensures bibliography (of org-ref) is processed during pdf generation
-;;     ;; 3. Remove output logs, out, auto at the end of generation
-;;     (setq org-latex-pdf-process
-;;           '("%latex -shell-escape -interaction nonstopmode -output-directory %o %f"
-;;             "bibtex %b"
-;;             "%latex -shell-escape -interaction nonstopmode -output-directory %o %f"
-;;             "%latex -shell-escape -interaction nonstopmode -output-directory %o %f"
-;;             ))
+;;   ;; PDF output process with comments
+;;   ;; 1. `--shell-escape' required for minted. See `org-latex-listings'
+;;   ;; 2. "bibtex %b" ensures bibliography (of org-ref) is processed during pdf generation
+;;   ;; 3. Remove output logs, out, auto at the end of generation
+;;   (setq org-latex-pdf-process
+;;         '("%latex -shell-escape -interaction nonstopmode -output-directory %o %f"
+;;           "bibtex %b"
+;;           "%latex -shell-escape -interaction nonstopmode -output-directory %o %f"
+;;           "%latex -shell-escape -interaction nonstopmode -output-directory %o %f"
+;;           ))
 
-;;     )
+;;   )
 
 ;;   ;; Add beamer output support
 ;;   (require 'ox-beamer)
