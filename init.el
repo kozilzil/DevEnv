@@ -230,7 +230,6 @@ behavior added."
 ;; Quick access to commonly used files
 (global-set-key (kbd "s-SPC") (lambda () (interactive) (find-file (expand-file-name ".emacs.d/init.el"
                                                                                     my-emacs-conf-directory))))
-
 (global-set-key (kbd "s-f") (lambda () (interactive) (find-file-other-window org-my-beancount-file)))
 
 (use-package beacon
@@ -342,27 +341,6 @@ behavior added."
   (whole-line-or-region-global-mode)
   )
 
-(use-package crux
-  ;; A handful of useful functions
-  :defer 1
-  :bind (
-         ("C-x t"      . 'crux-swap-windows)
-         ("C-c b"      . 'crux-create-scratch-buffer)
-         ("C-x f"      . 'crux-recentf-find-file)
-         ("C-x 4 t"    . 'crux-transpose-windows)
-         ("C-x C-k"    . 'crux-delete-buffer-and-file)
-         ;; ("C-c n"      . 'crux-cleanup-buffer-or-region)
-         ;; ("s-<return>" . 'crux-cleanup-buffer-or-region)
-         ("C-M-y"      . 'crux-duplicate-and-comment-current-line-or-region)
-         )
-  :init
-  (global-set-key [remap move-beginning-of-line] #'crux-move-beginning-of-line)
-  (global-set-key [(shift return)] #'crux-smart-open-line)
-  (global-set-key [remap kill-whole-line] #'crux-kill-whole-line)
-  :config
-  ;; Retain indentation in these modes.
-  (add-to-list 'crux-indent-sensitive-modes 'markdown-mode)
-  )
 
 (use-package direnv
   :if (equal system-type 'gnu/linux)
@@ -462,6 +440,7 @@ Otherwise, call `delete-blank-lines'."
         (apply func args)
       (advice-remove 'message #'silence))))
 
+
 (defun the-the ()
   ;; https://www.gnu.org/software/emacs/manual/html_node/eintr/the_002dthe.html
   "Search forward for for a duplicated word."
@@ -491,8 +470,6 @@ Dwim means: region, org-src-XSXSblock, org-subtree, or
 defun, whichever applies first. Narrowing to
 org-src-block actually calls `org-edit-src-code'.
 
-
-
 With prefix P, don't widen, just narrow even if buffer
 is already narrowed."
   (interactive "P")
@@ -516,31 +493,31 @@ is already narrowed."
 ;; copy it if that's what you want.
 (define-key ctl-x-map "n" #'narrow-or-widen-dwim)
 
-;; (use-package expand-region
-;;   ;; Incrementally select a region
-;;   :after org ;; When using straight, er should byte-compiled with the latest Org
-;;   :bind (("C-'" . er/expand-region)
-;;          ("C-M-'" . er/contract-region))
-;;   :config
-;;   (defun org-table-mark-field ()
-;;     "Mark the current table field."
-;;     (interactive)
-;;     ;; Do not try to jump to the beginning of field if the point is already there
-;;     (when (not (looking-back "|[[:blank:]]?"))
-;;       (org-table-beginning-of-field 1))
-;;     (set-mark-command nil)
-;;     (org-table-end-of-field 1))
+(use-package expand-region
+  ;; Incrementally select a region
+  ;;:after org ;; When using straight, er should byte-compiled with the latest Org
+  :bind (("C-'" . er/expand-region)
+         ("C-M-'" . er/contract-region))
+  :config
+  (defun org-table-mark-field ()
+    "Mark the current table field."
+    (interactive)
+    ;; Do not try to jump to the beginning of field if the point is already there
+    (when (not (looking-back "|[[:blank:]]?"))
+      (org-table-beginning-of-field 1))
+    (set-mark-command nil)
+    (org-table-end-of-field 1))
 
-;;   (defun er/add-org-mode-expansions ()
-;;     (make-variable-buffer-local 'er/try-expand-list)
-;;     (setq er/try-expand-list (append
-;;                               er/try-expand-list
-;;                               '(org-table-mark-field))))
+  (defun er/add-org-mode-expansions ()
+    (make-variable-buffer-local 'er/try-expand-list)
+    (setq er/try-expand-list (append
+                              er/try-expand-list
+                              '(org-table-mark-field))))
 
-;;   (add-hook 'org-mode-hook 'er/add-org-mode-expansions)
+  (add-hook 'org-mode-hook 'er/add-org-mode-expansions)
 
-;;   (setq expand-region-fast-keys-enabled nil
-;;         er--show-expansion-message t))
+  (setq expand-region-fast-keys-enabled nil
+        er--show-expansion-message t))
 
 (use-package wrap-region
   ;; Wrap selected region
@@ -637,12 +614,6 @@ is already narrowed."
 (use-package ztree
   ;; Compare directories in diff style
   :defer 3)
-
-;; (defun generate-password ()
-;;   "Generate a 16-digit password."
-;;   (interactive)
-;;   (kill-new (s-trim (shell-command-to-string "openssl rand -base64 32 | tr -d /=+ | cut -c -16")))
-;;   )
 
 (use-package undo-tree
   :defer 3
@@ -886,8 +857,10 @@ Useful when hard line wraps are unwanted (email/sharing article)."
 (use-package helm-cscope
   :demand t
   :bind (
-         ("C-<f7>" . helm-cscope-find-calling-this-function-no-prompt)
-         ("C-<f8>" . helm-cscope-find-assignments-to-this-symbol-no-prompt)
+         ("C-c C-5" . helm-cscope-find-global-definition-no-prompt)
+         ("C-c C-6" . helm-cscope-find-calling-this-function-no-prompt)
+         ("C-c C-7" . helm-cscope-find-called-function-no-prompt)
+         ("C-c C-8" . helm-cscope-find-assignments-to-this-symbol-no-prompt)
          )
   )
 (use-package android-mode
@@ -902,61 +875,6 @@ Useful when hard line wraps are unwanted (email/sharing article)."
   :demand t
 
   )
-;; (use-package window
-;;   ;; Handier movement over default window.el
-;;   :straight nil
-;;   :bind (
-;;          ("C-x 2"             . split-window-below-and-move-there)
-;;          ("C-x 3"             . split-window-right-and-move-there)
-;;          ("C-x \\"            . toggle-window-split)
-;;          ("C-0"               . delete-window)
-;;          ("C-1"               . delete-other-windows)
-;;          ("C-2"               . split-window-below-and-move-there)
-;;          ("C-3"               . split-window-right-and-move-there)
-;;          ("M-o"               . 'other-window)
-;;          ("M-O"               . (lambda () (interactive) (other-window -1))) ;; Cycle backward
-;;          ("M-<tab>"           . 'other-frame)
-;;          ("<M-S-iso-lefttab>" . (lambda () (interactive) (other-frame -1))) ;; Cycle backwards
-;;          )
-;;   :init
-;;   ;; Functions for easier navigation
-;;   (defun split-window-below-and-move-there ()
-;;     (interactive)
-;;     (split-window-below)
-;;     (windmove-down))
-
-;;   (defun split-window-right-and-move-there ()
-;;     (interactive)
-;;     (split-window-right)
-;;     (windmove-right))
-
-;;   (defun toggle-window-split ()
-;;     "When there are two windows, toggle between vertical and
-;; horizontal mode."
-;;     (interactive)
-;;     (if (= (count-windows) 2)
-;;         (let* ((this-win-buffer (window-buffer))
-;;                (next-win-buffer (window-buffer (next-window)))
-;;                (this-win-edges (window-edges (selected-window)))
-;;                (next-win-edges (window-edges (next-window)))
-;;                (this-win-2nd (not (and (<= (car this-win-edges)
-;;                                            (car next-win-edges))
-;;                                        (<= (cadr this-win-edges)
-;;                                            (cadr next-win-edges)))))
-;;                (splitter
-;;                 (if (= (car this-win-edges)
-;;                        (car (window-edges (next-window))))
-;;                     'split-window-horizontally
-;;                   'split-window-vertically)))
-;;           (delete-other-windows)
-;;           (let ((first-win (selected-window)))
-;;             (funcall splitter)
-;;             (if this-win-2nd (other-window 1))
-;;             (set-window-buffer (selected-window) this-win-buffer)
-;;             (set-window-buffer (next-window) next-win-buffer)
-;;             (select-window first-win)
-;;             (if this-win-2nd (other-window 1))))))
-;;   )
 
 ;;창 전환 
 (use-package ace-window
@@ -1035,123 +953,114 @@ Useful when hard line wraps are unwanted (email/sharing article)."
 ;;   (setq nswbuff-display-intermediate-buffers t)
 ;;   )
 
-(global-set-key (kbd "<f5>") 'highlight-symbol-at-point)
-(global-set-key (kbd "<f6>") 'lazy-highlight-cleanup)
 ;; ;;; Cursor Navigation: avy
 
-;; (global-set-key (kbd "M-p") 'backward-paragraph)
-;; (global-set-key (kbd "M-n") 'forward-paragraph)
+(global-set-key (kbd "M-p") 'backward-paragraph)
+(global-set-key (kbd "M-n") 'forward-paragraph)
 
-;; (use-package avy
-;;   :bind  (("C-,"   . avy-goto-char-2)
-;;           ("C-M-," . avy-goto-line))
-;;   :commands (avy-with)
-;;   :config
-;;   (setq avy-timeout-seconds 0.3
-;;         avy-all-windows 'all-frames
-;;         avy-style 'at-full)
-;;   )
+(use-package avy
+  :bind  (("C-,"   . avy-goto-char-2)
+          ("C-M-," . avy-goto-line))
+  :commands (avy-with)
+  :config
+  (setq avy-timeout-seconds 0.3
+        avy-all-windows 'all-frames
+        avy-style 'at-full)
+  )
 
 ;; (use-package avy-zap
 ;;   :bind (("M-z" . avy-zap-to-char-dwim)
 ;;          ("M-Z" . avy-zap-up-to-char-dwim)))
 
-;; ;; A pacman hook is to used to update nodejieba whenever necessary
-;; (use-package jieba
-;;   :straight (:host github :repo "cireu/jieba.el" :files (:defaults "*.js")) ;; Need to symlink js for server too
-;;   :defer 3
-;;   :config
-;;   (jieba-mode))
 
 ;; ;;; Version-control: Magit
+(use-package magit
+  :defer 10
+  :straight gitignore-templates
+  :straight diff-hl
+  :straight git-timemachine
+  ;;display flycheck errors only on added/modified lines
+  :straight magit-todos
+  :straight magit-diff-flycheck
+  :bind (:map vc-prefix-map
+              ("s" . 'git-gutter:stage-hunk)
+              ("c" . 'magit-clone))
+  :bind (("C-x v r" . 'diff-hl-revert-hunk)
+         ("C-x v n" . 'diff-hl-next-hunk)
+         ("C-x v p" . 'diff-hl-previous-hunk))
+  :bind (("C-x M-g" . 'magit-dispatch-popup)
+         ("C-x g" . magit-status)
+         ("C-x G" . magit-dispatch))
+  :config
+  ;; Enable magit-file-mode, to enable operations that touches a file, such as log, blame
+  (global-magit-file-mode)
 
-;; (use-package magit
-;;   :defer 10
-;;   :straight gitignore-templates
-;;   :straight diff-hl
-;;   :straight git-timemachine
-;;   ;;display flycheck errors only on added/modified lines
-;;   :straight magit-todos
-;;   :straight magit-diff-flycheck
-;;   :bind (:map vc-prefix-map
-;;               ("s" . 'git-gutter:stage-hunk)
-;;               ("c" . 'magit-clone))
-;;   :bind (("C-x v r" . 'diff-hl-revert-hunk)
-;;          ("C-x v n" . 'diff-hl-next-hunk)
-;;          ("C-x v p" . 'diff-hl-previous-hunk))
-;;   :bind (("C-x M-g" . 'magit-dispatch-popup)
-;;          ("C-x g" . magit-status)
-;;          ("C-x G" . magit-dispatch))
-;;   :config
-;;   ;; Enable magit-file-mode, to enable operations that touches a file, such as log, blame
-;;   (global-magit-file-mode)
+  ;; Prettier looks, and provides dired diffs
+  (use-package diff-hl
+    :defer 3
+    :commands (diff-hl-mode diff-hl-dired-mode)
+    :hook (magit-post-refresh . diff-hl-magit-post-refresh)
+    :hook (dired-mode . diff-hl-dired-mode)
+    )
 
-;;   ;; Prettier looks, and provides dired diffs
-;;   (use-package diff-hl
-;;     :defer 3
-;;     :commands (diff-hl-mode diff-hl-dired-mode)
-;;     :hook (magit-post-refresh . diff-hl-magit-post-refresh)
-;;     :hook (dired-mode . diff-hl-dired-mode)
-;;     )
+  ;; Provides stage hunk at buffer, more useful
+  (use-package git-gutter
+    :defer 3
+    :commands (git-gutter:stage-hunk)
+    :bind (:map vc-prefix-map
+                ("s" . 'git-gutter:stage-hunk))
+    )
 
-;;   ;; Provides stage hunk at buffer, more useful
-;;   (use-package git-gutter
-;;     :defer 3
-;;     :commands (git-gutter:stage-hunk)
-;;     :bind (:map vc-prefix-map
-;;                 ("s" . 'git-gutter:stage-hunk))
-;;     )
+  ;; Someone says this will make magit on Windows faster.
+  (setq w32-pipe-read-delay 0)
 
-;;   ;; Someone says this will make magit on Windows faster.
-;;   (setq w32-pipe-read-delay 0)
+  (set-default 'magit-push-always-verify nil)
+  (set-default 'magit-revert-buffers 'silent)
+  (set-default 'magit-no-confirm '(stage-all-changes
+                                   unstage-all-changes))
+  (set-default 'magit-diff-refine-hunk t)
+  ;; change default display behavior
+  (setq magit-completing-read-function 'ivy-completing-read
+        magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1
+        magit-clone-set-remote.pushDefault nil
+        magit-clone-default-directory "~/projects/")
 
-;;   (set-default 'magit-push-always-verify nil)
-;;   (set-default 'magit-revert-buffers 'silent)
-;;   (set-default 'magit-no-confirm '(stage-all-changes
-;;                                    unstage-all-changes))
-;;   (set-default 'magit-diff-refine-hunk t)
-;;   ;; change default display behavior
-;;   (setq magit-completing-read-function 'ivy-completing-read
-;;         magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1
-;;         magit-clone-set-remote.pushDefault nil
-;;         magit-clone-default-directory "~/projects/")
+  (defun magit-status-with-prefix ()
+    (interactive)
+    (let ((current-prefix-arg '(4)))
+      (call-interactively 'magit-status)))
 
-;;   (defun magit-status-with-prefix ()
-;;     (interactive)
-;;     (let ((current-prefix-arg '(4)))
-;;       (call-interactively 'magit-status)))
+  ;; Set magit password authentication source to auth-source
+  (add-to-list 'magit-process-find-password-functions
+               'magit-process-password-auth-source)
 
-;;   ;; Set magit password authentication source to auth-source
-;;   (add-to-list 'magit-process-find-password-functions
-;;                'magit-process-password-auth-source)
+  ;; Solve a long-standing issue where magit complains about existence of index.lock.
+  ;; See https://emacs.stackexchange.com/questions/40917/how-can-i-get-a-prompt-for-deleting-index-lock-file-in-magit
+  (defun magit-remove-git-lock-file ()
+    "Remove git's index lock file, if it exists."
+    (interactive)
+    (let ((base (magit-toplevel)))
+      (delete-file (concat base "/.git/index.lock"))))
+  )
 
-;;   ;; Solve a long-standing issue where magit complains about existence of index.lock.
-;;   ;; See https://emacs.stackexchange.com/questions/40917/how-can-i-get-a-prompt-for-deleting-index-lock-file-in-magit
-;;   (defun magit-remove-git-lock-file ()
-;;     "Remove git's index lock file, if it exists."
-;;     (interactive)
-;;     (let ((base (magit-toplevel)))
-;;       (delete-file (concat base "/.git/index.lock"))))
-;;   )
+(use-package monky
+  ;; Mercurial support
+  )
 
-;; (use-package monky
-;;   ;; Mercurial support
-;;   )
+;;; Workspace Mgmt: eyebrowse + projectile
 
-;; ;;; Workspace Mgmt: eyebrowse + projectile
-
-;; (use-package projectile
-;;   :defer 5
-;;   :straight ripgrep ;; required by projectile-ripgrep
-;;   :bind-keymap
-;;   ("C-c P" . projectile-command-map)
-;;   :bind (("C-c o" . 'projectile-find-file))
-;;   :config
-;;   ;; Where my projects and clones are normally placed.
-;;   (setq projectile-project-search-path '("~/projects")
-;;         projectile-completion-system 'ivy)
-;;   (projectile-mode +1)
-;;   )
+(use-package projectile
+  :defer 5
+  :straight ripgrep ;; required by projectile-ripgrep
+  :bind-keymap
+  ("C-c P" . projectile-command-map)
+  :bind (("C-c o" . 'projectile-find-file))
+  :config
+  ;; Where my projects and clones are normally placed.
+  (setq projectile-project-search-path '("~/projects")
+        projectile-completion-system 'ivy)
+  (projectile-mode +1)
+  )
 
 ;; (use-package eyebrowse
 ;;   :defer 2
