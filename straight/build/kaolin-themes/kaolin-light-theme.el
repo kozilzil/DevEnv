@@ -1,1 +1,0 @@
-/home/hdkim/.emacs.d/straight/repos/emacs-kaolin-themes/themes/kaolin-light-theme.el

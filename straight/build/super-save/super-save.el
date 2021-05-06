@@ -1,1 +1,0 @@
-/home/hdkim/.emacs.d/straight/repos/super-save/super-save.el

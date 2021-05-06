@@ -1,1 +1,0 @@
-/home/hdkim/.emacs.d/straight/repos/modus-vivendi-theme/modus-vivendi-theme.el

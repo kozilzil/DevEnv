@@ -1,1 +1,0 @@
-/home/hdkim/.emacs.d/straight/repos/visual-regexp-steroids.el/visual-regexp-steroids.el

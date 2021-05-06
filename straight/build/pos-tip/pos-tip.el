@@ -1,1 +1,0 @@
-/home/hdkim/.emacs.d/straight/repos/pos-tip/pos-tip.el

@@ -1,1 +1,0 @@
-/home/hdkim/.emacs.d/straight/repos/ibuffer-tramp/ibuffer-tramp.el

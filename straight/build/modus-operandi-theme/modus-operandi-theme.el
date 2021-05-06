@@ -1,1 +1,0 @@
-/home/hdkim/.emacs.d/straight/repos/modus-operandi-theme/modus-operandi-theme.el
