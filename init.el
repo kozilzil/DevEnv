@@ -75,7 +75,7 @@
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
 ;; Early load Org from Git version instead of Emacs built-in version
-(straight-use-package 'org-plus-contrib)
+
 
 
 
@@ -1075,16 +1075,16 @@ Useful when hard line wraps are unwanted (email/sharing article)."
 
 ;;Org
 
-(use-package tramp
-  :demand t
-  :init
-  :config:
-  )
+;; (use-package tramp
+;;   :demand t
+;;   :init
+;;   :config:
+;;   )
 
 (use-package org
   ;; Combining demand and org-plus-contrib to ensure the latest version of org is used
   :demand t
-  :straight org-plus-contrib
+  ;; :straight org-plus-contrib
   :straight ob-ipython
   :straight ob-async
   :straight ob-mermaid
@@ -4021,17 +4021,6 @@ In that case, insert the number."
 ;; (load-theme 'doom-opera-light t)
 
 (message "my-solaire-themes")
-(use-package solaire-mode
-  ;; visually distinguish file-visiting windows from other types of windows (like popups or sidebars) by giving them a
-  ;; slightly different -- often brighter -- background
-  :defer 3
-  :hook
-  ((change-major-mode after-revert ediff-prepare-buffer) . turn-on-solaire-mode)
-  (minibuffer-setup . solaire-mode-in-minibuffer)
-  :config
-  (solaire-mode-swap-bg)
-  (solaire-global-mode 1))
-
 
 ;;;; Fonts
 (use-package my-fonts
