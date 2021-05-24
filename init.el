@@ -997,7 +997,7 @@ Useful when hard line wraps are unwanted (email/sharing article)."
   (setq magit-completing-read-function 'ivy-completing-read
         magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1
         magit-clone-set-remote.pushDefault nil
-        magit-clone-default-directory "/mnt/dev/Devs/projects/")
+        magit-clone-default-directory "~/mnt/dev/Devs/projects/")
 
   (defun magit-status-with-prefix ()
     (interactive)
@@ -1028,7 +1028,7 @@ Useful when hard line wraps are unwanted (email/sharing article)."
   :bind (("C-c o" . 'projectile-find-file))
   :config
   ;; Where my projects and clones are normally placed.
-  (setq projectile-project-search-path '("mnt/dev/Devs/projects")
+  (setq projectile-project-search-path '("~/mnt/dev/Devs/projects")
         projectile-completion-system 'ivy)
   (projectile-mode +1)
   )
@@ -1067,7 +1067,19 @@ Useful when hard line wraps are unwanted (email/sharing article)."
   )
 
 
+(setq special-display-regexps (remove "[ ]?\\*[hH]elp.*" special-display-regexps))
 ;;Org
+
+(require 'ox-reveal)
+(setq org-reveal-root "file:///Users/hyeongdookim/Dropbox/dotfiles/reveal.js")
+
+;;Org
+
+(use-package tramp
+  :demand t
+  :init
+  :config:
+  )
 
 (use-package org
   ;; Combining demand and org-plus-contrib to ensure the latest version of org is used
