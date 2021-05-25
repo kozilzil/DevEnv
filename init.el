@@ -293,7 +293,7 @@ behavior added."
    ;; Auto reverting files in remote machine. Useful for remote plotting.
    auto-revert-remote-files t)
   (global-auto-revert-mode 1) ;; work with auto-save with Org files in Dropbox
-)  
+  )  
 
 (use-package recentf
   :defer 5
@@ -562,6 +562,14 @@ is already narrowed."
   (add-to-list 'wrap-region-except-modes 'magit-popup-mode)
   )
 
+(if (member 'dired-collapse-mode dired-mode-hook)
+    (progn
+      (remove-hook 'dired-mode-hook 'dired-collapse-mode)
+      (let ((clone (clone-buffer)))
+        (add-hook 'dired-mode-hook 'dired-collapse-mode)
+        clone))
+  (clone-buffer))
+
 (use-package change-inner
   :bind (("M-I" . copy-inner)
          ("M-O" . copy-outer)
@@ -778,7 +786,7 @@ Useful when hard line wraps are unwanted (email/sharing article)."
 (use-package helm-codesearch
   :demand t
   :init
-  :bind (("C-<f5>" . helm-codesearch-find-patton)
+  :bind (("C-<f5>" . helm-codesearch-find-pattern)
          ("C-<f6>" . helm-codesearch-find-file)
          ("<f5>" . helm-imenu)
          )
@@ -855,6 +863,15 @@ Useful when hard line wraps are unwanted (email/sharing article)."
 ;;   (setq bookmark-save-flag 1)
 ;;   (setq bookmark-default-file (expand-file-name "bookmarks" my-private-conf-directory))
 ;;   )
+
+
+;; Tramp
+;; (add-to-list 'load-path "~/.emacs.d/ext/tramp-2.5.0/lisp")
+;; (setq tramp-debug-buffer t)
+;; (setq tramp-verbose 10)
+;; (setq tramp-default-method "sshx")
+;; (require 'tramp)
+
 
 (use-package deft
   ;; :bind ("<f7>" . deft)
