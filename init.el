@@ -81,7 +81,7 @@
   :straight t)
 (setq straight-use-package-by-default t)
 ;; Early load Org from Git version instead of Emacs built-in version
-(straight-use-package 'org-plus-contrib)
+
 
 ;;; Basic Setup
 ;;;; Emacs folder setup
@@ -329,7 +329,7 @@ behavior added."
    ;; Auto reverting files in remote machine. Useful for remote plotting.
    auto-revert-remote-files t)
   (global-auto-revert-mode 1) ;; work with auto-save with Org files in Dropbox
-)  
+  )  
 
 (use-package recentf
   :defer 5
@@ -598,6 +598,14 @@ is already narrowed."
   (add-to-list 'wrap-region-except-modes 'magit-popup-mode)
   )
 
+(if (member 'dired-collapse-mode dired-mode-hook)
+    (progn
+      (remove-hook 'dired-mode-hook 'dired-collapse-mode)
+      (let ((clone (clone-buffer)))
+        (add-hook 'dired-mode-hook 'dired-collapse-mode)
+        clone))
+  (clone-buffer))
+
 (use-package change-inner
   :bind (("M-I" . copy-inner)
          ("M-O" . copy-outer)
@@ -805,7 +813,7 @@ Useful when hard line wraps are unwanted (email/sharing article)."
 
 ;; ;;; File Nav & Mgmt: Follow / Dired / Bookmark+
 
-(use-package follow
+(use-package followg
   :bind (("<f7>" . follow-delete-other-windows-and-split)
          ("<f8>" . follow-mode))
   )
@@ -891,6 +899,15 @@ Useful when hard line wraps are unwanted (email/sharing article)."
 ;;   (setq bookmark-save-flag 1)
 ;;   (setq bookmark-default-file (expand-file-name "bookmarks" my-private-conf-directory))
 ;;   )
+
+
+;; Tramp
+;; (add-to-list 'load-path "~/.emacs.d/ext/tramp-2.5.0/lisp")
+;; (setq tramp-debug-buffer t)
+;; (setq tramp-verbose 10)
+;; (setq tramp-default-method "sshx")
+;; (require 'tramp)
+
 
 (use-package deft
   ;; :bind ("<f7>" . deft)
@@ -1110,10 +1127,11 @@ Useful when hard line wraps are unwanted (email/sharing article)."
 (setq org-reveal-root "file:///Users/hyeongdookim/Dropbox/dotfiles/reveal.js")
 
 ;;Org
+
 (use-package org
   ;; Combining demand and org-plus-contrib to ensure the latest version of org is used
   :demand t
-  :straight org-plus-contrib
+  ;; :straight org-plus-contrib
   :straight ob-ipython
   :straight ob-async
   :straight ob-mermaid
@@ -4050,17 +4068,6 @@ In that case, insert the number."
 ;; (load-theme 'doom-opera-light t)
 
 (message "my-solaire-themes")
-;;(use-package solaire-mode
-;;  ;; visually distinguish file-visiting windows from other types of windows (like popups or sidebars) by giving them a
-;;  ;; slightly different -- often brighter -- background
-;;  :defer 3
-;;  :hook
-;;  ((change-major-mode after-revert ediff-prepare-buffer) . turn-on-solaire-mode)
-;;  (minibuffer-setup . solaire-mode-in-minibuffer)
-;;  :config
-;; (solaire-mode-swap-bg)
-;;  (solaire-global-mode 1))
-
 
 ;;;; Fonts
 (use-package my-fonts
