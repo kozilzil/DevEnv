@@ -8,7 +8,9 @@
 
 
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                         ("marmalade" . "https://marmalade-repo.org/packages/")
+                         ("elpa" . "http://elpa.gnu.org/packages/")
+                         ("emacs-pe" . "https://emacs-pe.github.io/packages/")
+                         ("org" . "https://orgmode.org/elpa/")
                          ("melpa" . "https://melpa.org/packages/")))
 
 (setq debug-on-error t)
@@ -66,6 +68,8 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+
+
 ;; Bootstrap `use-package'
 (setq-default use-package-always-defer t ; Always defer load package to speed up startup time
               use-package-verbose nil ; Don't report loading details
@@ -73,22 +77,54 @@
               use-package-enable-imenu-support t) ; Let imenu finds use-package definitions
 ;; Integration with use-package
 (straight-use-package 'use-package)
+(use-package el-patch
+  :straight t)
 (setq straight-use-package-by-default t)
 ;; Early load Org from Git version instead of Emacs built-in version
 (straight-use-package 'org-plus-contrib)
-
-
 
 ;;; Basic Setup
 ;;;; Emacs folder setup
 
 ;; ;; Emacs configuration, along with many other journals, are synchronized across machines
+;; Dir tree
+;; ~/Dropbox/
+;;   ├── dotfiles
+;;   │   ├── emacs
+;;   │   │   ├── elisp
+;;   │   ├── private
+
+
 (setq my-sync-directory "~/Dropbox")
 ;; ;; Define configuration directory.
+
+;; ~/Dropbox/dotfiles/emacs/
+;; ~/Dropbox/dotfiles/emacs/private/
 (setq my-emacs-conf-directory (expand-file-name "dotfiles/emacs/" my-sync-directory)
       my-private-conf-directory (expand-file-name "private/" my-emacs-conf-directory))
+
 ;; ;; For packages not available through MELPA, save it locally and put under load-path
+;; ~/Dropbox/dotfiles/emacs/elisp
 (add-to-list 'load-path (expand-file-name "elisp" my-emacs-conf-directory))
+(add-to-list 'load-path "~/.emacs.d/elpa")
+(add-to-list 'load-path "/use/local/share/emacs/site-lisp")
+(add-to-list 'load-path "~/.emacs.d/use-package-master")
+
+
+
+
+(setq exec-path
+      '("~/.local/bin"
+        "~/bin"
+        "~/go/bin/"
+        "~/.ghcup/bin"
+        "~/.nvm/versions/node/v14.13.1/bin"
+        "/bin"
+        "/usr/bin"
+        "/usr/local/go/bin"
+        "/usr/local/bin"))
+
+(setenv "PATH" (string-join exec-path ":"))
 
 
 ;;;; General settings
@@ -778,7 +814,7 @@ Useful when hard line wraps are unwanted (email/sharing article)."
 (use-package helm-codesearch
   :demand t
   :init
-  :bind (("C-<f5>" . helm-codesearch-find-patton)
+  :bind (("C-<f5>" . helm-codesearch-find-pattern)
          ("C-<f6>" . helm-codesearch-find-file)
          ("<f5>" . helm-imenu)
          )
@@ -1074,13 +1110,6 @@ Useful when hard line wraps are unwanted (email/sharing article)."
 (setq org-reveal-root "file:///Users/hyeongdookim/Dropbox/dotfiles/reveal.js")
 
 ;;Org
-
-(use-package tramp
-  :demand t
-  :init
-  :config:
-  )
-
 (use-package org
   ;; Combining demand and org-plus-contrib to ensure the latest version of org is used
   :demand t
@@ -4021,16 +4050,16 @@ In that case, insert the number."
 ;; (load-theme 'doom-opera-light t)
 
 (message "my-solaire-themes")
-(use-package solaire-mode
-  ;; visually distinguish file-visiting windows from other types of windows (like popups or sidebars) by giving them a
-  ;; slightly different -- often brighter -- background
-  :defer 3
-  :hook
-  ((change-major-mode after-revert ediff-prepare-buffer) . turn-on-solaire-mode)
-  (minibuffer-setup . solaire-mode-in-minibuffer)
-  :config
-  (solaire-mode-swap-bg)
-  (solaire-global-mode 1))
+;;(use-package solaire-mode
+;;  ;; visually distinguish file-visiting windows from other types of windows (like popups or sidebars) by giving them a
+;;  ;; slightly different -- often brighter -- background
+;;  :defer 3
+;;  :hook
+;;  ((change-major-mode after-revert ediff-prepare-buffer) . turn-on-solaire-mode)
+;;  (minibuffer-setup . solaire-mode-in-minibuffer)
+;;  :config
+;; (solaire-mode-swap-bg)
+;;  (solaire-global-mode 1))
 
 
 ;;;; Fonts
@@ -4048,21 +4077,21 @@ In that case, insert the number."
      :font (font-spec :name "D2Coding"
                       :weight 'normal
                       :slant 'normal
-                      :size 11.5))
+                      :size 15.5))
     ;; Fixed-width for programming
     (set-face-attribute
      'fixed-pitch nil
      :font (font-spec :name "D2Coding"
                       :weight 'normal
                       :slant 'normal
-                      :size 11.5))
+                      :size 15.5))
     ;; Variable-width for reading
     (set-face-attribute
      'variable-pitch nil
      :font (font-spec :name "D2Coding"
                       :weight 'normal
                       :slant 'normal
-                      :size 12.0))
+                      :size 15.0))
     ;; For all CJK fonts
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
       (set-fontset-font
@@ -4071,7 +4100,7 @@ In that case, insert the number."
        (font-spec :name "D2Coding"
                   :weight 'normal
                   :slant 'normal
-                  :size 11.5)))
+                  :size 14.5)))
     )
   ;; Set fonts every time a new Window frame is created.
   (add-to-list 'after-make-frame-functions
