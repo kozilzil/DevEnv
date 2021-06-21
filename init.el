@@ -813,7 +813,7 @@ Useful when hard line wraps are unwanted (email/sharing article)."
 
 ;; ;;; File Nav & Mgmt: Follow / Dired / Bookmark+
 
-(use-package followg
+(use-package follow
   :bind (("<f7>" . follow-delete-other-windows-and-split)
          ("<f8>" . follow-mode))
   )
