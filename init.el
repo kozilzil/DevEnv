@@ -109,6 +109,7 @@
 (add-to-list 'load-path "~/.emacs.d/elpa")
 (add-to-list 'load-path "/use/local/share/emacs/site-lisp")
 (add-to-list 'load-path "~/.emacs.d/use-package-master")
+(add-to-list 'load-path "~/.emacs.d/org-reveal")
 
 
 
@@ -281,8 +282,8 @@ behavior added."
 
 
 ;; Early unbind keys for customization   
-(unbind-key "C-s") ; Reserve for search related commands
-(unbind-key "C-z") ;; Reserve for hydra related commands
+;;(unbind-key "C-s") ; Reserve for search related commands
+;;(unbind-key "C-z") ;; Reserve for hydra related commands
 
 ;; Quick access to commonly used files
 (global-set-key (kbd "s-SPC") (lambda () (interactive) (find-file (expand-file-name ".emacs.d/init.el"
@@ -744,7 +745,7 @@ Useful when hard line wraps are unwanted (email/sharing article)."
          ("C-h l"   . counsel-find-library)
          ("C-h u"   . counsel-unicode-char)
          ("C-c j"   . counsel-git-grep)
-         ("C-s p"   . counsel-git-grep)
+;;         ("C-s p"   . counsel-git-grep)
          ("C-c i"   . counsel-imenu)
          ("C-x l"   . counsel-locate)
          ("C-x C-r" . counsel-recentf)
@@ -752,10 +753,10 @@ Useful when hard line wraps are unwanted (email/sharing article)."
          ;; C-u prefix to choose search directory
          ;; C-c C-o opens an occur buffer
          ;; e to toggle writable state
-         ("C-s C-s" . counsel-ag)
-         ("C-s r"   . counsel-rg)
-         ("C-s f"   . counsel-file-jump) ;; Jump to a file below the current directory.
-         ("C-s j"   . counsel-dired-jump);; Jump to directory under current directory
+;;         ("C-s C-s" . counsel-ag)
+;;         ("C-s r"   . counsel-rg)
+;;         ("C-s f"   . counsel-file-jump) ;; Jump to a file below the current directory.
+;;         ("C-s j"   . counsel-dired-jump);; Jump to directory under current directory
          )
   :init
   (setq ivy-rich-display-transformers-list
@@ -829,6 +830,14 @@ Useful when hard line wraps are unwanted (email/sharing article)."
   :config
   (setq helm-codesearch-global-csearchindex "~/.csearchindex")
   (setq helm-codesearch-overwrite-search-result t)
+  )
+
+(use-package helm-ag
+  :demand t
+  :init
+  :bind (
+         
+         )
   )
 
 (use-package jdee
@@ -931,10 +940,10 @@ Useful when hard line wraps are unwanted (email/sharing article)."
 (use-package helm-cscope
   :demand t
   :bind (
-         ("C-c C-5" . helm-cscope-find-global-definition-no-prompt)
-         ("C-c C-6" . helm-cscope-find-calling-this-function-no-prompt)
-         ("C-c C-7" . helm-cscope-find-called-function-no-prompt)
-         ("C-c C-8" . helm-cscope-find-assignments-to-this-symbol-no-prompt)
+         ("C-<f7>" . helm-cscope-find-global-definition-no-prompt)
+         ("C-<f8>" . helm-cscope-find-calling-this-function-no-prompt)
+         ("C-<f9>" . helm-cscope-find-called-function-no-prompt)
+         ("C-<f10>" . helm-cscope-find-assignments-to-this-symbol-no-prompt)
          )
   )
 (use-package android-mode
@@ -1001,73 +1010,80 @@ Useful when hard line wraps are unwanted (email/sharing article)."
 
 
 ;; ;;; Version-control: Magit
-(use-package magit
-  :defer 10
-  :straight gitignore-templates
-  :straight diff-hl
-  :straight git-timemachine
-  ;;display flycheck errors only on added/modified lines
-  :straight magit-todos
-  :straight magit-diff-flycheck
-  :bind (:map vc-prefix-map
-              ("s" . 'git-gutter:stage-hunk)
-              ("c" . 'magit-clone))
-  :bind (("C-x v r" . 'diff-hl-revert-hunk)
-         ("C-x v n" . 'diff-hl-next-hunk)
-         ("C-x v p" . 'diff-hl-previous-hunk))
-  :bind (("C-x M-g" . 'magit-dispatch-popup)
-         ("C-x g" . magit-status)
-         ("C-x G" . magit-dispatch))
-  :config
-  ;; Enable magit-file-mode, to enable operations that touches a file, such as log, blame
-  ;;  (global-magit-file-mode)
 
-  ;; Prettier looks, and provides dired diffs
-  (use-package diff-hl
-    :defer 3
-    :commands (diff-hl-mode diff-hl-dired-mode)
-    :hook (magit-post-refresh . diff-hl-magit-post-refresh)
-    :hook (dired-mode . diff-hl-dired-mode)
-    )
-
-  ;; Provides stage hunk at buffer, more useful
-  (use-package git-gutter
-    :defer 3
-    :commands (git-gutter:stage-hunk)
+;; magit
+(if (or (version< emacs-version "25.1") (eq (executable-find "git") nil))
+    (message
+     "Either git not found or version < 25.1.  Unable to install magit")
+  (use-package magit
+    :defer 10
+    :straight gitignore-templates
+    :straight diff-hl
+    :straight git-timemachine
+    ;;display flycheck errors only on added/modified lines
+    :straight magit-todos
+    :straight magit-diff-flycheck
     :bind (:map vc-prefix-map
-                ("s" . 'git-gutter:stage-hunk))
+                ("s" . 'git-gutter:stage-hunk)
+                ("c" . 'magit-clone))
+    :bind (("C-x v r" . 'diff-hl-revert-hunk)
+           ("C-x v n" . 'diff-hl-next-hunk)
+           ("C-x v p" . 'diff-hl-previous-hunk))
+    :bind (("C-x M-g" . 'magit-dispatch-popup)
+           ("C-x g" . magit-status)
+           ("C-x G" . magit-dispatch))
+    :config
+    ;; Enable magit-file-mode, to enable operations that touches a file, such as log, blame
+    ;;  (global-magit-file-mode)
+
+    ;; Prettier looks, and provides dired diffs
+    (use-package diff-hl
+      :defer 3
+      :commands (diff-hl-mode diff-hl-dired-mode)
+      :hook (magit-post-refresh . diff-hl-magit-post-refresh)
+      :hook (dired-mode . diff-hl-dired-mode)
+      )
+
+    ;; Provides stage hunk at buffer, more useful
+    (use-package git-gutter
+      :defer 3
+      :commands (git-gutter:stage-hunk)
+      :bind (:map vc-prefix-map
+                  ("s" . 'git-gutter:stage-hunk))
+      )
+
+    ;; Someone says this will make magit on Windows faster.
+    (setq w32-pipe-read-delay 0)
+
+    (set-default 'magit-push-always-verify nil)
+    (set-default 'magit-revert-buffers 'silent)
+    (set-default 'magit-no-confirm '(stage-all-changes
+                                     unstage-all-changes))
+    (set-default 'magit-diff-refine-hunk t)
+    ;; change default display behavior
+    (setq magit-completing-read-function 'ivy-completing-read
+          magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1
+          magit-clone-set-remote.pushDefault nil
+          magit-clone-default-directory "~/mnt/dev/Devs/projects/")
+
+    (defun magit-status-with-prefix ()
+      (interactive)
+      (let ((current-prefix-arg '(4)))
+        (call-interactively 'magit-status)))
+
+    ;; Set magit password authentication source to auth-source
+    (add-to-list 'magit-process-find-password-functions
+                 'magit-process-password-auth-source)
+
+    ;; Solve a long-standing issue where magit complains about existence of index.lock.
+    ;; See https://emacs.stackexchange.com/questions/40917/how-can-i-get-a-prompt-for-deleting-index-lock-file-in-magit
+    (defun magit-remove-git-lock-file ()
+      "Remove git's index lock file, if it exists."
+      (interactive)
+      (let ((base (magit-toplevel)))
+        (delete-file (concat base "/.git/index.lock"))))
     )
 
-  ;; Someone says this will make magit on Windows faster.
-  (setq w32-pipe-read-delay 0)
-
-  (set-default 'magit-push-always-verify nil)
-  (set-default 'magit-revert-buffers 'silent)
-  (set-default 'magit-no-confirm '(stage-all-changes
-                                   unstage-all-changes))
-  (set-default 'magit-diff-refine-hunk t)
-  ;; change default display behavior
-  (setq magit-completing-read-function 'ivy-completing-read
-        magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1
-        magit-clone-set-remote.pushDefault nil
-        magit-clone-default-directory "~/mnt/dev/Devs/projects/")
-
-  (defun magit-status-with-prefix ()
-    (interactive)
-    (let ((current-prefix-arg '(4)))
-      (call-interactively 'magit-status)))
-
-  ;; Set magit password authentication source to auth-source
-  (add-to-list 'magit-process-find-password-functions
-               'magit-process-password-auth-source)
-
-  ;; Solve a long-standing issue where magit complains about existence of index.lock.
-  ;; See https://emacs.stackexchange.com/questions/40917/how-can-i-get-a-prompt-for-deleting-index-lock-file-in-magit
-  (defun magit-remove-git-lock-file ()
-    "Remove git's index lock file, if it exists."
-    (interactive)
-    (let ((base (magit-toplevel)))
-      (delete-file (concat base "/.git/index.lock"))))
   )
 
 
@@ -1124,7 +1140,7 @@ Useful when hard line wraps are unwanted (email/sharing article)."
 ;;Org
 
 (require 'ox-reveal)
-(setq org-reveal-root "file:///Users/hyeongdookim/Dropbox/dotfiles/reveal.js")
+(setq org-reveal-root "/home/hdkim/.emacs.d/org-reveal/reveal.js")
 
 ;;Org
 
@@ -3313,24 +3329,33 @@ In that case, insert the number."
 
 ;; ;;;; Code folding
 
-;; (use-package hideshow
-;;   :hook (prog-mode . hs-minor-mode)
-;;   :init
-;;   (defun toggle-fold ()
-;;     (interactive)
-;;     (save-excursion
-;;       (end-of-line)
-;;       (hs-toggle-hiding)))
-;;   :bind (:map prog-mode-map
-;;               ("C-c h" . toggle-fold)))
+(use-package hideshow
+  :hook (prog-mode . hs-minor-mode)
+  :init
+  (defun toggle-fold ()
+    (interactive)
+    (save-excursion
+      (end-of-line)
+      (hs-toggle-hiding)))
+  :bind (:map prog-mode-map
+              ("C-c h" . toggle-fold)))
+
+(add-hook 'c-mode-common-hook
+          (lambda()
+            (local-set-key (kbd "C-c <right>") 'hs-show-block)
+            (local-set-key (kbd "C-c <left>") 'hs-hide-block)
+            (local-set-key (kbd "C-c <up>") 'hs-hide-all)
+            (local-set-key (kbd "C-c <down>") 'hs-show-all)
+            (hs-minor-mode t)))
+
 
 (use-package origami
   ;; Code folding
   :defer 3
   :after hydra
   :bind(
-        ;; ("C-c f" . 'origami-toggle-node)
-        ("C-z o" . hydra-origami/body)
+        ("C-c f" . 'origami-toggle-node)
+        ("C-c o" . hydra-origami/body)
         )
   :config
   (global-origami-mode)
@@ -3348,14 +3373,14 @@ In that case, insert the number."
   )
 
 
-;; (use-package eldoc
-;;   ;; Show argument list of function call at echo area
-;;   :hook ((c-mode-common
-;;           emacs-lisp-mode
-;;           lisp-interaction-mode
-;;           eval-expression-minibuffer-setup
-;;           ielm-mode) . eldoc-mode)
-;;   )
+(use-package eldoc
+  ;; Show argument list of function call at echo area
+  :hook ((c-mode-common
+          emacs-lisp-mode
+          lisp-interaction-mode
+          eval-expression-minibuffer-setup
+          ielm-mode) . eldoc-mode)
+  )
 
 ;; ;;;; Source code navigation
 
@@ -4057,8 +4082,7 @@ In that case, insert the number."
 (use-package gruvbox-theme)
 (use-package one-themes)
 (use-package naysayer-theme)
-(use-package modus-operandi-theme)
-(use-package modus-vivendi-theme)
+
 (use-package doom-themes)
 
 ;; (load-theme 'modus-operandi t)
